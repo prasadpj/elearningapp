@@ -3,7 +3,7 @@ import { NgModule, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import {ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -27,11 +27,12 @@ import { ClientFooterComponent } from './components/client-footer/client-footer.
 
 import { SingleTopicComponent } from './components/single-topic/single-topic.component';
 import { RegisteredUsersComponent } from './components/registered-users/registered-users.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 // import { SafePipeModule } from 'safe-pipe';
 // import { EmbedVideo } from 'ngx-embed-video';
 @NgModule({
   declarations: [
-  
+
     AppComponent,
     CourseComponent,
     ChapterComponent,
@@ -49,7 +50,8 @@ import { RegisteredUsersComponent } from './components/registered-users/register
     ClientFooterComponent,
     SingleTopicComponent,
     RegisteredUsersComponent,
-    
+    PagenotfoundComponent,
+
   ],
   imports: [
     // SafePipeModule,
@@ -95,37 +97,38 @@ import { RegisteredUsersComponent } from './components/registered-users/register
         component: RegisteredUsersComponent
       },
       {
-        path:  'home',
+        path: 'home',
         component: HomeComponent
       },
       {
-        path:  'blogs',
+        path: 'blogs',
         component: BlogsComponent
       },
       {
-        path:  'courses',
+        path: 'courses',
         component: CoursesComponent
       },
       {
-        path:  'contact',
+        path: 'contact',
         component: ContactComponent
       },
       {
-        path:  'login',
+        path: 'login',
         component: LoginComponent
       },
       {
-        path:  'register',
+        path: 'register',
         component: ClientRegisterComponent
       },
       {
-        path:  'singlelog',
+        path: 'singlelog',
         component: SingleBlogComponent
       },
       {
-        path:  'singletopic',
-        component: SingleTopicComponent 
-      }
+        path: 'singletopic',
+        component: SingleTopicComponent
+      },
+      { path: '**', component: PagenotfoundComponent }
     ])
   ],
   providers: [],

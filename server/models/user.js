@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var ClientRegister = mongoose.model('ClientRegister',{
+var User = mongoose.model('User',{
     
     FirstName : { type: String },
     LastName : { type: String },
@@ -9,7 +9,7 @@ var ClientRegister = mongoose.model('ClientRegister',{
     DOB : { type: String },
     Password : { type: String },
     IsAdmin : { type: Boolean },
-},'ClientRegister');
+},'User');
 
 
-module.exports = {ClientRegister};
+module.exports = {User};
