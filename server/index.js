@@ -1,3 +1,11 @@
+
+
+var requireConfig = require('./require.config')
+
+global.appRequire = function (alias) {
+    return require(__dirname + '/' + requireConfig[alias]);
+};
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -5,16 +13,9 @@ var multer = require('multer');
 var path = require('path');
 var fs = require('fs');
 
-const { mongoose } = require('./db.js');
-var courseController = require('./controllers/courseController.js');
-var chapterController = require('./controllers/chapterController.js');
-var topicController = require('./controllers/topicController.js');
-var blogController = require('./controllers/blogController.js');
-var clientRegister = require('./controllers/client-registerController.js');
-var login = require('./controllers/loginController.js');
-var contactUs = require('./controllers/contactus.ctrl.js');
+const { mongoose } = appRequire('database');
 
-var config = require('./config/index');
+var config = appRequire('config');
 var serverUrl = "http://" + config.host + ":" + config.port;
 
 var uploadDir = './../' + config.imageUploadFolder + '/';
@@ -47,15 +48,14 @@ console.log(serverUrl)
 
 app.listen(config.port, () => console.log('server started at port:' + config.port));
 
-app.use('/Course', courseController);
-app.use('/Chapter', chapterController);
-app.use('/Topic', topicController);
-app.use('/Blog', blogController);
-app.use('/ClientRegister', clientRegister);
-app.use('/Login', login);
-app.use('/Contact', contactUs);
+app.use('/Course', appRequire('api.course'));
+app.use('/Chapter', appRequire('api.chapter'));
+app.use('/Topic', appRequire('api.topic'));
+app.use('/Blog', appRequire('api.blog'));
+app.use('/ClientRegister', appRequire('api.user'));
+app.use('/Contact', appRequire('api.contactus'));
 app.use('/uploaded_images', express.static(path.join(config.imageUploadPath)));
-console.log('config.imageUploadPath ', config.imageUploadPath)
+// console.log('config.imageUploadPath ', config.imageUploadPath)
 
 app.post("/upload", upload.array("uploads[]", 12), function (req, res) {
     // console.log('files', req.files);
