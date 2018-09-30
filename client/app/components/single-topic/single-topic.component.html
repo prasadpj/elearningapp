@@ -1,8 +1,27 @@
+<div class="container">
+  <div class="col-lg-4">
+    <accordion>
+      <div *ngFor="let items of chapterList">
+        <accordion-group>
+          <span accordion-heading>
+            <a style="font-size: 20px"> {{ items.ChapterName}} </a>
+            <i class='fa fa-arrow-down' style="float:right;margin-top: 10px"></i>
+          </span>
+          <p><b style="text-align: justify;font-size: 15px"> {{ items.ChapterDesc }}</b></p>
+          <br>
+          <div *ngFor="let item of items.Topic">
+            <a [routerLink]="['/SingleTopic']" [queryParams]="{ VideoURL: item.VideoURL }" class="card-link" style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">
+              <i class="icon fa fa-video"></i> {{ item.TopicName }}
+            </a>
+          </div>
+        </accordion-group>
+      </div>
+    </accordion>
+  </div>
 
-
-
-
-<video width="400" controls>
-  <source [src]="VideoUrl"  type="video/mp4">
-</video>
-
+<div class="col-lg-8">
+    <video height="100%" width="100%" controls>
+      <source [src]="VideoUrl" type="video/mp4">
+    </video>
+  </div>
+</div>

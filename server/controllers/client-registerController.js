@@ -1,7 +1,10 @@
 const express = require('express');
 var router = express.Router();      
 var ObjectId = require('mongoose').Types.ObjectId;
+var crypto = require('crypto');
+var config = require('../config/index.js');
 
+var EncryptionKey = config.EncryptionKey;
 var { ClientRegister } = require('../models/client-register');
 var { Login } = require('../models/login');
 
@@ -30,7 +33,8 @@ router.post('/', (req,res) => {
     MobileNo : req.body.MobileNo,
     Email : req.body.Email,
     DOB : req.body.DOB,
-    Password : req.body.Password,
+    Password : crypto.createCipher("aes-256-ctr",EncryptionKey).update(req.body.Password,"utf-8","hex"),
+    
     IsAdmin : req.body.IsAdmin,
  });
  clientRegister.save((err, doc) => {
@@ -71,12 +75,11 @@ var isTrue;
 router.post('/byEmail/', (req,res) => {
     var clientRegister = new ClientRegister({
         Email : req.body.Email,
-        Password : req.body.Password
+        Password :crypto.createCipher("aes-256-ctr",EncryptionKey).update(req.body.Password,"utf-8","hex")
      });
        isTrue = ClientRegister.find({"Email":clientRegister.Email, "Password":clientRegister.Password},(err,docs) => {
         if(!err) {res.send(docs);}
         else { console.log('Error in retriving ClinetRegister: ' + JSON.stringify(err, undefined,2));}
     });
 });  
-
 module.exports = router;

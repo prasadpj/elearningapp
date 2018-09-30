@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
       this.resetForm();
+    
   }
  resetForm(form?: NgForm){
     if(form != null)
@@ -51,8 +52,9 @@ export class LoginComponent implements OnInit {
   login(form?: NgForm) {
    this.clientRegisterService.getSingleLogin(form.value).subscribe((res) => {
       this.singleLogin = res as ClientRegister[];
-      
-      console.log(this.singleLogin.length);
+
+      this.clientRegisterService.setUser(res[0]);
+
 
       if(this.singleLogin.length > 0)
       this.toastr.success('Login Successfull!');

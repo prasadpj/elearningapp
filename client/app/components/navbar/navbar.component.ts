@@ -1,4 +1,6 @@
+
 import { Component, OnInit } from '@angular/core';
+import { ClientRegisterService } from '../../services/client-service/client-register.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,42 +10,118 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public clientRegisterService:ClientRegisterService ) { }
+loggs;
   ngOnInit() {
   }
   allNav = [
     {
-      routerLink: "/contact",
-      text: "Contact Us"
-    },
-    {
-      routerLink: "/courses",
-      text: "Manage Course"
+      routerLink: "/course",
+      text: "Manage Course",
+      IsClient: false
     },
     {
       routerLink: "/chapter",
-      text: "Manage Chapter"
+      text: "Manage Chapter",
+      IsClient: false
+    },
+    {
+      routerLink: "/topic",
+      text: "Manage Topic",
+      IsClient: false
     },
     {
       routerLink: "/blog",
-      text: "Manage Blog"
+      text: "Manage Blog",
+      IsClient: false
+    },
+    {
+      routerLink: "/users",
+      text: "Manage users",
+      IsClient: false
+    },
+    {
+      routerLink: "/home",
+      text: "Home",
+      IsClient: true
     },
     {
       routerLink: "/blogs",
-      text: "Blogs"
+      text: "Blogs",
+      IsClient: true
+    },
+    
+    {
+      routerLink: "/login",
+      text: "Login",
+      IsClient: true
     },
     {
       routerLink: "/contact",
-      text: "contact us"
-    },
-    {
-      routerLink: "/register",
-      text: "Registration"
-    },
-    {
-      routerLink: "/Contact",
-      text: "contact us"
+      text: "Contact Us",
+      IsClient: true
     }
   ]
+
+
+  adminNav = [
+    
+    {
+      routerLink: "/course",
+      text: "Manage Course",
+      IsClient: false
+    },
+    {
+      routerLink: "/chapter",
+      text: "Manage Chapter",
+      IsClient: false
+    },
+    {
+      routerLink: "/topic",
+      text: "Manage Topic",
+      IsClient: false
+    },
+    {
+      routerLink: "/blog",
+      text: "Manage Blog",
+      IsClient: false
+    },
+    {
+      routerLink: "/users",
+      text: "Manage users",
+      IsClient: false
+    }
+  ]
+
+
+  clientNav = [
+    {
+      routerLink: "/home",
+      text: "Home",
+      IsClient: true
+    },
+    {
+      routerLink: "/blogs",
+      text: "Blogs",
+      IsClient: true
+    },
+    
+    {
+      routerLink: "/login",
+      text: "Login",
+      IsClient: true
+    },
+    {
+      routerLink: "/contact",
+      text: "Contact Us",
+      IsClient: true
+    }
+  ]
+
+  signout(){
+    this.clientRegisterService.setUser(null);
+
+  }
+ 
+
 }

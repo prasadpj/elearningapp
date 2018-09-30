@@ -119,7 +119,7 @@ import { RegisteredUsersComponent } from './components/registered-users/register
         component: ClientRegisterComponent
       },
       {
-        path:  'singlelog',
+        path:  'singleblog',
         component: SingleBlogComponent
       },
       {

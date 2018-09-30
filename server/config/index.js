@@ -21,8 +21,9 @@ var config = {
         db: "MIS"
     },
     imageUploadFolder: "uploads",
-    imageUploadPath: fileUploadRoot + 'uploads/',
+    imageUploadPath: fileUploadRoot + 'uploads\\',
     imageUploadURL: "http://" + this.host + ":" + this.port + '/uploaded_images/',
+    EncryptionKey: "TheKey123"
 };
 
 module.exports = config;

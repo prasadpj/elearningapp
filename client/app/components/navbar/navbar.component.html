@@ -17,7 +17,9 @@
       <li routerLinkActive="active current"><a routerLink="/Login">Login</a></li>
       </ul>
 </div>
-</nav> --><nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+</nav> -->
+<!-- 
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">E-Learning</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -26,19 +28,19 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li routerLinkActive="active current" class="nav-item">
-        <a class="nav-link" routerLink="/Home">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li routerLinkActive="active current" class="nav-item">
-        <a class="nav-link" routerLink="/Courses">Courses</a>
+        <a class="nav-link" routerLink="/courses">Courses</a>
       </li>
       <li routerLinkActive="active current" class="nav-item">
-        <a class="nav-link" routerLink="/Blogs">Blogs</a>
+        <a class="nav-link" routerLink="/blogs">Blogs</a>
       </li>
       <li routerLinkActive="active current" class="nav-item">
-        <a class="nav-link" routerLink="/Contact">Contact</a>
+        <a class="nav-link" routerLink="/contact">Contact</a>
       </li>
       <li routerLinkActive="active current" class="nav-item">
-        <a class="nav-link" routerLink="/Login">Login</a>
+        <a class="nav-link" routerLink="/login">Login</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -46,4 +48,27 @@
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
+</nav> -->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">E-Learning</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li routerLinkActive="active current" class="nav-item"  *ngFor="let item of allNav">
+      
+        <a class="nav-link" routerLink="{{item.routerLink}}" *ngIf="item.IsClient || clientRegisterService.isAdmin()">{{item.text}} </a>
+      </li>
+
+      <li routerLinkActive="active current" class="nav-item " style="float:right">
+        <a class="nav-link" routerLink="/home"><i class='fa fa-mail-forward fa-2x' style=" color:white" (click)="signout()"></i> </a>  
+      </li>
+    </ul>
+  </div>
+  
+  
 </nav>

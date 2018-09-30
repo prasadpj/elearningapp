@@ -99,7 +99,7 @@
                                     <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></p>
                                     <h4 class="card-title">{{ items.CourseName }}</h4>
 
-                                    <button type="button" class="btn btn-primary"  [routerLink]="['/Courses']" [queryParams]="{ course: items._id }">Start Course</button>
+                                    <button type="button" class="btn btn-primary"  [routerLink]="['/courses']" [queryParams]="{ course: items._id }">Start Course</button>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                                     <ul class="list-inline">
 
                                         <li class="list-inline-item">
-                                            <button type="button" class="btn btn-primary"  [routerLink]="['/Courses']" [queryParams]="{ course: items._id }">Start Course</button>
+                                            <button type="button" class="btn btn-primary"  [routerLink]="['/courses']" [queryParams]="{ course: items._id }">Start Course</button>
                                         </li>
                                     </ul>
                                 </div>
@@ -143,7 +143,7 @@
                                     <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><a><strong>{{ item.BlogTitle}}</strong></a></p>
                                     <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">{{ item.BlogAbstract}}</p>
                                     <p>
-                                        <a class="float-right btn btn-outline-info ml-2" [routerLink]="['/single']" [queryParams]="{ BlogId: item._id }">   <i class="fa fa-reply"></i> <a> Read More</a></a>
+                                        <a class="float-right btn btn-outline-info ml-2" [routerLink]="['/singleblog']" [queryParams]="{ BlogId: item._id }">   <i class="fa fa-reply"></i> <a> Read More</a></a>
 
                                    </p>
                                 </div>

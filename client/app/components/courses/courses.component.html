@@ -1,6 +1,4 @@
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<div class="page-header" >
+<div class="page-header">
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -11,48 +9,44 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="card-section">
+        <div class="container">
+            <div class="card-block bg-white mb30">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-<div class="card-section"  style="background: #eee">
-    <div class="container">
-        <div class="card-block bg-white mb30">
-            <div class="row" >
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <!-- section-title -->
-                    <div class="section-title mb-0">
-                        <!-- <h2>{{ courseDetail?.CourseDesc }}</h2> -->
-                        <p style="font-size:20px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">{{ courseDetail?.CourseDesc }} </p>
+                        <div class="section-title mb-0">
+
+                            <p style="font-size:20px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">{{
+                                courseDetail?.CourseDesc }} </p>
+                        </div>
+
                     </div>
-                    <!-- /.section-title -->
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<br>
-<div class = "container">
-  <accordion >
-    <div *ngFor="let item of chapterList">
 
-      <accordion-group>
-          <span accordion-heading>
-              <!-- <i class='fa fa-users'></i>--> {{ item.ChapterName}} 
-              
-              <i class='fa fa-arrow-down' style="float:right"></i>
+    <div class="container">
+        <accordion>
+            <div *ngFor="let items of chapterList">
 
-            </span>
-      <p><b style="color:#006991;text-align: justify;font-size: 15px"> {{ item.ChapterDesc }}</b></p>
-      <br>
-       <div *ngFor="let items of item.Topic">
-  
-          <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: items.VideoURL }" class="list-group-item list-group-item-action">  <i class="icon fa fa-globe"></i>  {{ items.TopicName }}
-                </a>
-         
-         
-        </div>
-      </accordion-group>
+                <accordion-group>
+                    <span accordion-heading>
+                        <a style="font-size: 20px"> {{ items.ChapterName}} </a>
+                        <i class='fa fa-arrow-down' style="float:right;margin-top: 10px"></i>
+                    </span>
+                    <p><b style="text-align: justify;font-size: 15px"> {{ items.ChapterDesc }}</b></p>
+                    <br>
+                    <div *ngFor="let item of items.Topic">
+                        <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL  }" class="card-link"
+                            style="font-size: 20px;font-family: Arial, Helvetica, sans-serif" (click)="addToStorage()"> <i class="icon fa fa-video"></i>
+                            {{ item.TopicName }}
+                        </a>
+                    </div>
+                </accordion-group>
+            </div>
+        </accordion>
     </div>
-    </accordion>
-  </div>
- 
-           
