@@ -1,0 +1,58 @@
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="page-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-caption">
+                    <h1 class="page-title">{{ courseDetail?.CourseName }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-section"  style="background: #eee">
+    <div class="container">
+        <div class="card-block bg-white mb30">
+            <div class="row" >
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <!-- section-title -->
+                    <div class="section-title mb-0">
+                        <!-- <h2>{{ courseDetail?.CourseDesc }}</h2> -->
+                        <p style="font-size:20px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">{{ courseDetail?.CourseDesc }} </p>
+                    </div>
+                    <!-- /.section-title -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class = "container">
+  <accordion >
+    <div *ngFor="let item of chapterList">
+
+      <accordion-group>
+          <span accordion-heading>
+              <!-- <i class='fa fa-users'></i>--> {{ item.ChapterName}} 
+              
+              <i class='fa fa-arrow-down' style="float:right"></i>
+
+            </span>
+      <p><b style="color:#006991;text-align: justify;font-size: 15px"> {{ item.ChapterDesc }}</b></p>
+      <br>
+       <div *ngFor="let items of item.Topic">
+  
+          <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: items.VideoURL }" class="list-group-item list-group-item-action">  <i class="icon fa fa-globe"></i>  {{ items.TopicName }}
+                </a>
+         
+         
+        </div>
+      </accordion-group>
+    </div>
+    </accordion>
+  </div>
+ 
+           
