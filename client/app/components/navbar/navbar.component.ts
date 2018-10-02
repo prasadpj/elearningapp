@@ -50,7 +50,7 @@ loggs;
       text: "Blogs",
       IsClient: true
     },
-    
+
     {
       routerLink: "/login",
       text: "Login",
@@ -65,7 +65,7 @@ loggs;
 
 
   adminNav = [
-    
+
     {
       routerLink: "/course",
       text: "Manage Course",
@@ -105,7 +105,7 @@ loggs;
       text: "Blogs",
       IsClient: true
     },
-    
+
     {
       routerLink: "/login",
       text: "Login",
@@ -122,6 +122,6 @@ loggs;
     this.clientRegisterService.setUser(null);
 
   }
- 
+
 
 }

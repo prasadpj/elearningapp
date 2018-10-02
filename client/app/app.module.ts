@@ -28,6 +28,7 @@ import { ClientFooterComponent } from './components/client-footer/client-footer.
 import { SingleTopicComponent } from './components/single-topic/single-topic.component';
 import { RegisteredUsersComponent } from './components/registered-users/registered-users.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 // import { SafePipeModule } from 'safe-pipe';
 // import { EmbedVideo } from 'ngx-embed-video';
 @NgModule({
@@ -51,6 +52,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     SingleTopicComponent,
     RegisteredUsersComponent,
     PagenotfoundComponent,
+    ForgotpasswordComponent,
 
   ],
   imports: [
@@ -87,6 +89,10 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
       {
         path: 'topic',
         component: TopicComponent
+      },
+      {
+        path: 'forgotpassword',
+        component: ForgotpasswordComponent
       },
       {
         path: 'blog',

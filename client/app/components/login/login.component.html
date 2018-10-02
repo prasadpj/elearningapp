@@ -1,10 +1,10 @@
 
 <form class="form-horizontal course-form" #loginForm='ngForm' [formGroup]="form" (ngSubmit)="login(loginForm)" style="padding:20px">
         <div class="wrapper fadeInDown">
-        
-                
+
+
                 <div id="formContent">
-        
+
                         <div class="fadeIn first">
                                 <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
                               </div>
@@ -24,10 +24,10 @@
                         <div *ngIf="Password.errors.required">Password required!</div>
                         <div *ngIf="Password.errors.minlength">Password should be atleast 8 char</div>
                         <div *ngIf="Password.errors.maxlength">Password should only max 16 char</div>
-                        
+
                   </div>
             </div></div>
-            <a class="underlineHover pull-right fadeIn fourth" style="padding: 10px 10px" href="#">Forgot Password?</a> 
+            <a class="underlineHover pull-right fadeIn fourth" style="padding: 10px 10px" routerLink="/forgotpassword">Forgot Password?</a>
             <br>
             <br>
             <br>
@@ -41,11 +41,10 @@
         </div>
         </div>
         </div>
-        
-        
+
+
         </form>
-        
-        
-        
-        
-        
+
+
+
+

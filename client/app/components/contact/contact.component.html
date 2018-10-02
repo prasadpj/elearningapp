@@ -31,9 +31,9 @@
                     placeholder="Enter name" name="Name" formControlName="Name" />
                 </div>
                 <div class='alert alert-danger' *ngIf="Name.touched && Name.invalid">
-                  <div *ngIf="Name.errors.required">Course Name required!</div>
-                  <div *ngIf="Name.errors.minlength">Course Name should be atleast 3 char</div>
-                  <div *ngIf="Name.errors.maxlength">Course Name should only 200 char </div>
+                  <div *ngIf="Name.errors.required">Name required!</div>
+                  <div *ngIf="Name.errors.minlength">Name should be atleast 3 char</div>
+                  <div *ngIf="Name.errors.maxlength">Name should only 200 char </div>
                 </div>
               </div>
             </div>
@@ -45,12 +45,12 @@
                 <div class="input-group">
                   <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                   </span>
-                  <input type="email" class="form-control col-md-12" id="Email" placeholder="Enter email" ([ngModel])="contactService.selectedContact.Email" formControlName="Email" name="Email"/>                  
+                  <input type="email" class="form-control col-md-12" id="Email" placeholder="Enter email" ([ngModel])="contactService.selectedContact.Email" formControlName="Email" name="Email"/>
                 </div>
                 <div class='alert alert-danger' *ngIf="Email.touched && Email.invalid">
-                  <div *ngIf="Email.errors.required">Course Name required!</div>
-                  <div *ngIf="Email.errors.minlength">Course Name should be atleast 3 char</div>
-                  <div *ngIf="Email.errors.maxlength">Course Name should only 200 char </div>
+                  <div *ngIf="Email.errors.required">Email ID required!</div>
+                  <div *ngIf="Email.errors.minlength">Email ID should be atleast 3 char</div>
+                  <div *ngIf="Email.errors.maxlength">Email ID should only 200 char </div>
                   <div *ngIf="Email.errors.email">Enter a valid Email ID </div>
                 </div>
               </div>
@@ -63,7 +63,7 @@
                 <textarea name="message" id="message" class="form-control" rows="9" cols="25" placeholder="Message" formControlName="message" name="message"></textarea>
                 <div class='alert alert-danger' *ngIf="message.touched && message.invalid">
                   <div *ngIf="message.errors.required">message required!</div>
-                  <div *ngIf="message.errors.minlength">messageshould be atleast 3 char</div>
+                  <div *ngIf="message.errors.minlength">message should be atleast 3 char</div>
                   <div *ngIf="message.errors.maxlength">message should only 1000 char </div>
                 </div>
               </div>
