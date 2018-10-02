@@ -15,7 +15,7 @@ export class ContactComponent implements OnInit {
     Name: '',
     Email: '',
     message: ''
-  }
+  };
 
   form = new FormGroup ({
     Name: new FormControl('', [
@@ -51,7 +51,7 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  
+
   onSubmit(form?: NgForm) {
     // return this.contactService.sendEmail(this.newUser);
     //return this.contactService.sendEmail(this.newUser);
@@ -59,7 +59,7 @@ export class ContactComponent implements OnInit {
       .subscribe(res => {
         this.resetForm(form);
        //this.courseService.getCourseList();
-      
+
       this.toastr.success('New Record Inserted');
       });
   }

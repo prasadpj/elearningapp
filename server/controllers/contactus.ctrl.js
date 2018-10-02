@@ -27,15 +27,15 @@ router.post('/', (req,res) => {
                 if (err) {
                     return res.send(err)
                 } else {
-                    res.send({ success: true });
-                    contact.save((err, doc) => {
-                        if(!err) {res.send(doc);}
-                        else { console.log('Error in Course Save: '+ JSON.stringify(err, undefined, 2));}
-                    });
+
                 }
 
             })
-
+            res.send({ success: true });
+            contact.save((err, doc) => {
+                if(!err) {res.send(doc);}
+                else { console.log('Error in Course Save: '+ JSON.stringify(err, undefined, 2));}
+            });
    });
 
 

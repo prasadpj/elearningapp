@@ -13,7 +13,7 @@ module.exports = {
     read: read,
 
     readAll: readAll,
-    
+
     readByEmailId: readByEmailId
 }
 
