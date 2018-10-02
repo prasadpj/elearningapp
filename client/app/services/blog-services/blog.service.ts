@@ -49,8 +49,8 @@ export class BlogService {
     return this.http.delete(this.url + `/${_id}`);
   }
 
-  uploadBlogImages(formData : any) {
-    return this.http.post('http://localhost:3000/upload', formData)
+  uploadBlogImages(blogId , formData : any) {
+    return this.http.post('http://localhost:3000/upload/'+blogId, formData)
   }
 
  

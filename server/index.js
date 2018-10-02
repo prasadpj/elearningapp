@@ -14,6 +14,7 @@ var path = require('path');
 var fs = require('fs');
 
 const { mongoose } = appRequire('database');
+var { Blog } = appRequire('model.blog');
 
 var config = appRequire('config');
 var serverUrl = "http://" + config.host + ":" + config.port;
@@ -25,7 +26,9 @@ var storage = multer.diskStorage({
         cb(null, uploadDir)
     },
     filename: function (req, file, cb) {
-        cb(null, generateFileName(file.originalname));
+        var blog_id = req.params.id
+        var newFileName = blog_id ? blog_id + "_" + file.originalname : file.originalname;
+        cb(null, newFileName);
     }
 });
 var upload = multer({ storage: storage });
@@ -41,7 +44,7 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
+var regex = config.blogImagePlaceholderRegex
 console.log(serverUrl)
 // app.use(cors({ origin: serverUrl }));
 
@@ -57,13 +60,28 @@ app.use('/Contact', appRequire('api.contactus'));
 app.use('/uploaded_images', express.static(path.join(config.imageUploadPath)));
 // console.log('config.imageUploadPath ', config.imageUploadPath)
 
-app.post("/upload", upload.array("uploads[]", 12), function (req, res) {
+app.post("/upload/:id", upload.array("uploads[]", 12), function (req, res) {
     // console.log('files', req.files);
-    var response = []
+    var uploadImageUrls = []
     req.files.forEach(file => {
-        response.push(serverUrl + "/uploaded_images/" + file.filename);
+        uploadImageUrls.push(serverUrl + "/uploaded_images/" + file.filename);
+        });
+    Blog.findByIdAndUpdate(req.params.id, { $push: { 'BlogImageUrls': uploadImageUrls } }, function (err, doc) {
+        var blogContent = doc.BlogContent
+        
+        blogContent = blogContent.replace(regex, serverUrl + "/uploaded_images/"+ doc._id)
+        if (!err) {
+            Blog.findByIdAndUpdate(doc._id,{ 'BlogContent': blogContent }, function (err, updatedDoc) {
+                if (!err) { res.send(updatedDoc); }
+                else { console.log('Error in updating image in Blog: ' + JSON.stringify(err, undefined, 2)); }
+            })
+        }
+        else { console.log('Error in Updating Images: ' + JSON.stringify(err, undefined, 2)); }
     });
-    res.send(response);
+    // req.files.forEach(file => {
+    //     response.push(serverUrl + "/uploaded_images/" + file.filename);
+    // });
+    // res.send(response);
 });
 //Create the invoice and other upload folders.
 fs.exists(uploadDir, function (exists) {
@@ -76,13 +94,14 @@ fs.exists(uploadDir, function (exists) {
     }
 })
 // this function removed all special symbols and return file name with extension
-function generateFileName(originalname) {
-    var arr = originalname.split('.')
-    var newFilename = arr[0];
-    newFilename = newFilename.replace(/(?!\w|\s)./g, '')
-        .replace(/\s+/g, '')
-        .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2')
-        + (new Date()).getTime()
-        + '.' + arr[(arr.length - 1)]
-    return newFilename;
-}
+// function generateFileName(originalname) {
+//     var arr = originalname.split('.')
+//     var newFilename = arr[0];
+//     newFilename = newFilename.replace(/(?!\w|\s)./g, '')
+//         .replace(/\s+/g, '')
+//         .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2')
+//         // + (new Date()).getTime()
+//         + '.' + arr[(arr.length - 1)]
+//     console.log('newFilename == ',newFilename)
+//     return newFilename;
+// }
