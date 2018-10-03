@@ -20,33 +20,33 @@ export class BlogComponent implements OnInit {
     _id: new FormControl(),
     BlogCategory: new FormControl(),
     BlogLevel: new FormControl(),
-    BlogTitle: new FormControl('',[
+    BlogTitle: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(140)
     ]),
-    BlogAbstract: new FormControl('',[
+    BlogAbstract: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(250)
     ]),
-    BlogContent: new FormControl('',[
+    BlogContent: new FormControl('', [
       Validators.required,
       Validators.minLength(3)
     ]),
-    BlogVideoURL: new FormControl('',[
+    BlogVideoURL: new FormControl('', [
       Validators.minLength(3)
     ]),
-    BlogImageUrls: new FormControl('',[
+    BlogImageUrls: new FormControl('', [
       Validators.minLength(3)
     ]),
-    BlogAuthor: new FormControl('',[
+    BlogAuthor: new FormControl('', [
       Validators.minLength(3)
     ]),
-    BlogPostedOn: new FormControl('',[
+    BlogPostedOn: new FormControl('', [
       Validators.minLength(3)
     ]),
-    });
+  });
 
   get BlogCategory() { return this.form.get('BlogCategory'); }
 
@@ -54,12 +54,12 @@ export class BlogComponent implements OnInit {
 
   get BlogTitle() { return this.form.get('BlogTitle'); }
 
-    get BlogImageUrls() { return this.form.get('BlogImageUrls'); }
+  get BlogImageUrls() { return this.form.get('BlogImageUrls'); }
 
-    get BlogAuthor() { return this.form.get('BlogAuthor'); }
+  get BlogAuthor() { return this.form.get('BlogAuthor'); }
 
-    get BlogPostedOn() { return this.form.get('BlogPostedOn'); }
-  
+  get BlogPostedOn() { return this.form.get('BlogPostedOn'); }
+
   constructor(public blogService: BlogService, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -91,63 +91,69 @@ export class BlogComponent implements OnInit {
     this.selectedLevels = obj;
   }
 
-  resetForm(form?: NgForm){
-    if(form != null)
-    form.reset();
-   this.blogService.selectedBlog= {
-     _id: "",
-    BlogCategory: "",
-    BlogLevel: "",
-    BlogTitle: "",
-    BlogAbstract: "",
-    BlogContent: "",
-    BlogVideoURL: "",
-    BlogImageUrls: [],
-    BlogAuthor: "",
-    BlogPostedOn: null
+  resetForm(form?: NgForm) {
+    if (form != null)
+      form.reset();
+    this.blogService.selectedBlog = {
+      _id: "",
+      BlogCategory: "",
+      BlogLevel: "",
+      BlogTitle: "",
+      BlogAbstract: "",
+      BlogContent: "",
+      BlogVideoURL: "",
+      BlogImageUrls: [],
+      BlogAuthor: "",
+      BlogPostedOn: null
     }
-    this.filesToUpload=[]
-    this.selectedCategory= "";
-    this.selectedLevels= "";
+    this.filesToUpload = []
+    this.selectedCategory = "";
+    this.selectedLevels = "";
     this.refreshBlogList();
   }
 
 
   saveData(form?: NgForm) {
     const vm = this;
-    this.upload(function (uploadUrls: any) {
-      if (form.value._id === '' || form.value._id === null) {
+    if (form.value._id === '' || form.value._id === null) {
 
-        form.value['BlogImageUrls'] = uploadUrls ? uploadUrls : []
-        form.value.BlogCategory = vm.selectedCategory['CategoryName'];
-        form.value.BlogLevel = vm.selectedLevels['Level'];
-        
-        vm.blogService.postBlog(form.value)
-          .subscribe(res => {
-            vm.resetForm(form);
-            //this.courseService.getCourseList();
+      // form.value['BlogImageUrls'] = uploadUrls ? uploadUrls : []
+      form.value['BlogImageUrls'] = []
+      form.value.BlogCategory = vm.selectedCategory['CategoryName'];
+      form.value.BlogLevel = vm.selectedLevels['Level'];
+
+      vm.blogService.postBlog(form.value)
+        .subscribe(res => {
+          vm.resetForm(form);
+          //this.courseService.getCourseList();
+          this.upload( res['_id'], function (err) {
+
             vm.refreshBlogList();
             vm.toastr.success('New Record Inserted');
-          });
-      }
-      else {
-        if (uploadUrls) {
-          uploadUrls = vm.blogService.selectedBlog.BlogImageUrls.concat(uploadUrls);
-          form.value['BlogImageUrls'] = uploadUrls ? uploadUrls : []
-        } else {
-          form.value['BlogImageUrls'] = vm.blogService.selectedBlog.BlogImageUrls ? vm.blogService.selectedBlog.BlogImageUrls : []
-        }
-        // console.log('form.value ', form.value)
-        // return;
-        vm.blogService.putBlog(form.value)
-          .subscribe((res) => {
+          })
+        });
+    }
+    else {
+      // if (uploadUrls) {
+      //   uploadUrls = vm.blogService.selectedBlog.BlogImageUrls.concat(uploadUrls);
+      //   form.value['BlogImageUrls'] = uploadUrls ? uploadUrls : []
+      // } else {
+      //   form.value['BlogImageUrls'] = vm.blogService.selectedBlog.BlogImageUrls ? vm.blogService.selectedBlog.BlogImageUrls : []
+      // }
+      // console.log('form.value ', form.value)
+      // return;
+      form.value['BlogImageUrls'] = vm.blogService.selectedBlog.BlogImageUrls ? vm.blogService.selectedBlog.BlogImageUrls : []
+      vm.blogService.putBlog(form.value)
+        .subscribe((res) => {
+          this.upload( res['_id'], function (err) {
             vm.resetForm(form);
             vm.refreshBlogList();
             vm.toastr.success('Updated successfully');
+          })
 
-          });
-      }
-    })
+        });
+    }
+
   }
 
   refreshBlogList() {
@@ -164,7 +170,7 @@ export class BlogComponent implements OnInit {
   onEdit(blog: Blog) {
     this.resetForm()
     this.blogService.selectedBlog = blog;
-    
+
     // console.log('this.blogService.selectedBlog ', this.blogService.selectedBlog)
   }
 
@@ -177,7 +183,7 @@ export class BlogComponent implements OnInit {
       });
     }
   }
-  upload(callback: (arr: any) => any): void {
+  upload( blogId: string,   callback: (err: any) => any): void {
     if (this.filesToUpload.length == 0) {
       return callback(null)
     }
@@ -189,12 +195,12 @@ export class BlogComponent implements OnInit {
       formData.append("uploads[]", files[i], files[i]['name']);
     }
     console.log('form data variable :   ' + formData.toString());
-    this.blogService.uploadBlogImages(formData)
+    this.blogService.uploadBlogImages(blogId ,formData)
       //this.http.post('http://localhost:3000/upload', formData)
       .subscribe(
         res => {
           console.log('files', res);
-          callback(res)
+          callback(null)
         }
       )
   }
