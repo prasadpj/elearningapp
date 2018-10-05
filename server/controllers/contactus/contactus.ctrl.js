@@ -1,5 +1,5 @@
 var ObjectId = require('mongoose').Types.ObjectId;
-var { Contact } = appRequire('model.contact');
+var { Contact } = appRequire('model.contactus');
 
 
 module.exports = {

@@ -60,11 +60,11 @@
                 <label for="name">
                   Message</label>
 
-                <textarea name="message" id="message" class="form-control" rows="9" cols="25" placeholder="Message" formControlName="message" name="message"></textarea>
-                <div class='alert alert-danger' *ngIf="message.touched && message.invalid">
-                  <div *ngIf="message.errors.required">message required!</div>
-                  <div *ngIf="message.errors.minlength">message should be atleast 3 char</div>
-                  <div *ngIf="message.errors.maxlength">message should only 1000 char </div>
+                <textarea name="Message" id="Message" class="form-control" rows="9" cols="25" placeholder="Message" formControlName="Message" name="Message"></textarea>
+                <div class='alert alert-danger' *ngIf="Message.touched && Message.invalid">
+                  <div *ngIf="Message.errors.required">message required!</div>
+                  <div *ngIf="Message.errors.minlength">message should be atleast 3 char</div>
+                  <div *ngIf="Message.errors.maxlength">message should only 1000 char </div>
                 </div>
               </div>
             </div>
