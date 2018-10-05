@@ -177,3 +177,55 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 
 
 
+.dc-chip--number-34 {
+  position: absolute;
+  left: calc(50% - 17px);
+  top: -17px;
+  height: 32px;
+  width: 32px;
+  border: 1px solid #e6eaeb;
+  background: #fff;
+  font-weight: 700;
+  color: #33aacc;
+  font-family: 'Overpass', sans-serif;
+}
+
+.dc-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.dc-row, .row, .share-box__content {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+
+.dc-bucket {
+  display: flex;
+  padding: 30px;
+}
+
+.dc-u-mt-8 {
+  margin-top: 8px !important;
+}
+
+.dc-bucket__content {
+  flex-grow: 1;
+  padding-left: 16px;
+  color: #686f75;
+}
+
+.shadowsss{
+    background: white;
+    box-shadow: 9px 10px 15px -5px rgb(158, 158, 158);
+}
+
+
+
