@@ -33,7 +33,7 @@ function read(req, res, next) {
     });
 }
 function create(req, res, next) {
-    var User = new User({
+    var UserModel = new User({
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
         MobileNo: req.body.MobileNo,
@@ -42,7 +42,7 @@ function create(req, res, next) {
         Password: req.body.Password,
         IsAdmin: req.body.IsAdmin,
     });
-    User.save((err, doc) => {
+    UserModel.save((err, doc) => {
         if (!err) { res.send(doc); }
         else { console.log('Error in Client Registration Save: ' + JSON.stringify(err, undefined, 2)); }
     });
