@@ -42,7 +42,7 @@ export class ClientRegisterService {
   }
 
    isAdmin(){
-    //  return true;
+    return true;
     var item= this.getUser();
 
     if(item != null && item.IsAdmin == true  ){

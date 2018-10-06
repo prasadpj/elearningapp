@@ -23,14 +23,20 @@ export class CourseComponent implements OnInit {
       Validators.maxLength(140)
     ]),
     CourseDesc: new FormControl('',[
+      Validators.required,
       Validators.minLength(3),
       Validators.maxLength(500)
+    ]),
+    CourseImage: new FormControl('',[
+      Validators.required
     ])
     });
 
     get CourseName() { return this.form.get('CourseName'); }
 
     get CourseDesc() { return this.form.get('CourseDesc'); }
+
+    get CourseImage() { return this.form.get('CourseImage'); }
 
     constructor(public courseService: CourseService, private toastr: ToastrService) { }
 

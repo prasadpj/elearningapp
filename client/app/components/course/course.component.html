@@ -17,11 +17,24 @@
         </div>
       </div>
 <br>
+<div class="form-group">
+  <label for="inputCourse" class="col-lg-4 control-label">Course Image</label>
+  <div class="col-lg-8">
+    <input type="text" class="form-control" id="inputCourse" [(ngModel)]="courseService.selectedCourse.CourseImage" placeholder="Course Image" name="CourseImage" formControlName="CourseImage">
+    <div class='alert alert-danger' *ngIf="CourseImage.touched && CourseImage.invalid">
+      <div *ngIf="CourseImage.errors.required">Course Image required!</div>
+    
+    </div>
+  </div>
+</div>
+
+<br>
       <div class="form-group">
         <label for="textArea" class="col-lg-4 control-label">Course Description</label>
         <div class="col-lg-8">
           <textarea class="form-control" rows="3" id="textArea" placeholder="Course Description" name="CourseDesc" formControlName='CourseDesc' [(ngModel)]="courseService.selectedCourse.CourseDesc"></textarea>
           <div class='alert alert-danger' *ngIf="CourseDesc.touched && CourseDesc.invalid">
+              <div *ngIf="CourseDesc.errors.required">Course Desc required!</div>
               <div *ngIf="CourseDesc.errors.minlength">Course Desc should be atleast 3 char</div>
               <div *ngIf="CourseDesc.errors.maxlength">Course Desc should only 500 char</div>
 

@@ -143,6 +143,9 @@ export class BlogComponent implements OnInit {
       // console.log('form.value ', form.value)
       // return;
       form.value['BlogImageUrls'] = vm.blogService.selectedBlog.BlogImageUrls ? vm.blogService.selectedBlog.BlogImageUrls : []
+      form.value.BlogCategory = vm.selectedCategory['CategoryName'];
+      form.value.BlogLevel = vm.selectedLevels['Level'];
+
       vm.blogService.putBlog(form.value)
         .subscribe((res) => {
           this.upload( res['_id'], function (err) {
@@ -171,7 +174,12 @@ export class BlogComponent implements OnInit {
     this.resetForm()
     this.blogService.selectedBlog = blog;
 
-    // console.log('this.blogService.selectedBlog ', this.blogService.selectedBlog)
+    this.selectedCategory = blog;
+
+    this.selectedCategory.CategoryName=blog.BlogCategory;
+    this.selectedLevels = blog;
+    this.selectedLevels.Level = blog.BlogLevel;
+
   }
 
   onDelete(_id: string, form: NgForm) {

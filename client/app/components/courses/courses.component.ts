@@ -65,6 +65,7 @@ selectChap;
 getTopicList(courseId){
   this.chapterService.getTopicListByChapter(courseId).subscribe((res) => {
     this.chapterList = res as Chapter[]});
+
 }
 
 }

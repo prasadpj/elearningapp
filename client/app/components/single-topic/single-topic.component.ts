@@ -18,6 +18,7 @@ export class SingleTopicComponent implements OnInit  {
   
 
   VideoUrl;
+  courseId;
   constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer, public chapterService: ChapterService, public courseService: CourseService, public topicService: TopicService) { 
   }
   ngOnInit() {
@@ -25,9 +26,11 @@ export class SingleTopicComponent implements OnInit  {
     .filter(params => params.VideoURL)
     .subscribe(params => {
       this.VideoUrl = params.VideoURL;
+      this.courseId = params.courseId;
       this.VideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.VideoUrl);
      
     });
+    this.getTopicList(this.courseId);
   }
   chapterList;
   getTopicList(courseId){

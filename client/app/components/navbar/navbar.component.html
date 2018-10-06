@@ -63,11 +63,12 @@
       
         <a class="nav-link" routerLink="{{item.routerLink}}" *ngIf="item.IsClient || clientRegisterService.isAdmin()">{{item.text}} </a>
       </li>
-
-      <li routerLinkActive="active current" class="nav-item " style="float:right">
-        <a class="nav-link" routerLink="/home"><i class='fa fa-mail-forward fa-2x' style=" color:white" (click)="signout()"></i> </a>  
-      </li>
+     
+  
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <a class="nav-link" routerLink="/home"> <img src="../../../assets/logout.png" width="25px" height="25px;" (click)="signout()"> </a>  
+    </form>
   </div>
   
   

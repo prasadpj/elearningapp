@@ -8,6 +8,6 @@ Router.get('/byChapterID/:id', Controller.readByChapterId);
 Router.get('/:id', Controller.read);
 Router.post('/', Controller.create);
 Router.put('/:id', Controller.update);
-Router.delete('/', Controller.delete);
+Router.delete('/:id', Controller.delete);
 
 module.exports = Router;
