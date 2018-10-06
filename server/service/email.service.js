@@ -4,7 +4,7 @@ var email = require('emailjs');
 function sendEmail(toEmailIdArr, subject, body, callback) {
     var server = email.server.connect({
         user: 'vcvarshacreation@gmail.com',
-        password: '123',
+        password: 'varsha123',
         host: 'smtp.your-email.com',
         ssl: true
     });
@@ -28,4 +28,4 @@ function sendEmail(toEmailIdArr, subject, body, callback) {
 
 module.exports = {
     sendEmail: sendEmail
-}; 
+};
