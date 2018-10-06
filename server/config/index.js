@@ -23,7 +23,8 @@ var config = {
     imageUploadFolder: "uploads",
     imageUploadPath: fileUploadRoot + 'uploads\\',
     imageUploadURL: "http://" + this.host + ":" + this.port + '/uploaded_images/',
-    EncryptionKey: "TheKey123"
+    EncryptionKey: "TheKey123",
+    blogImagePlaceholderRegex : /{{{blog_id}}}/g
 };
 
 module.exports = config;

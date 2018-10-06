@@ -6,7 +6,7 @@ var Router = Express.Router();
 Router.get('/', Controller.readAll);
 Router.get('/:id', Controller.read);
 Router.post('/', Controller.create);
-Router.put('/', Controller.update);
-Router.delete('/', Controller.delete);
+Router.put('/:id', Controller.update);
+Router.delete('/:id', Controller.delete);
 
 module.exports = Router;
