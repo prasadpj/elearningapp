@@ -32,7 +32,8 @@ function read(req, res, next) {
 function create(req, res, next) {
     var course = new Course({
         CourseName: req.body.CourseName,
-        CourseDesc: req.body.CourseDesc
+        CourseDesc: req.body.CourseDesc,
+        TechnologyName : req.body.TechnologyName
     });
     course.save((err, doc) => {
         if (!err) { res.send(doc); }
@@ -44,7 +45,8 @@ function update(req, res, next) {
         return res.status(400).send(`No record with given id: ${req.params.id}`);
     var course = {
         CourseName: req.body.CourseName,
-        CourseDesc: req.body.CourseDesc
+        CourseDesc: req.body.CourseDesc,
+        TechnologyName : req.body.TechnologyName
     };
     Course.findByIdAndUpdate(req.params.id, { $set: course }, { new: true }, (err, doc) => {
         if (!err) { res.send(doc); }

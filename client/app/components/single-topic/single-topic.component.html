@@ -1,6 +1,6 @@
 <div class="container" style="margin-top:15px;margin-bottom:20px;">
 <div class="row">
-  <div class="col-lg-4">
+  <div class="col-lg-4" style="overflow-y: scroll;max-height: 570px">
     <accordion>
       <div *ngFor="let items of chapterList">
         <accordion-group>
@@ -19,8 +19,7 @@
       </div>
     </accordion>
   </div>
-
-<div class="col-lg-8">
+<div class="col-lg-8" style="max-height:400px;max-width:100%;">
     <video height="100%" width="100%" controls>
       <source [src]="VideoUrl" type="video/mp4">
     </video>

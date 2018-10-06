@@ -26,17 +26,12 @@ export class CourseComponent implements OnInit {
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(500)
-    ]),
-    CourseImage: new FormControl('',[
-      Validators.required
     ])
     });
 
     get CourseName() { return this.form.get('CourseName'); }
 
     get CourseDesc() { return this.form.get('CourseDesc'); }
-
-    get CourseImage() { return this.form.get('CourseImage'); }
 
     constructor(public courseService: CourseService, private toastr: ToastrService) { }
 
@@ -45,6 +40,19 @@ export class CourseComponent implements OnInit {
     this.refreshCourseList();
   }
 
+  selectedTechnology;
+  ddlSelectedTechnology(obj) {
+    this.selectedTechnology = obj;
+  }
+
+  ddlTechnology = [
+    { TechnologyName: 'C#' },
+    { TechnologyName: 'Asp.Net' },
+    { TechnologyName: 'Python' },
+    { TechnologyName: 'R' },
+    { TechnologyName: 'Machine Learning' },
+  ];
+
   resetForm(form?: NgForm){
     if(form != null)
     form.reset();
@@ -52,21 +60,25 @@ export class CourseComponent implements OnInit {
    this.courseService.selectedCourse= {
        _id: "",
       CourseName: "",
-      CourseDesc: ""
+      CourseDesc: "",
+      TechnologyName: ""
     }
+    this.selectedTechnology = "";
   }
 
   onSubmit(form?: NgForm) {
     if(form.value._id === '' || form.value._id === null) {
+      form.value.TechnologyName = this.selectedTechnology['TechnologyName'];
+     
       this.courseService.postCourse(form.value)
       .subscribe(res => {
         this.resetForm(form);
-       //this.courseService.getCourseList();
       this.refreshCourseList();
       this.toastr.success('New Record Inserted');
       });
     }
     else{
+      form.value.TechnologyName = this.selectedTechnology['TechnologyName'];
       this.courseService.putCourse(form.value)
       .subscribe((res) => {
         this.resetForm(form);
@@ -85,6 +97,11 @@ export class CourseComponent implements OnInit {
 
 onEdit(course: Course) {
   this.courseService.selectedCourse = course;
+
+  
+  this.selectedTechnology = course;
+
+  this.selectedTechnology.TechnologyName=course.TechnologyName;
 }
 
 onDelete(_id: string, form: NgForm) {
