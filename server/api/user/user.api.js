@@ -7,6 +7,6 @@ Router.get('/', Controller.readAll);
 Router.get('/:id', Controller.read);
 Router.post('/', Controller.create);
 Router.put('/:id', Controller.update);
-Router.put('/byEmail', Controller.readByEmailId);
+Router.post('/login', Controller.login);
 
 module.exports = Router;

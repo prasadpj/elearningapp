@@ -10,7 +10,7 @@ export class ClientRegisterService {
   selectedRegisterClinet: ClientRegister;
 
 
-  private url = 'http://localhost:3000/ClientRegister';
+  private url = 'http://localhost:3000/user';
   constructor(private http: HttpClient) { }
 
   postClientRegister(clientRegister: ClientRegister) {
@@ -30,7 +30,7 @@ export class ClientRegisterService {
   }
 
   getSingleLogin(clientRegister: ClientRegister) {
-    return this.http.post(this.url + '/byEmail', clientRegister);
+    return this.http.post(this.url + '/login', clientRegister);
   }
 
   userObject: any;
@@ -38,17 +38,22 @@ export class ClientRegisterService {
   setUser(obj) {
     this.userObject = obj;
     localStorage.setItem('userObj', JSON.stringify(this.userObject));
-
   }
+  getToken() {
+    var item = this.getUser();
+    if (item) {
+      return item.Token
+    }
+    return ""
+  }
+  isAdmin() {
+    // return true;
+    var item = this.getUser();
 
-   isAdmin(){
-    return true;
-    var item= this.getUser();
-
-    if(item != null && item.IsAdmin == true  ){
+    if (item != null && item.IsAdmin == true) {
       return true;
     }
-    else{
+    else {
       return false;
     }
 

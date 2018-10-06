@@ -12,7 +12,7 @@ const cors = require('cors');
 var multer = require('multer');
 var path = require('path');
 var fs = require('fs');
-
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const { mongoose } = appRequire('database');
 var { Blog } = appRequire('model.blog');
 
@@ -51,12 +51,15 @@ console.log(serverUrl)
 
 app.listen(config.port, () => console.log('server started at port:' + config.port));
 
+app.use('/', restrictAPI)
+
 app.use('/Course', appRequire('api.course'));
 app.use('/Chapter', appRequire('api.chapter'));
 app.use('/Topic', appRequire('api.topic'));
 app.use('/Blog', appRequire('api.blog'));
 app.use('/ClientRegister', appRequire('api.user'));
 app.use('/Contact', appRequire('api.contactus'));
+app.use('/user', appRequire('api.user'));
 app.use('/uploaded_images', express.static(path.join(config.imageUploadPath)));
 // console.log('config.imageUploadPath ', config.imageUploadPath)
 
@@ -65,13 +68,13 @@ app.post("/upload/:id", upload.array("uploads[]", 12), function (req, res) {
     var uploadImageUrls = []
     req.files.forEach(file => {
         uploadImageUrls.push(serverUrl + "/uploaded_images/" + file.filename);
-        });
+    });
     Blog.findByIdAndUpdate(req.params.id, { $push: { 'BlogImageUrls': uploadImageUrls } }, function (err, doc) {
         var blogContent = doc.BlogContent
-        
-        blogContent = blogContent.replace(regex, serverUrl + "/uploaded_images/"+ doc._id)
+
+        blogContent = blogContent.replace(regex, serverUrl + "/uploaded_images/" + doc._id)
         if (!err) {
-            Blog.findByIdAndUpdate(doc._id,{ 'BlogContent': blogContent }, function (err, updatedDoc) {
+            Blog.findByIdAndUpdate(doc._id, { 'BlogContent': blogContent }, function (err, updatedDoc) {
                 if (!err) { res.send(updatedDoc); }
                 else { console.log('Error in updating image in Blog: ' + JSON.stringify(err, undefined, 2)); }
             })
@@ -105,3 +108,18 @@ fs.exists(uploadDir, function (exists) {
 //     console.log('newFilename == ',newFilename)
 //     return newFilename;
 // }
+
+function restrictAPI(req, res, next) {
+    console.log('req.originalUrl ',req.originalUrl)
+    if(req.originalUrl.indexOf('login') > -1){
+        return next()
+    }
+    var token = req.headers['token'];
+    if (!token)
+        return res.status(401).send({ auth: false, message: 'No token provided.' });
+
+    jwt.verify(token, config.EncryptionKey, function (err, decoded) {
+        if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+        next()
+    });
+}

@@ -15,69 +15,69 @@ export class ClientRegisterComponent implements OnInit {
 
   myDateValue: Date;
 
-  form = new   FormGroup({
-    _id : new FormControl(),
-    FirstName: new FormControl('',[
+  form = new FormGroup({
+    _id: new FormControl(),
+    FirstName: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(100),
       Validators.pattern('[a-zA-Z ]*')
     ]),
-    LastName: new FormControl('',[
+    LastName: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(10),
       Validators.pattern('[a-zA-Z]*')
     ]),
-    MobileNo: new FormControl('',[
+    MobileNo: new FormControl('', [
       Validators.required,
       Validators.maxLength(10),
       Validators.pattern('[0-9]*')
     ]),
-    Email: new FormControl('',[
+    Email: new FormControl('', [
       Validators.required,
       Validators.email,
       Validators.minLength(3),
       Validators.maxLength(100)
     ]),
-    DOB: new FormControl('',[
+    DOB: new FormControl('', [
       Validators.required
     ]),
-    Password: new FormControl('',[
+    Password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(16)
     ]),
-    ConfirmPassword: new FormControl('',[
+    ConfirmPassword: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(16),
       // your validation method
     ])
-    }, PasswordValidation.MatchPassword
-  // this.passwordMatchValidator
+  }, PasswordValidation.MatchPassword
+    // this.passwordMatchValidator
   );
 
   passwordMatchValidator(form: FormGroup) {
-    return form.controls['Password'].value === form.controls['ConfirmPassword'].value ? null : {'mismatch': true};
+    return form.controls['Password'].value === form.controls['ConfirmPassword'].value ? null : { 'mismatch': true };
   }
 
-    get FirstName() { return this.form.get('FirstName'); }
+  get FirstName() { return this.form.get('FirstName'); }
 
-    get LastName() { return this.form.get('LastName'); }
+  get LastName() { return this.form.get('LastName'); }
 
-    get MobileNo() { return this.form.get('MobileNo'); }
+  get MobileNo() { return this.form.get('MobileNo'); }
 
-    get Email() { return this.form.get('Email'); }
+  get Email() { return this.form.get('Email'); }
 
-    get DOB() { return this.form.get('DOB'); }
+  get DOB() { return this.form.get('DOB'); }
 
-    get Password() { return this.form.get('Password'); }
+  get Password() { return this.form.get('Password'); }
 
-    get ConfirmPassword() { return this.form.get('ConfirmPassword'); }
+  get ConfirmPassword() { return this.form.get('ConfirmPassword'); }
 
   constructor(public clientRegisterService: ClientRegisterService, private toastr: ToastrService) {
-    this.datepickerConfig = Object.assign({}, {containerClass: 'theme-blue'});
+    this.datepickerConfig = Object.assign({}, { containerClass: 'theme-blue' });
   }
 
 
@@ -85,30 +85,30 @@ export class ClientRegisterComponent implements OnInit {
     this.resetForm();
     this.myDateValue = new Date();
   }
-  resetForm(form?: NgForm){
-    if(form != null)
-    form.reset();
+  resetForm(form?: NgForm) {
+    if (form != null)
+      form.reset();
 
-   this.clientRegisterService.selectedRegisterClinet= {
-    _id : "",
-    FirstName : "",
-    LastName :"",
-    MobileNo : null,
-    Email : "",
-    DOB : "",
-    Password : "",
-    IsAdmin: false
+    this.clientRegisterService.selectedRegisterClinet = {
+      _id: "",
+      FirstName: "",
+      LastName: "",
+      MobileNo: null,
+      Email: "",
+      DOB: "",
+      Password: "",
+      IsAdmin: false
     }
   }
 
 
   saveData(form?: NgForm) {
-    if(form.value._id === '' || form.value._id === null) {
+    if (form.value._id === '' || form.value._id === null) {
       this.clientRegisterService.postClientRegister(form.value)
-      .subscribe(res => {
-        this.resetForm(form);
-      this.toastr.success('New Registration Succesfully');
-      });
+        .subscribe(res => {
+          this.resetForm(form);
+          this.toastr.success('New Registration Succesfully');
+        });
     }
   }
 

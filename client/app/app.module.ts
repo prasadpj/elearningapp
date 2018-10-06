@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -28,6 +28,8 @@ import { ClientFooterComponent } from './components/client-footer/client-footer.
 import { SingleTopicComponent } from './components/single-topic/single-topic.component';
 import { RegisteredUsersComponent } from './components/registered-users/registered-users.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+
+import { RequestInterceptor } from './request.interceptor.service';
 // import { SafePipeModule } from 'safe-pipe';
 // import { EmbedVideo } from 'ngx-embed-video';
 @NgModule({
@@ -121,7 +123,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
         component: ClientRegisterComponent
       },
       {
-        path:  'singleblog',
+        path: 'singleblog',
         component: SingleBlogComponent
       },
       {
@@ -131,7 +133,13 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
       { path: '**', component: PagenotfoundComponent }
     ])
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

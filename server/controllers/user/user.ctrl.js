@@ -1,7 +1,12 @@
 var ObjectId = require('mongoose').Types.ObjectId;
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 var { User } = appRequire('model.user');
+var crypto = require('crypto');
+var config = appRequire('config');
+var ResponseUtils = appRequire('utils.response');
 
+var EncryptionKey = config.EncryptionKey;
 
 module.exports = {
     create: create,
@@ -13,8 +18,8 @@ module.exports = {
     read: read,
 
     readAll: readAll,
-    
-    readByEmailId: readByEmailId
+
+    login: login
 }
 
 function readAll(req, res, next) {
@@ -39,7 +44,7 @@ function create(req, res, next) {
         MobileNo: req.body.MobileNo,
         Email: req.body.Email,
         DOB: req.body.DOB,
-        Password: req.body.Password,
+        Password: crypto.createCipher("aes-256-ctr", EncryptionKey).update(req.body.Password, "utf-8", "hex"),
         IsAdmin: req.body.IsAdmin,
     });
     UserModel.save((err, doc) => {
@@ -73,13 +78,35 @@ function del(req, res, next) {
     });
 }
 
-function readByEmailId(req, res, next) {
-    var User = new User({
+function login(req, res, next) {
+    var clientRegister = {
         Email: req.body.Email,
-        Password: req.body.Password
-    });
-    isTrue = User.find({ "Email": User.Email, "Password": User.Password }, (err, docs) => {
-        if (!err) { res.send(docs); }
-        else { console.log('Error in retriving ClinetRegister: ' + JSON.stringify(err, undefined, 2)); }
+        Password: crypto.createCipher("aes-256-ctr", EncryptionKey).update(req.body.Password, "utf-8", "hex")
+    };
+    User.findOne({ "Email": clientRegister.Email, "Password": clientRegister.Password }, (err, doc) => {
+        if (!err) {
+            if (doc) {
+                var token = jwt.sign({ id: doc._id }, EncryptionKey, {
+                    expiresIn: 86400 // expires in 24 hours
+                });
+                return res.send(
+                    ResponseUtils.responseSuccess({
+                        "Email": doc.Email,
+                        "IsAdmin": doc.IsAdmin,
+                        "Token": token || null
+                    })
+                );
+            }
+            return res.send(
+                ResponseUtils.responseError("Invalid Login", "Invalid Login")
+            );
+
+        }
+        else {
+            console.log('Error in retriving ClinetRegister: ' + JSON.stringify(err, undefined, 2));
+            return res.send(
+                ResponseUtils.responseError("Error while login", err)
+            );
+        }
     });
 }

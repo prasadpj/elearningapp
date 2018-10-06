@@ -25,6 +25,9 @@ module.exports = {
 
     /* Services */
     "service.email": "service/email.service",
+    
+    /* Utils */
+    "utils.response": "utils/response.util",
 
     /* Config */
     "config": "config/index",
