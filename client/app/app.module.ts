@@ -28,6 +28,7 @@ import { ClientFooterComponent } from './components/client-footer/client-footer.
 import { SingleTopicComponent } from './components/single-topic/single-topic.component';
 import { RegisteredUsersComponent } from './components/registered-users/registered-users.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { AllCoursesComponent } from './components/all-courses/all-courses.component';
 // import { SafePipeModule } from 'safe-pipe';
 // import { EmbedVideo } from 'ngx-embed-video';
 @NgModule({
@@ -51,6 +52,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     SingleTopicComponent,
     RegisteredUsersComponent,
     PagenotfoundComponent,
+    AllCoursesComponent,
 
   ],
   imports: [
@@ -127,6 +129,10 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
       {
         path: 'singletopic',
         component: SingleTopicComponent
+      },
+      {
+        path: 'allcourses',
+        component: AllCoursesComponent
       },
       { path: '**', component: PagenotfoundComponent }
     ])

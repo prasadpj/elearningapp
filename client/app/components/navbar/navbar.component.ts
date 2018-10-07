@@ -46,6 +46,11 @@ loggs;
       IsClient: true
     },
     {
+      routerLink: "/allcourses",
+      text: "All Courses",
+      IsClient: true
+    },
+    {
       routerLink: "/blogs",
       text: "Blogs",
       IsClient: true
@@ -61,6 +66,7 @@ loggs;
       text: "Contact Us",
       IsClient: true
     }
+   
   ]
 
 
