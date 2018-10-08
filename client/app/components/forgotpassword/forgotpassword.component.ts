@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ClientRegisterService } from '../../services/client-service/client-register.service';
 import { ClientRegister } from '../../services/client-service/client-register.model';
-
 @Component({
   selector: 'app-forgotpassword',
   templateUrl: './forgotpassword.component.html',
@@ -33,6 +32,8 @@ export class ForgotpasswordComponent implements OnInit {
   ngOnInit() {
     this.resetForm();
   }
+
+  
 
   singleLogin;
 

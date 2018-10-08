@@ -11,4 +11,13 @@
 <body>
   <app-root></app-root>
 </body>
+<script>
+  $(document).ready(function () {
+  $('.leftmenutrigger').on('click', function (e) {
+    $('.side-nav').toggleClass("open");
+    $('#wrapper').toggleClass("open");
+    e.preventDefault();
+  });
+});
+ </script>
 </html>
