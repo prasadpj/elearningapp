@@ -12,10 +12,8 @@ const cors = require('cors');
 var multer = require('multer');
 var path = require('path');
 var fs = require('fs');
-var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const { mongoose } = appRequire('database');
 var { Blog } = appRequire('model.blog');
-
 var config = appRequire('config');
 var serverUrl = "http://" + config.host + ":" + config.port;
 
@@ -51,7 +49,7 @@ console.log(serverUrl)
 
 app.listen(config.port, () => console.log('server started at port:' + config.port));
 
-app.use('/', restrictAPI)
+// app.use('/', restrictAPI)
 
 app.use('/Course', appRequire('api.course'));
 app.use('/Chapter', appRequire('api.chapter'));
@@ -109,17 +107,3 @@ fs.exists(uploadDir, function (exists) {
 //     return newFilename;
 // }
 
-function restrictAPI(req, res, next) {
-    console.log('req.originalUrl ',req.originalUrl)
-    if(req.originalUrl.indexOf('login') > -1){
-        return next()
-    }
-    var token = req.headers['token'];
-    if (!token)
-        return res.status(401).send({ auth: false, message: 'No token provided.' });
-
-    jwt.verify(token, config.EncryptionKey, function (err, decoded) {
-        if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
-        next()
-    });
-}

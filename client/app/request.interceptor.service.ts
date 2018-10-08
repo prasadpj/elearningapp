@@ -39,7 +39,8 @@ export class RequestInterceptor implements HttpInterceptor {
                     this._router.navigate(['/login']);
                 } else if (error.status === 500) {
                     console.log(error); // redirect to error page
-                    this._router.navigate(['/servererror']);
+                    // this._router.navigate(['/servererror']);
+                    this._router.navigate(['/login']);
                 } else if (error.status === 404) {
                     this._router.navigate(['/pagenotfound']);
                 }
