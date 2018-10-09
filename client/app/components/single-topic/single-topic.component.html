@@ -14,55 +14,27 @@
             </span>
         </span>
         <a class="list-group-item">
-
             <div *ngFor="let items of chapterList">
-                <div class="zippy">
-                    <div class="zippy-heading" [class.expanded]="isExpanded" (click)="toggle(items.ChapterName)">
-                        {{ items.ChapterName}}
-                        <span class="fa" [ngClass]="{
-                          'fa-chevron-up': isExpanded,
-                          'fa-chevron-down': !isExpanded
-                        }"></span>
-                    </div>
-                    <div *ngIf="isExpanded==items.ChapterName && isExpand" class="zippy-body">
-                        <p>
-                            <b style="text-align: justify;font-size: 15px"> {{ items.ChapterDesc }}</b>
-                        </p>
-                        <div *ngFor="let item of items.Topic">
-                            <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID  }" class="card-link"
-                                style="font-size: 20px;font-family: Arial, Helvetica, sans-serif" (click)="addToStorage()">
-                                <i class="icon fa fa-video"></i>
-                                {{ item.TopicName }} {{ item.Serial}} {{ item.VideoLength}}
-                            </a>
-                            <hr>
-                        </div>
-                        <ng-content></ng-content>
-                    </div>
-                </div>
-            </div>
+
+                <app-demo-test title="{{ items.ChapterName}}">
+                  <div *ngFor="let item of items.Topic">
+                    <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID  }" class="card-link"
+                      style="font-size: 20px;font-family: Arial, Helvetica, sans-serif" (click)="addToStorage()">
+                      <i class="icon fa fa-video pull-left"></i>
+                      {{ item.Serial}} {{ item.TopicName }} {{ item.VideoLength}}
+                    </a>
+                    <hr>
+                  </div>
+                </app-demo-test>
+              </div>
 
 
 
 
-            <!-- <accordion>
-                <div *ngFor="let items of chapterList">
-                  <accordion-group>
-                    <span accordion-heading>
-                      <a style="font-size: 20px"> {{ items.ChapterName}} </a>
-                      <i class='fa fa-arrow-down' style="float:right;margin-top: 10px"></i>
-                    </span>
-                    
-                    <div *ngFor="let item of items.Topic">
-                      <a [routerLink]="['/SingleTopic']" [queryParams]="{ VideoURL: item.VideoURL }" class="card-link" style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">
-                        <i class="icon fa fa-video"></i> {{ item.TopicName }}
-                      </a>
-                    </div>
-                  </accordion-group>
-                </div>
-              </accordion> -->
+
         </a>
-        
-    </div>        
+
+    </div>
 </div>
 <div class="col-sm-6 col-md-6">
     <video height="100%" width="100%" controls>

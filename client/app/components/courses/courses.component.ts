@@ -19,30 +19,30 @@ import { Topic } from '../../services/topic-service/topic.model';
 export class CoursesComponent implements OnInit {
 
   @Input('title') title: string;
-  isExpanded: boolean;
+  isExpanded: boolean = false  ;
 
   constructor(private route: ActivatedRoute, public chapterService: ChapterService, public courseService: CourseService, public topicService: TopicService) { }
-  
+
 isExpand: boolean= false;
   toggle(obj) {
-   
-    
+
+
     if(this.isExpanded == null  || this.isExpand== false){
       this.isExpanded = !this.isExpanded;
       this.isExpanded = obj;
      this.isExpand=true;
-     
+
      return
     }else{
       this.isExpand=false;
-      
+
       this.isExpanded = !this.isExpanded;
     }
-   
-   
-    
 
-   
+
+
+
+
   }
 
   courseId: string;

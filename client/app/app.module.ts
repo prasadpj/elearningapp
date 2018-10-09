@@ -29,6 +29,7 @@ import { SingleTopicComponent } from './components/single-topic/single-topic.com
 import { RegisteredUsersComponent } from './components/registered-users/registered-users.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { DemoTestComponent } from './components/demo-test/demo-test.component';
 // import { SafePipeModule } from 'safe-pipe';
 // import { EmbedVideo } from 'ngx-embed-video';
 @NgModule({
@@ -53,6 +54,7 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
     RegisteredUsersComponent,
     PagenotfoundComponent,
     ForgotpasswordComponent,
+    DemoTestComponent,
 
   ],
   imports: [

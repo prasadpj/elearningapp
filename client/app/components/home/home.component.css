@@ -132,12 +132,12 @@ a:focus, a:hover { text-decoration: none; color: #ffffff; }
 
 
 
-.page-header { background: url(../../../assets/images/Databanner1.jpg)no-repeat; position: relative; background-size: cover; }
+.page-header { background: url(../../../assets/slide4.jpg)no-repeat; position: relative; background-size: cover; min-height: 300px; }
 .page-caption { padding-top: 170px; padding-bottom: 174px; }
 .page-title { font-size: 46px; line-height: 1; color: #fff; font-weight: 600; text-align: center; }
 
 .card-section { position: relative; bottom: 60px; }
-.card-block { padding: 80px; }
+.card-block { padding: 50px; }
 .section-title { margin-bottom: 60px; }
 
 /*footer*/

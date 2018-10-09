@@ -1,80 +1,45 @@
 <div class="page-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="page-caption">
-                    <h1 class="page-title">{{ courseDetail?.CourseName }}</h1>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-caption">
+          <h1 class="page-title">{{ courseDetail?.CourseName }}</h1>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="container">
-    <div class="card-section">
-        <div class="container">
-            <div class="card-block bg-white mb30">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+  <div class="card-section">
+    <div class="container">
+      <div class="card-block bg-white mb30">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-                        <div class="section-title mb-0">
+            <div class="section-title mb-0">
 
-                            <p style="font-size:20px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">{{ courseDetail?.CourseDesc }} </p>
-                        </div>
-
-                    </div>
-                </div>
+              <p style="font-size:20px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">{{
+                courseDetail?.CourseDesc }} </p>
             </div>
+
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
+<div class="container">
+  <div *ngFor="let items of chapterList">
 
-    <div *ngFor="let items of chapterList">
-        <div class="zippy">
-            <div class="zippy-heading" [class.expanded]="isExpanded" (click)="toggle(items.ChapterName)">
-                {{ items.ChapterName}}
-                <span class="fa" [ngClass]="{
-                  'fa-chevron-up': isExpanded,
-                  'fa-chevron-down': !isExpanded
-                }"></span>
-            </div>
-            <div *ngIf="isExpanded==items.ChapterName && isExpand" class="zippy-body">
-                <p>
-                    <b style="text-align: justify;font-size: 15px"> {{ items.ChapterDesc }}</b>
-                </p>
-                <div *ngFor="let item of items.Topic">
-                    <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID  }" class="card-link"
-                        style="font-size: 20px;font-family: Arial, Helvetica, sans-serif" (click)="addToStorage()">
-                        <i class="icon fa fa-video"></i>
-                        {{ item.Serial}} {{ item.TopicName }}  {{ item.VideoLength}}
-                    </a>
-                    <hr>
-                </div>
-                <ng-content></ng-content>
-            </div>
-        </div>
-    </div>
-    <!-- <div class="container" style="margin-bottom:20px;">
-        <accordion>
-            <div *ngFor="let items of chapterList">
-
-                <accordion-group>
-                    <span accordion-heading>
-                        <a style="font-size: 20px"> {{ items.ChapterName}} </a>
-                        <i class='fa fa-arrow-down' style="float:right;margin-top: 10px"></i>
-                    </span>
-                    <p>
-                        <b style="text-align: justify;font-size: 15px"> {{ items.ChapterDesc }}</b>
-                    </p>
-                    <br>
-                    <div *ngFor="let item of items.Topic">
-                        <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID  }" class="card-link"
-                            style="font-size: 20px;font-family: Arial, Helvetica, sans-serif" (click)="addToStorage()">
-                            <i class="icon fa fa-video"></i>
-                            {{ item.TopicName }} {{ item.Serial}} {{ item.VideoLength}}
-                        </a>
-                        <hr>
-                    </div>
-                </accordion-group>
-            </div>
-        </accordion>
-    </div> -->
+    <app-demo-test title="{{ items.ChapterName}}">
+      <div *ngFor="let item of items.Topic">
+        <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID  }" class="card-link"
+          style="font-size: 20px;font-family: Arial, Helvetica, sans-serif" (click)="addToStorage()">
+          <i class="icon fa fa-video"></i>
+          {{ item.Serial}} {{ item.TopicName }} {{ item.VideoLength}}
+        </a>
+        <hr>
+      </div>
+    </app-demo-test>
+  </div>
+</div>
