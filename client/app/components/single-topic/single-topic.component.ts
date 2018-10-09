@@ -97,6 +97,12 @@ export class SingleTopicComponent implements OnInit  {
     })
   }
   
- 
+  setIcon(obj) {
+    if(obj == "" || obj == null) {
+      return "fa fa-file-alt";
+    } else {
+      return "fa fa-video";
+    }
+  }
  
 }

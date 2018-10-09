@@ -108,9 +108,12 @@
               <div class="card-body">
                   <p style="text-align: center"><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png"
                     alt="card image"></p>
-                <h4 class="card-title">{{ items.CourseName }}</h4>
-                <button type="button" class="btn btn-outline-primary pull-right" [routerLink]="['/courses']"  [queryParams]="{ course: items._id }">Start</button>
+                <h4 class="card-title" style="text-align: center">{{ items.CourseName }}</h4>
+                
               </div>
+              <div class="card-footer" style="text-align: center">
+                  <button type="button" class="btn btn-outline-primary" [routerLink]="['/courses']"  [queryParams]="{ course: items._id }">Start</button>
+                </div>
             </div>
 
       </div>
