@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-client-footer',
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ClientFooterComponent implements OnInit {
 
   constructor() { }
-
+  @Input() hideFooter: boolean;
   ngOnInit() {
   }
 
