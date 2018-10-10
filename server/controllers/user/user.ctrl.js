@@ -36,9 +36,7 @@ function create(req, res, next) {
     var UserModel = new User({
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
-        MobileNo: req.body.MobileNo,
         Email: req.body.Email,
-        DOB: req.body.DOB,
         Password: req.body.Password,
         IsAdmin: req.body.IsAdmin,
     });
@@ -53,9 +51,7 @@ function update(req, res, next) {
     var User = {
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
-        MobileNo: req.body.MobileNo,
         Email: req.body.Email,
-        DOB: req.body.DOB,
         IsAdmin: req.body.IsAdmin,
     };
     User.findByIdAndUpdate(req.params.id, { $set: User }, { new: true }, (err, doc) => {

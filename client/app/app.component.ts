@@ -15,7 +15,7 @@ export class AppComponent {
     this.router.events.subscribe(() => {
       // console.log('this.router.url ', this.router.url)
       // if url contains home hide footer
-      if (this.router.url.indexOf('home') > -1) {
+      if (this.router.url.indexOf('singletopic') > -1) {
         this.hideFooter = true
       }else{
         this.hideFooter = false

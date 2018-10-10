@@ -29,20 +29,20 @@ export class ClientRegisterComponent implements OnInit {
       Validators.maxLength(10),
       Validators.pattern('[a-zA-Z]*')
     ]),
-    MobileNo: new FormControl('',[
-      Validators.required,
-      Validators.maxLength(10),
-      Validators.pattern('[0-9]*')
-    ]),
+    // MobileNo: new FormControl('',[
+    //   Validators.required,
+    //   Validators.maxLength(10),
+    //   Validators.pattern('[0-9]*')
+    // ]),
     Email: new FormControl('',[
       Validators.required,
       Validators.email,
       Validators.minLength(3),
       Validators.maxLength(100)
     ]),
-    DOB: new FormControl('',[
-      Validators.required
-    ]),
+    // DOB: new FormControl('',[
+    //   Validators.required
+    // ]),
     Password: new FormControl('',[
       Validators.required,
       Validators.minLength(8),
@@ -66,11 +66,11 @@ export class ClientRegisterComponent implements OnInit {
 
     get LastName() { return this.form.get('LastName'); }
 
-    get MobileNo() { return this.form.get('MobileNo'); }
+    // get MobileNo() { return this.form.get('MobileNo'); }
 
     get Email() { return this.form.get('Email'); }
 
-    get DOB() { return this.form.get('DOB'); }
+    // get DOB() { return this.form.get('DOB'); }
 
     get Password() { return this.form.get('Password'); }
 

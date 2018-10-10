@@ -67,6 +67,9 @@
   
     </ul>
     <form class="form-inline my-2 my-lg-0">
+        <button type="button" class="btn btn-secondary my-2 my-sm-0" [routerLink]="['/login']">Login</button><span style="margin-left: 5px"></span>
+        <button type="button" class="btn btn-secondary my-2 my-sm-0" [routerLink]="['/register']">Sign Up</button>
+       
       <a class="nav-link" routerLink="/home"> <img src="../../../assets/logout.png" width="25px" height="25px;" (click)="signout()"> </a>  
     </form>
   </div>

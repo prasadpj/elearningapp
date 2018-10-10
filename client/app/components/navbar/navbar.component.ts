@@ -51,11 +51,11 @@ loggs;
       IsClient: true
     },
 
-    {
-      routerLink: "/login",
-      text: "Login",
-      IsClient: true
-    },
+    // {
+    //   routerLink: "/login",
+    //   text: "Login",
+    //   IsClient: true
+    // },
     {
       routerLink: "/contact",
       text: "Contact Us",
