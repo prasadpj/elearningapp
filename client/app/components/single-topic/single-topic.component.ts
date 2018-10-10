@@ -39,5 +39,4 @@ export class SingleTopicComponent implements OnInit  {
   }
   
  
- 
 }

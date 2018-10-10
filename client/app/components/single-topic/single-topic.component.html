@@ -11,7 +11,7 @@
           <p><b style="text-align: justify;font-size: 15px"> {{ items.ChapterDesc }}</b></p>
           <br>
           <div *ngFor="let item of items.Topic">
-            <a [routerLink]="['/SingleTopic']" [queryParams]="{ VideoURL: item.VideoURL }" class="card-link" style="font-size: 20px;font-family: Arial, Helvetica, sans-serif">
+            <a [routerLink]="['/SingleTopic']" [queryParams]="{ VideoURL: item.VideoURL }" class="card-link">
               <i class="icon fa fa-video"></i> {{ item.TopicName }}
             </a>
           </div>

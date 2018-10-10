@@ -27,45 +27,52 @@ export class CoursesComponent implements OnInit {
       .subscribe(params => {
         this.courseId = params.course;
       });
-      this.getSingleCourseDetail(this.courseId);
-      //this.loadSingleChapterList(this.courseId);
-      this.getTopicList(this.courseId);
+    this.getSingleCourseDetail(this.courseId);
+    //this.loadSingleChapterList(this.courseId);
+    this.getTopicList(this.courseId);
   }
   chapterList;
 
-  loadSingleChapterList(courseId){
-   this.chapterService.getChapterListById(courseId).subscribe((res) => {
-        this.chapterList =  res as Chapter[];
+  loadSingleChapterList(courseId) {
+    this.chapterService.getChapterListById(courseId).subscribe((res) => {
+      this.chapterList = res as Chapter[];
 
-      });
+    });
 
   }
 
   courseDetail;
-   getSingleCourseDetail(courseId){
+  getSingleCourseDetail(courseId) {
     this.courseService.getCourseDetail(courseId).subscribe((res) => {
       this.courseDetail = res as Course[];
 
-   });
+    });
 
-}
-topicList;
-selectChap;
+  }
+  topicList;
+  selectChap;
 
-// getTopicList(obj){
-//   this.selectChap=obj;
+  // getTopicList(obj){
+  //   this.selectChap=obj;
+  //   this.topicService.getTopicListByChapterId(this.selectChap['_id']).subscribe((res) => {
+  //     this.topicList = res as Topic[];
+  //     console.log(this.topicList);
+  //   });
+  // }
 
-//   this.topicService.getTopicListByChapterId(this.selectChap['_id']).subscribe((res) => {
-//     this.topicList = res as Topic[];
-//     console.log(this.topicList);
-//   });
+  getTopicList(courseId) {
+    this.chapterService.getTopicListByChapter(courseId).subscribe((res) => {
+      this.chapterList = res as Chapter[]
+    });
 
-// }
+  }
 
-getTopicList(courseId){
-  this.chapterService.getTopicListByChapter(courseId).subscribe((res) => {
-    this.chapterList = res as Chapter[]});
-
-}
+  setIcon(obj) {
+    if (obj == "" || obj == null) {
+      return "fa fa-file-alt";
+    } else {
+      return "fa fa-video";
+    }
+  }
 
 }

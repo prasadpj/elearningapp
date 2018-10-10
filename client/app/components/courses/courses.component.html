@@ -43,8 +43,8 @@
                     <div *ngFor="let item of items.Topic">
                         <div class="row">
                         <div class="col-lg-10">
-                                <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID  }" class="card-link"
-                                style="font-size: 20px;font-family: Arial, Helvetica, sans-serif" (click)="addToStorage()"> <i class="icon fa fa-video"></i>
+                                <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID  }" class="card-link" (click)="addToStorage()"> 
+                                    <i [ngClass]="setIcon(item.VideoURL)"></i>
                                 {{ item.Serial}} {{ item.TopicName }}  
                             </a> 
                         </div>
