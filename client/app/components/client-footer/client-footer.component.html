@@ -1,26 +1,17 @@
 <footer class="footer" [hidden]="hideFooter">
-  
+
 
 
   <div class="container">
     <ul class="foote_bottom_ul_amrc">
       <li>
-        <a href="#">Home</a>
+        <a [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a>
       </li>
       <li>
-        <a href="#">About</a>
+        <a [routerLink]="['/blogs']" routerLinkActive="router-link-active" >Blog</a>
       </li>
       <li>
-        <a href="#">Services</a>
-      </li>
-      <li>
-        <a href="#">Pricing</a>
-      </li>
-      <li>
-        <a href="#">Blog</a>
-      </li>
-      <li>
-        <a href="#">Contact</a>
+        <a [routerLink]="['/contact']" routerLinkActive="router-link-active" >Contact</a>
       </li>
     </ul>
     <!--foote_bottom_ul_amrc ends here-->
@@ -28,7 +19,7 @@
       <a href="#">Your Company Name</a>
     </p>
 
-    
+
     <!--social_footer_ul ends here-->
   </div>
 
