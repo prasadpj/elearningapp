@@ -43,14 +43,14 @@ export class ClientRegisterService {
 
    isAdmin(){
     return true;
-    // var item= this.getUser();
+  //  var item= this.getUser();
 
-    // if(item != null && item.IsAdmin == true  ){
-    //   return true;
-    // }
-    // else{
-    //   return false;
-    // }
+  //   if(item != null && item.IsAdmin == true  ){
+  //     return true;
+  //   }
+  //   else{
+  //     return false;
+  //   }
 
   }
 

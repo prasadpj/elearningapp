@@ -29,6 +29,8 @@ import { SingleTopicComponent } from './components/single-topic/single-topic.com
 import { RegisteredUsersComponent } from './components/registered-users/registered-users.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AllCoursesComponent } from './components/all-courses/all-courses.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { DemoTestComponent } from './components/demo-test/demo-test.component';
 // import { SafePipeModule } from 'safe-pipe';
 // import { EmbedVideo } from 'ngx-embed-video';
 @NgModule({
@@ -53,6 +55,8 @@ import { AllCoursesComponent } from './components/all-courses/all-courses.compon
     RegisteredUsersComponent,
     PagenotfoundComponent,
     AllCoursesComponent,
+    ForgotpasswordComponent,
+    DemoTestComponent,
 
   ],
   imports: [
@@ -89,6 +93,10 @@ import { AllCoursesComponent } from './components/all-courses/all-courses.compon
       {
         path: 'topic',
         component: TopicComponent
+      },
+      {
+        path: 'forgotpassword',
+        component: ForgotpasswordComponent
       },
       {
         path: 'blog',

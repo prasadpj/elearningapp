@@ -5,8 +5,8 @@
         <input type="hidden" id="_id" [(ngModel)]="blogService.selectedBlog._id" name="_id" formControlName="_id">
         <fieldset>
           <div class="form-group">
-            <label for="inputBlogTitle" class="col-lg-4 control-label">Category</label>
-            <div class="col-lg-8">
+            <label for="inputBlogTitle" class="col-lg-12 control-label">Category</label>
+            <div class="col-lg-12">
               <div class="btn-group" dropdown #dropdown="bs-dropdown" [autoClose]="true">
                 <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
                   <label class="control-label" *ngIf="selectedCategory">
@@ -28,8 +28,8 @@
           </div>
           <br>
           <div class="form-group">
-            <label for="inputBlogTitle" class="col-lg-4 control-label">Level</label>
-            <div class="col-lg-8">
+            <label for="inputBlogTitle" class="col-lg-12 control-label">Level</label>
+            <div class="col-lg-12">
               <div class="btn-group" dropdown #dropdown="bs-dropdown" [autoClose]="true">
                 <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
                   <label class="control-label" *ngIf="selectedLevels">
@@ -53,8 +53,8 @@
           </div>
           <br>
           <div class="form-group">
-            <label for="inputBlogTitle" class="col-lg-4 control-label">Blog Title</label>
-            <div class="col-lg-8">
+            <label for="inputBlogTitle" class="col-lg-12 control-label">Blog Title</label>
+            <div class="col-lg-12">
               <input type="text" class="form-control" id="inputBlogTitle" [(ngModel)]="blogService.selectedBlog.BlogTitle"
                 placeholder="Blog Title" name="BlogTitle" formControlName="BlogTitle">
               <div class='alert alert-danger' *ngIf="BlogTitle?.touched && BlogTitle?.invalid">
@@ -66,8 +66,8 @@
           </div>
           <br>
           <div class="form-group">
-            <label for="textArea" class="col-lg-4 control-label">Blog Abstract</label>
-            <div class="col-lg-8">
+            <label for="textArea" class="col-lg-12 control-label">Blog Abstract</label>
+            <div class="col-lg-12">
               <textarea class="form-control" rows="2" id="textArea" placeholder="Blog Abstract" name="BlogAbstract"
                 formControlName='BlogAbstract' [(ngModel)]="blogService.selectedBlog.BlogAbstract"></textarea>
               <div class='alert alert-danger' *ngIf="BlogAbstract?.touched && BlogAbstract?.invalid">
@@ -80,8 +80,8 @@
           <br>
 
           <div class="form-group">
-            <label for="textArea" class="col-lg-4 control-label">Blog Content</label>
-            <div class="col-lg-8">
+            <label for="textArea" class="col-lg-12 control-label">Blog Content</label>
+            <div class="col-lg-12">
               <textarea class="form-control" rows="2" id="textArea" placeholder="Blog Content" name="BlogContent"
                 formControlName='BlogContent' [(ngModel)]="blogService.selectedBlog.BlogContent"></textarea>
               <div class='alert alert-danger' *ngIf="BlogContent?.touched && BlogContent?.invalid">
@@ -92,8 +92,8 @@
           </div>
           <br>
           <div class="form-group">
-            <label for="inputBlogVideoURL" class="col-lg-4 control-label">Video URL</label>
-            <div class="col-lg-8">
+            <label for="inputBlogVideoURL" class="col-lg-12 control-label">Video URL</label>
+            <div class="col-lg-12">
               <input type="text" class="form-control" id="inputVideoURL" [(ngModel)]="blogService.selectedBlog.BlogVideoURL"
                 placeholder="Video URL" name="BlogVideoURL" formControlName="BlogVideoURL">
               <div class='alert alert-danger' *ngIf="BlogVideoURL?.touched && BlogVideoURL?.invalid">
@@ -114,8 +114,8 @@
           </div>
         </div> -->
           <div class="form-group">
-            <label for="inputBlogImage" class="col-lg-4 control-label">Blog Image</label>
-            <div class="col-lg-8">
+            <label for="inputBlogImage" class="col-lg-12 control-label">Blog Image</label>
+            <div class="col-lg-12">
               <input #fileInput id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..."
                 multiple />
 
