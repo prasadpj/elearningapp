@@ -176,14 +176,12 @@
           <td> {{ itmes.BlogTitle }} </td>
           <td> {{ itmes.BlogAbstract }} </td>
           <td>
-            <a (click)="onEdit(itmes)">
-              <i class="fa fa-pencil-square-o fa-2x"></i>
-            </a>
+              <img src="../../../assets/edit.png" (click)="onEdit(itmes)" height="3%">
           </td>
           <td>
-            <a (click)="onDelete(itmes._id,blogForm)">
-              <i class="fa fa-trash-o fa-2x" style="color:red"></i>
-            </a>
+              <img src="../../../assets/delete.png"  (click)="onDelete(itmes._id,blogForm)" height="3%">
+         
+          
           </td>
         </tr>
       </table>

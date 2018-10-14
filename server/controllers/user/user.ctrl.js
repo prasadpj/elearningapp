@@ -3,6 +3,11 @@ var ObjectId = require('mongoose').Types.ObjectId;
 var { User } = appRequire('model.user');
 
 
+var crypto = require('crypto');
+var config = require('../../config/index.js');
+
+var EncryptionKey = config.EncryptionKey;
+
 module.exports = {
     create: create,
 
@@ -37,8 +42,11 @@ function create(req, res, next) {
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
         Email: req.body.Email,
-        Password: req.body.Password,
+        Password : crypto.createCipher("aes-256-ctr",EncryptionKey).update(req.body.Password,"utf-8","hex"),
         IsAdmin: req.body.IsAdmin,
+
+       
+    
     });
     UserModel.save((err, doc) => {
         if (!err) { res.send(doc); }
@@ -70,11 +78,12 @@ function del(req, res, next) {
 }
 
 function readByEmailId(req, res, next) {
-    var User = new User({
+   
+    var user = new User({
         Email: req.body.Email,
-        Password: req.body.Password
+        Password :crypto.createCipher("aes-256-ctr",EncryptionKey).update(req.body.Password,"utf-8","hex")
     });
-    isTrue = User.find({ "Email": User.Email, "Password": User.Password }, (err, docs) => {
+      isTrue = User.find({"Email":user.Email, "Password":user.Password},(err,docs) => {
         if (!err) { res.send(docs); }
         else { console.log('Error in retriving ClinetRegister: ' + JSON.stringify(err, undefined, 2)); }
     });

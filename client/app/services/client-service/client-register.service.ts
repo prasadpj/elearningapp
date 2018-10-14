@@ -42,15 +42,15 @@ export class ClientRegisterService {
   }
 
    isAdmin(){
-    return true;
-  //  var item= this.getUser();
+    //return true;
+   var item= this.getUser();
 
-  //   if(item != null && item.IsAdmin == true  ){
-  //     return true;
-  //   }
-  //   else{
-  //     return false;
-  //   }
+    if(item != null && item.IsAdmin == true  ){
+      return true;
+    }
+    else{
+      return false;
+    }
 
   }
 
@@ -63,5 +63,4 @@ export class ClientRegisterService {
     }
     return this.userObject;
   }
-
 }

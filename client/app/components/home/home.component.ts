@@ -19,20 +19,18 @@ export class HomeComponent implements OnInit {
   }
 
   blogList;
-courseList;
+  courseList;
 
-  blogsList(){
-  this.blogList=  this.blogService.getBlogList().subscribe((res) => {
-    this.blogService.blogList = res as Blog[];
-  });
-}
+  blogsList() {
+    this.blogList = this.blogService.getBlogList().subscribe((res) => {
+      this.blogService.blogList = res as Blog[];
+    });
+  }
 
-coursesList(){
-  this.courseService.getCourseList().subscribe((res) => {
-  this.courseService.courseList = res as Course[];
-});
-
-
-}
+  coursesList() {
+    this.courseService.getCourseList().subscribe((res) => {
+      this.courseService.courseList = res as Course[];
+    });
+  }
 }
 

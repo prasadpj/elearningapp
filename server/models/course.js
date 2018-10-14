@@ -11,6 +11,7 @@ const Schema = mongoose.Schema;
 var Course = mongoose.model('Course',{
    // _id: Schema.Types.ObjectId,
     CourseName: {type: String},
+    TechnologyName: {type: String},
     CourseDesc: {type: String},
     Chapter: [{ type: String, ref: 'Chapter' }]
 },'Course');
