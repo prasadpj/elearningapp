@@ -92,14 +92,6 @@ isExpand: boolean= false;
 
   }
 
-  setIcon(obj) {
-    if (obj == "" || obj == null) {
-      return "fa fa-file-alt";
-    } else {
-      return "fa fa-video";
-    }
-  }
-
 setIcon(obj) {
   if(obj == "" || obj == null) {
     return "fa fa-file-alt";
