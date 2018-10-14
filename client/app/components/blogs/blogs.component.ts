@@ -14,6 +14,7 @@ blogList;
   ngOnInit() {
     this.getAllBlogList();
     this.getAllBlogCategory();
+    localStorage.removeItem("isReload");
   }
 
   getAllBlogList(){
