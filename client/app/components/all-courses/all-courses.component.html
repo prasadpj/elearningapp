@@ -12,7 +12,10 @@
               <img class=" img-fluid" src="../../../assets/{{items.TechnologyName}}_logo.jpg"  alt="card image"></p>
                                   <h4 class="card-title">{{ items.CourseName }}</h4>
 
-                                  <button type="button" class="btn btn-primary"  [routerLink]="['/courses']" [queryParams]="{ course: items._id }">Start Course</button>
+                                 
+                              </div>
+                              <div class="card-footer" style="text-align: center">
+                                    <button type="button" class="btn btn-primary"  [routerLink]="['/courses']" [queryParams]="{ course: items._id }">Start Course</button>
                               </div>
                           </div>
                       </div>
@@ -24,9 +27,12 @@
                                   <ul class="list-inline">
 
                                       <li class="list-inline-item">
-                                          <button type="button" class="btn btn-primary"  [routerLink]="['/courses']" [queryParams]="{ course: items._id }">Start Course</button>
+                                          
                                       </li>
                                   </ul>
+                              </div>
+                              <div class="card-footer" style="text-align: center">
+                                    <button type="button" class="btn btn-primary"  [routerLink]="['/courses']" [queryParams]="{ course: items._id }">Start Course</button>
                               </div>
                           </div>
                       </div>
