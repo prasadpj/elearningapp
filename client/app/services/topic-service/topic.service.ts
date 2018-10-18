@@ -24,6 +24,10 @@ export class TopicService {
    return this.http.get(this.url);
    }
 
+   getTopicListById(topicId){
+
+    return this.http.get(this.url + `/${topicId}`);
+    }
    putTopic(topic: Topic) {
     return this.http.put(this.url + `/${topic._id}`, topic);
   }

@@ -32,15 +32,15 @@ export class SingleBlogComponent implements OnInit {
 
     this.blogService.singleBlog(blogId).subscribe((res) => {
       this.singleBlog = res as Blog[]
+      
     });
-
 
   }
 
   categoryList;
   getAllBlogCategory() {
     this.categoryList = this.blogService.getBlogCategory();
-    console.log(this.categoryList);
+    
   }
 
 }

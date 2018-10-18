@@ -10,10 +10,27 @@ import { ClientRegisterService } from '../../services/client-service/client-regi
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public clientRegisterService:ClientRegisterService ) { }
-loggs;
+  constructor(public clientRegisterService: ClientRegisterService) { }
+  loggs;
+  isLogin;
+  login:boolean;
   ngOnInit() {
+
+    this.isLogin = this.clientRegisterService.loginCheck();
+
+   // console.log(this.isLogin);
+    
+    if (this.isLogin == null) {
+      this.login = false;
+      
+      console.log(this.login);
+    } else {
+
+      this.login = true;
+      console.log(this.login);
+    }
   }
+
   allNav = [
     {
       routerLink: "/course",
@@ -66,7 +83,7 @@ loggs;
       text: "Contact Us",
       IsClient: true
     }
-   
+
   ]
 
 
@@ -124,7 +141,8 @@ loggs;
     }
   ]
 
-  signout(){
+  signout() {
+    this.login = false;
     this.clientRegisterService.setUser(null);
 
   }

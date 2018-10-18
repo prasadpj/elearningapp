@@ -32,7 +32,8 @@
               "client/assets/brush_lib/shCore.js",
               "client/assets/brush_lib/shBrushPython.js",
               "client/assets/brush_lib/shBrushCSharp.js",
-              "client/assets/brush_lib/shBrushSql.js"
+              "client/assets/brush_lib/shBrushSql.js",
+              "node_modules/bootstrap/js/dist/tooltip.js"
             ]
           },
           "configurations": {

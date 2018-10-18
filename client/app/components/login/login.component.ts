@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit {
   constructor(public loginService: LoginService, public clientRegisterService: ClientRegisterService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
+
+  
+
     this.resetForm();
 
   }
@@ -53,7 +56,11 @@ export class LoginComponent implements OnInit {
   login(form?: NgForm) {
     this.clientRegisterService.getSingleLogin(form.value).subscribe((res) => {
       this.singleLogin = res as ClientRegister[];
+
       this.clientRegisterService.setUser(res[0]);
+
+
+
       if (this.singleLogin.length > 0) {
         this.toastr.success('Login Successfull!');
         this.router.navigate(['/home'])

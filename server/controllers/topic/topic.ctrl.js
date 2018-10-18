@@ -15,7 +15,9 @@ module.exports = {
 
     readAll: readAll,
 
-    readByChapterId: readByChapterId
+    readByChapterId: readByChapterId,
+
+    readByTopicId : readByTopicId
 }
 
 function readAll(req, res, next) {
@@ -97,4 +99,23 @@ function readByChapterId(req, res, next) {
             if (!err) { res.send(docs); }
             else { console.log('Error in retriving Topic: ' + JSON.stringify(err, undefined, 2)); }
         });
+}
+
+// function readByTopicId(req, res, next) {
+//     Topic.find({ TopicID: req.params.id })
+//         .exec((err, docs) => {
+//             if (!err) { res.send(docs); }
+//             else { console.log('Error in retriving Topic: ' + JSON.stringify(err, undefined, 2)); }
+//         });
+// }
+
+
+function readByTopicId(req, res, next) {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(400).send(`No record with given id: ${req.params.id}`);
+
+        Topic.findById(req.params.id, (err, doc) => {
+        if (!err) { res.send(doc); }
+        else { console.log('Error in retriving Chapter: ' + JSON.stringify(err, undefined, 2)); }
+    });
 }

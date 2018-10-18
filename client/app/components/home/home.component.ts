@@ -3,6 +3,7 @@ import { BlogService } from '../../services/blog-services/blog.service';
 import { Blog } from '../../services/blog-services/blog.model';
 import { CourseService } from '../../services/course-services/course.service';
 import { Course } from '../../services/course-services/course.model';
+import { ClientRegisterService } from '../../services/client-service/client-register.service';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,16 @@ import { Course } from '../../services/course-services/course.model';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public blogService: BlogService, public courseService: CourseService) { }
+  constructor(public blogService: BlogService, public courseService: CourseService, public clientRegisterService: ClientRegisterService) { }
 
+isLogin;
+login;
   ngOnInit() {
+
+    this.isLogin= this.clientRegisterService.loginCheck();
+    
+   
+
     this.blogsList();
     this.coursesList();
   }

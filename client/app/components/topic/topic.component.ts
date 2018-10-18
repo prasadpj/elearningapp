@@ -29,10 +29,10 @@ export class TopicComponent implements OnInit {
     ]),
     TopicDesc: new FormControl('', [
       Validators.minLength(3),
-      Validators.maxLength(500)
+      //Validators.maxLength(1000)
     ]),
     VideoURL: new FormControl('', [
-      Validators.required,
+      
       Validators.minLength(3),
       Validators.maxLength(1000)
     ]),
@@ -40,7 +40,7 @@ export class TopicComponent implements OnInit {
       Validators.required,
     ]),
     VideoLength: new FormControl('', [
-      Validators.required,
+    
     ])
 
   });

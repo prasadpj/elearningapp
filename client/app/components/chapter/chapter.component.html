@@ -69,12 +69,10 @@
         <td> {{ itmes.ChapterName }} </td>
         <td> {{ itmes.ChapterDesc }} </td>
         <td>
-            <img src="../../../assets/edit.png" (click)="onEdit(itmes)" height="3%">
-          
+            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="onEdit(itmes)"></i>
         </td>
         <td>
-            <img src="../../../assets/delete.png" (click)="onDelete(itmes._id)" height="3%">
-           
+            <i class="fa fa-trash" aria-hidden="true" (click)="onDelete(itmes._id)" ></i>
         </td>
         </tr>
         </table>

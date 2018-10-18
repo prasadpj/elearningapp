@@ -5,6 +5,8 @@ var Router = Express.Router();
 
 Router.get('/', Controller.readAll);
 Router.get('/byChapterID/:id', Controller.readByChapterId);
+
+Router.get('/:id', Controller.readByTopicId);
 Router.get('/:id', Controller.read);
 Router.post('/', Controller.create);
 Router.put('/:id', Controller.update);

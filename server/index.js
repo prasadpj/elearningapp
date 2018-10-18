@@ -33,9 +33,13 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-
 var app = express();
 app.use(bodyParser.json());
+
+// Tell the bodyparser middleware to accept more data
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 
 // app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(cors());
@@ -93,15 +97,3 @@ fs.exists(uploadDir, function (exists) {
         })
     }
 })
-// this function removed all special symbols and return file name with extension
-// function generateFileName(originalname) {
-//     var arr = originalname.split('.')
-//     var newFilename = arr[0];
-//     newFilename = newFilename.replace(/(?!\w|\s)./g, '')
-//         .replace(/\s+/g, '')
-//         .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2')
-//         // + (new Date()).getTime()
-//         + '.' + arr[(arr.length - 1)]
-//     console.log('newFilename == ',newFilename)
-//     return newFilename;
-// }

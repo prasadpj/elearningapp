@@ -150,13 +150,7 @@
 
           <th></th>
 
-
-
         </thead>
-
-
-
-
 
         <tr *ngFor="let itmes of courseService.courseList">
 
@@ -164,17 +158,13 @@
 
           <td> {{ itmes.CourseDesc }} </td>
 
-
-
           <td>
-            <img src="../../../assets/edit.png" (click)="onEdit(itmes)" height="3%">
-
+            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="onEdit(itmes)" ></i>
 
           </td>
 
           <td>
-            <img src="../../../assets/delete.png" (click)="onDelete(itmes._id,courseForm)" height="3%">
-
+            <i class="fa fa-trash" aria-hidden="true" (click)="onDelete(itmes._id,courseForm)"></i>
           </td>
 
         </tr>

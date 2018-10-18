@@ -104,7 +104,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-3" *ngFor="let items of courseService.courseList">
 
-          <div class="card">
+          <div class="card" style="height: 100%;width: 100%;">
               <div class="card-body" >
                   <p style="text-align: center"><img class=" img-fluid" height="50%" width="50%" src="../../../assets/{{items.TechnologyName}}_logo.jpg"
                     alt="card image"></p>
@@ -115,12 +115,10 @@
                   <button type="button" class="btn btn-outline-primary" [routerLink]="['/courses']"  [queryParams]="{ course: items._id }">Start</button>
                 </div>
             </div>
-
       </div>
     </div>
   </div>
 </section>
-
 <section>
   <h1 class="section-title">OUR FEATURES</h1>
   <div class="row animation-lbd__content container-fluid" style="padding-left: 80px;padding-right: 50px;">

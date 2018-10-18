@@ -42,10 +42,7 @@
     <div class="tab-pane active" role="tabpanel" id="menu1">
       <div class="container">
         <div *ngFor="let items of chapterList">
-
           <app-demo-test title="{{ items.ChapterName}}">
-
-
             <p>
               <b> {{ items.ChapterDesc }}</b>
             </p>
@@ -53,27 +50,19 @@
             <div *ngFor="let item of items.Topic">
               <div class="row">
                 <div class="col-lg-1">
-                    <i [ngClass]="setIcon(item.VideoURL)" ></i>
+                  <i [ngClass]="setIcon(item.VideoURL)"></i>
                 </div>
-                  
                 <div class="col-lg-9">
-                    {{ item.Serial }}
-                      
-                    <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID  }" class="card-link"
-                      (click)="addToStorage()">
-                      
-                      {{ item.TopicName }}
-                    </a>
+                  {{ item.Serial }}
+                  <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID , TopicID:item._id }" class="card-link">
+                    {{ item.TopicName }}
+                  </a>
                 </div>
                 <div class="col-lg-2">
-                    <div class="pull-right">{{ item.VideoLength}}:00</div>
-                  </div>
-                <!-- <div class="col-lg-2">
                   <div class="pull-right">{{ item.VideoLength}}:00</div>
-                </div> -->
+                </div>
               </div>
               <hr>
-
             </div>
           </app-demo-test>
         </div>

@@ -41,8 +41,14 @@ export class ClientRegisterService {
 
   }
 
+
+  loginCheck(){
+
+    return this.getUser();
+  }
+
    isAdmin(){
-    //return true;
+    
    var item= this.getUser();
 
     if(item != null && item.IsAdmin == true  ){

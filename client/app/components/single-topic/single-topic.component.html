@@ -15,48 +15,38 @@
         </span>
         <a class="list-group-item">
           <div *ngFor="let items of chapterList">
-
             <app-demo-test title="{{ items.ChapterName}}">
               <div *ngFor="let item of items.Topic">
                 <div class="row">
                   <div class="col-lg-1 pull-left">
                     <i [ngClass]="setIcon(item.VideoURL)"></i>
                   </div>
-
                   <div class="col-lg-7">
-                    <!-- {{ item.Serial }} -->
-
-                    <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID  }"
-                      class="card-link" (click)="addToStorage()">
-
+                    <a class="card-link" (click)="playVideoById(item)">
                       {{ item.TopicName }}
                     </a>
                   </div>
                   <div class="col-lg-2" class="pull-right">
                     <div class="pull-right">{{ item.VideoLength}}:00</div>
                   </div>
-                  <!-- <div class="col-lg-2">
-                                    <div class="pull-right">{{ item.VideoLength}}:00</div>
-                                  </div> -->
+
                 </div>
                 <hr>
-
               </div>
             </app-demo-test>
           </div>
-
-
-
-
-
         </a>
 
       </div>
     </div>
-    <div class="col-md-9" style="height: 40%">
+
+    <div class="col-md-9" style="height: 40%" *ngIf="isVideo">
       <video width="100%" controls>
         <source [src]="VideoUrl" type="video/mp4">
       </video>
+    </div>
+    <div class="col-md-9" style="height: 40%" *ngIf="!isVideo">
+      <div [innerHTML]="topicDesc">
     </div>
   </div>
 </div>

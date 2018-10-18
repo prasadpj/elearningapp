@@ -65,8 +65,8 @@
           <div class="form-group">
             <label for="inputTopic" class="col-lg-12 control-label">Topic Name</label>
             <div class="col-lg-12">
-              <input type="text" class="form-control" id="inputTopic" [(ngModel)]="topicService.selectedTopic.TopicName" placeholder="Course Name"
-                name="TopicName" formControlName="TopicName">
+              <input type="text" class="form-control" id="inputTopic" [(ngModel)]="topicService.selectedTopic.TopicName"
+                placeholder="Course Name" name="TopicName" formControlName="TopicName">
               <div class='alert alert-danger' *ngIf="TopicName.touched && TopicName.invalid">
                 <div *ngIf="TopicName.errors.required">Topic Name required!</div>
                 <div *ngIf="TopicName.errors.minlength">Topic Name should be atleast 3 char</div>
@@ -79,8 +79,8 @@
           <div class="form-group">
             <label for="textArea" class="col-lg-12 control-label">Topic Description</label>
             <div class="col-lg-12">
-              <textarea class="form-control" rows="3" id="textArea" placeholder="Topic Description" name="TopicDesc" formControlName='TopicDesc'
-                [(ngModel)]="topicService.selectedTopic.TopicDesc"></textarea>
+              <textarea class="form-control" rows="3" id="textArea" placeholder="Topic Description" name="TopicDesc"
+                formControlName='TopicDesc' [(ngModel)]="topicService.selectedTopic.TopicDesc"></textarea>
               <div class='alert alert-danger' *ngIf="TopicDesc.touched && TopicDesc.invalid">
                 <div *ngIf="TopicDesc.errors.minlength">Topic Description should be atleast 3 char</div>
                 <div *ngIf="TopicDesc.errors.maxlength">Topic Description should only 500 char</div>
@@ -91,8 +91,8 @@
           <div class="form-group">
             <label for="inputSerialNo" class="col-lg-12 control-label">Serial Number</label>
             <div class="col-lg-12">
-              <input type="text" class="form-control" type="number" id="inputSerialNo" placeholder="Serial Number" [(ngModel)]="topicService.selectedTopic.Serial"
-                name="Serial" formControlName="Serial">
+              <input type="text" class="form-control" type="number" id="inputSerialNo" placeholder="Serial Number"
+                [(ngModel)]="topicService.selectedTopic.Serial" name="Serial" formControlName="Serial">
               <div class='alert alert-danger' *ngIf="Serial.touched && Serial.invalid">
                 Serial Number required!
               </div>
@@ -102,8 +102,8 @@
           <div class="form-group">
             <label for="inputVideoURL" class="col-lg-12 control-label">Video URL</label>
             <div class="col-lg-12">
-              <input type="text" class="form-control" id="inputVideoURL" [(ngModel)]="topicService.selectedTopic.VideoURL" placeholder="Video URL"
-                name="VideoURL" formControlName="VideoURL">
+              <input type="text" class="form-control" id="inputVideoURL" [(ngModel)]="topicService.selectedTopic.VideoURL"
+                placeholder="Video URL" name="VideoURL" formControlName="VideoURL">
               <div class='alert alert-danger' *ngIf="VideoURL.touched && VideoURL.invalid">
                 <div *ngIf="VideoURL.errors.required">Video URL required!</div>
                 <div *ngIf="VideoURL.errors.minlength">Video URL should be atleast 3 char</div>
@@ -145,13 +145,16 @@
           <td> {{ itmes.ChapterID?.CourseID?.CourseName }} </td>
           <td> {{ itmes.ChapterID?.ChapterName }} </td>
           <td> {{ itmes.TopicName }} </td>
+
           <td>
-              <img src="../../../assets/edit.png" (click)="onEdit(itmes)" height="3%">
+            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="onEdit(itmes)"></i>
+
           </td>
+
           <td>
-              <img src="../../../assets/delete.png" (click)="onDelete(itmes._id,topicForm)" height="3%">
-         
+            <i class="fa fa-trash" aria-hidden="true" (click)="onDelete(itmes._id,topicForm)"></i>
           </td>
+
         </tr>
       </table>
     </div>
