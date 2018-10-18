@@ -14,8 +14,7 @@ export class BlogComponent implements OnInit {
   filesToUpload: Array<File> = [];
 
   @ViewChild('fileInput') fileInput: ElementRef;
-
-
+  
   form = new FormGroup({
     _id: new FormControl(),
     BlogCategory: new FormControl(),
@@ -62,9 +61,13 @@ export class BlogComponent implements OnInit {
 
   constructor(public blogService: BlogService, private toastr: ToastrService) { }
 
+  
   ngOnInit() {
     this.refreshBlogList();
     this.resetForm();
+    // window.location.reload()
+    // SyntaxHighlighter.all();
+    // console.log('SyntaxHighlighter ',SyntaxHighlighter.call())
   }
 
   ddlCategory = [

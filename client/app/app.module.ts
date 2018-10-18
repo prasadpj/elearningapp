@@ -28,6 +28,7 @@ import { ClientFooterComponent } from './components/client-footer/client-footer.
 import { SingleTopicComponent } from './components/single-topic/single-topic.component';
 import { RegisteredUsersComponent } from './components/registered-users/registered-users.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { AllCoursesComponent } from './components/all-courses/all-courses.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { DemoTestComponent } from './components/demo-test/demo-test.component';
 // import { SafePipeModule } from 'safe-pipe';
@@ -53,6 +54,7 @@ import { DemoTestComponent } from './components/demo-test/demo-test.component';
     SingleTopicComponent,
     RegisteredUsersComponent,
     PagenotfoundComponent,
+    AllCoursesComponent,
     ForgotpasswordComponent,
     DemoTestComponent,
 
@@ -135,6 +137,10 @@ import { DemoTestComponent } from './components/demo-test/demo-test.component';
       {
         path: 'singletopic',
         component: SingleTopicComponent
+      },
+      {
+        path: 'allcourses',
+        component: AllCoursesComponent
       },
       { path: '**', component: PagenotfoundComponent }
     ])

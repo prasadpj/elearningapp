@@ -46,15 +46,13 @@
             </div>
       </td>
       <td> 
-          <a (click)="onView(item)">
-              <i class="fa fa-info-circle fa-2x" ></i>
-            </a>
+          <img src="../../../assets/edit.png" (click)="onEdit(itme)" height="3%">
+        
       </td>
      
       <td>
-          <a  (click)="onDelete(item._id,usersForm)">
-          <i class="fa fa-trash-o fa-2x" style="color:red"></i>
-        </a>
+          <img src="../../../assets/delete.png" (click)="onDelete(item._id,usersForm)" height="3%">
+      
       </td>
       </tr>
       </table>
