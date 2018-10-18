@@ -93,9 +93,7 @@ export class ClientRegisterComponent implements OnInit {
     _id : "",
     FirstName : "",
     LastName :"",
-    MobileNo : null,
     Email : "",
-    DOB : "",
     Password : "",
     IsAdmin: false
     }
