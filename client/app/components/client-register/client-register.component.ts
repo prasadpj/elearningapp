@@ -102,6 +102,8 @@ export class ClientRegisterComponent implements OnInit {
 
   saveData(form?: NgForm) {
     if(form.value._id === '' || form.value._id === null) {
+
+    form.value.IsAdmin = false;
       this.clientRegisterService.postClientRegister(form.value)
       .subscribe(res => {
         this.resetForm(form);
