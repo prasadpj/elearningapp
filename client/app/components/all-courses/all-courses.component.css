@@ -40,7 +40,7 @@ section .section-title {
 }
 
 .mainflip {
-    -webkit-transition: 1s;
+    /* -webkit-transition: 1s;
     -webkit-transform-style: preserve-3d;
     -ms-transition: 1s;
     -moz-transition: 1s;
@@ -49,7 +49,7 @@ section .section-title {
     -ms-transform-style: preserve-3d;
     transition: 1s;
     transform-style: preserve-3d;
-    position: relative;
+    position: relative; */
 }
 
 .frontside {

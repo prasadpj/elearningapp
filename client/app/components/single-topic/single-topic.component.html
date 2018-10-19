@@ -1,12 +1,12 @@
 <div class="container-fluid" style="margin-top:15px;">
   <div class="row">
-    <div class="col-md-3 sidebar">
+    <div class="col-md-3 sidebar" style="height:620px">
       <div class="mini-submenu">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </div>
-      <div class="list-group" style="overflow-y: scroll;height: 40%">
+      <div class="list-group" style="overflow-y: scroll;height: 100%">
         <span href="#" class="list-group-item active">
           Submenu
           <span class="pull-right" id="slide-submenu">
@@ -22,11 +22,11 @@
                     <i [ngClass]="setIcon(item.VideoURL)"></i>
                   </div>
                   <div class="col-lg-7">
-                    <a class="card-link" (click)="playVideoById(item)">
+                    <a  (click)="playVideoById(item)" style="color:#E95420" class="card-link">
                       {{ item.TopicName }}
                     </a>
                   </div>
-                  <div class="col-lg-2" class="pull-right">
+                  <div class="col-lg-2" class="pull-right" *ngIf="checkIsVideo(item.VideoURL)">
                     <div class="pull-right">{{ item.VideoLength}}:00</div>
                   </div>
 
@@ -36,16 +36,15 @@
             </app-demo-test>
           </div>
         </a>
-
       </div>
     </div>
 
-    <div class="col-md-9" style="height: 40%" *ngIf="isVideo">
+    <div class="col-md-9" style="height:100%" *ngIf="isVideo">
       <video width="100%" controls>
         <source [src]="VideoUrl" type="video/mp4">
       </video>
     </div>
-    <div class="col-md-9" style="height: 40%" *ngIf="!isVideo">
+    <div class="col-md-9" style="height: 100%" *ngIf="!isVideo">
       <div [innerHTML]="topicDesc">
     </div>
   </div>

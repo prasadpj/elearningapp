@@ -38,6 +38,7 @@ export class CoursesComponent implements OnInit {
 
   courseId: string;
   ngOnInit() {
+    localStorage.removeItem("isReload");
     this.route.queryParams
       .filter(params => params.course)
       .subscribe(params => {
@@ -89,5 +90,11 @@ export class CoursesComponent implements OnInit {
       return "fa fa-video";
     }
   }
-
+  checkIsVideo(obj) {
+    if (obj == "" || obj == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

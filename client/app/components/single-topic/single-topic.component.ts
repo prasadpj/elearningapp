@@ -1,6 +1,6 @@
 import { isValid } from 'ngx-bootstrap/chronos/create/valid';
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Chapter } from '../../services/chapter-services/chapter.model';
@@ -29,29 +29,34 @@ export class SingleTopicComponent implements OnInit {
   topicList;
   topic;
   topicDesc;
-  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer, public chapterService: ChapterService, public courseService: CourseService, public topicService: TopicService) {
+  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer, public chapterService: ChapterService, public courseService: CourseService, public topicService: TopicService, private router: Router) {
   }
 
   ngOnInit() {
-    this.route.queryParams
-      .subscribe(params => {
-        this.OgVideoUrl = params.VideoURL;
-        this.courseId = params.courseId;
-        this.topicId = params.TopicID;
-        this.VideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.VideoUrl);
-      });
-    if (this.OgVideoUrl == null || this.OgVideoUrl == "") {
-      this.isVideo = false;
-      
-      this.getTopicList(this.courseId);
-      this.topicService.getTopicListById(this.topicId).subscribe((res) => {
-        this.topic = res as Topic[]
-        this.topicDesc = this.topic.TopicDesc;
-      });
+    if (!localStorage.isReload) {
+      localStorage.isReload = 'true'
+      window.location.reload()
     } else {
-      this.isVideo = true;
-   
-      this.getTopicList(this.courseId);
+      this.route.queryParams
+        .subscribe(params => {
+          this.OgVideoUrl = params.VideoURL;
+          this.courseId = params.courseId;
+          this.topicId = params.TopicID;
+          this.VideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.VideoUrl);
+        });
+      if (this.OgVideoUrl == null || this.OgVideoUrl == "") {
+        this.isVideo = false;
+
+        this.getTopicList(this.courseId);
+        this.topicService.getTopicListById(this.topicId).subscribe((res) => {
+          this.topic = res as Topic[]
+          this.topicDesc = this.topic.TopicDesc;
+        });
+      } else {
+        this.isVideo = true;
+
+        this.getTopicList(this.courseId);
+      }
     }
   }
 
@@ -75,18 +80,25 @@ export class SingleTopicComponent implements OnInit {
 
 
   playVideoById(obj) {
+
+    console.log(obj)
     this.topicList = obj as Topic[];
     if (this.topicList.VideoURL == null || this.topicList.VideoURL == "") {
+      localStorage.removeItem("isReload");
+      this.router.navigate(['/singletopic'],{queryParams:{VideoURL:obj.VideoURL,courseId:obj.CourseID,TopicID:obj._id}});
+      window.location.reload();
+     // return;
       this.isVideo = false;
-     
+      
       this.getTopicList(this.courseId);
       this.topicService.getTopicListById(this.topicList._id).subscribe((res) => {
         this.topic = res as Topic[]
         this.topicDesc = this.topic.TopicDesc;
       });
+
     } else {
       this.isVideo = true;
-    
+
       this.getTopicList(this.courseId);
     }
   }
@@ -112,6 +124,13 @@ export class SingleTopicComponent implements OnInit {
       return "fa fa-file-alt";
     } else {
       return "fa fa-video";
+    }
+  }
+  checkIsVideo(obj) {
+    if (obj == "" || obj == null) {
+      return false;
+    } else {
+      return true;
     }
   }
 

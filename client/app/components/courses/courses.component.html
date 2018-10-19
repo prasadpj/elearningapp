@@ -52,13 +52,13 @@
                 <div class="col-lg-1">
                   <i [ngClass]="setIcon(item.VideoURL)"></i>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-9" style="color:#E95420">
                   {{ item.Serial }}
                   <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID , TopicID:item._id }" class="card-link">
                     {{ item.TopicName }}
                   </a>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2" *ngIf="checkIsVideo(item.VideoURL)">
                   <div class="pull-right">{{ item.VideoLength}}:00</div>
                 </div>
               </div>

@@ -18,6 +18,7 @@ isLogin;
 login;
   ngOnInit() {
 
+    localStorage.removeItem("isReload");
     this.isLogin= this.clientRegisterService.loginCheck();
     
    
