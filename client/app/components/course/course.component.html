@@ -66,8 +66,8 @@
 
             <div class="col-lg-8">
 
-              <input type="text" class="form-control" id="inputCourse" [(ngModel)]="courseService.selectedCourse.CourseName"
-                placeholder="Course Name" name="CourseName" formControlName="CourseName">
+              <input type="text" class="form-control" id="inputCourse" [(ngModel)]="courseService.selectedCourse.CourseName" placeholder="Course Name"
+                name="CourseName" formControlName="CourseName">
 
               <div class='alert alert-danger' *ngIf="CourseName.touched && CourseName.invalid">
 
@@ -93,8 +93,8 @@
 
             <div class="col-lg-8">
 
-              <textarea class="form-control" rows="3" id="textArea" placeholder="Course Description" name="CourseDesc"
-                formControlName='CourseDesc' [(ngModel)]="courseService.selectedCourse.CourseDesc"></textarea>
+              <textarea class="form-control" rows="3" id="textArea" placeholder="Course Description" name="CourseDesc" formControlName='CourseDesc'
+                [(ngModel)]="courseService.selectedCourse.CourseDesc"></textarea>
 
               <div class='alert alert-danger' *ngIf="CourseDesc.touched && CourseDesc.invalid">
 
@@ -116,7 +116,8 @@
 
             <div class="col-lg-8 col-lg-offset-4">
 
-              <button type="submit" [disabled]='courseForm.invalid' class="btn btn-primary">Submit</button><span style="margin: 10px"></span>
+              <button type="submit" [disabled]='courseForm.invalid' class="btn btn-primary">Submit</button>
+              <span style="margin: 10px"></span>
 
               <button type="reset" class="btn btn-default" (click)="resetForm(courseForm)">Cancel</button>
 
@@ -159,7 +160,7 @@
           <td> {{ itmes.CourseDesc }} </td>
 
           <td>
-            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="onEdit(itmes)" ></i>
+            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="onEdit(itmes)"></i>
 
           </td>
 
@@ -177,4 +178,8 @@
 
   </div>
 
+</div>
+
+<div class="overlay" *ngIf="isLoading">
+  <div class="lds-dual-ring"></div>
 </div>
