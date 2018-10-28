@@ -46,6 +46,7 @@ export class SingleTopicComponent implements OnInit {
           this.courseId = params.courseId;
           this.topicId = params.TopicID;
           this.VideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.VideoUrl);
+          this.SelectedtopicName= params.TopicName;
         });
       if (this.OgVideoUrl == null || this.OgVideoUrl == "") {
         this.isVideo = false;

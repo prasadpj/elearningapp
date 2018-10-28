@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-lg-9" style="color:#E95420">
                   {{ item.Serial }}
-                  <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID , TopicID:item._id }" class="card-link">
+                  <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID , TopicID:item._id, TopicName: item.TopicName }" class="card-link">
                     {{ item.TopicName }}
                   </a>
                 </div>
