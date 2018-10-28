@@ -120,12 +120,20 @@ export class SingleTopicComponent implements OnInit {
         $(this).closest('.list-group').fadeOut('slide', function () {
           $('.mini-submenu').fadeIn();
         });
-
+        $('#right_div').addClass('col-md-11')
+        $('#right_div').removeClass('col-md-8')
+        $('#left_div').addClass('col-md-1')
+        $('#left_div').removeClass('col-md-4')
       });
 
       $('.mini-submenu').on('click', function () {
         $(this).next('.list-group').toggle('slide');
         $('.mini-submenu').hide();
+
+        $('#right_div').addClass('col-md-8')
+        $('#right_div').removeClass('col-md-11')
+        $('#left_div').addClass('col-md-4')
+        $('#left_div').removeClass('col-md-1')
       })
     })
   }
