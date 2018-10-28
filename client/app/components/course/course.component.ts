@@ -30,13 +30,13 @@ import { Course } from '../../services/course-services/course.model';
 
 export class CourseComponent implements OnInit {
 
+  isLoading = false;
 
+  form = new FormGroup({
 
-  form= new FormGroup({
+    _id: new FormControl(),
 
-    _id : new FormControl(),
-
-    CourseName: new FormControl('',[
+    CourseName: new FormControl('', [
 
       Validators.required,
 
@@ -46,7 +46,7 @@ export class CourseComponent implements OnInit {
 
     ]),
 
-    CourseDesc: new FormControl('',[
+    CourseDesc: new FormControl('', [
 
       Validators.required,
 
@@ -56,19 +56,19 @@ export class CourseComponent implements OnInit {
 
     ])
 
-    });
+  });
 
 
 
-    get CourseName() { return this.form.get('CourseName'); }
+  get CourseName() { return this.form.get('CourseName'); }
 
 
 
-    get CourseDesc() { return this.form.get('CourseDesc'); }
+  get CourseDesc() { return this.form.get('CourseDesc'); }
 
 
 
-    constructor(public courseService: CourseService, private toastr: ToastrService) { }
+  constructor(public courseService: CourseService, private toastr: ToastrService) { }
 
 
 
@@ -108,17 +108,17 @@ export class CourseComponent implements OnInit {
 
 
 
-  resetForm(form?: NgForm){
+  resetForm(form?: NgForm) {
 
-    if(form != null)
+    if (form != null)
 
-    form.reset();
+      form.reset();
 
-   this.refreshCourseList();
+    this.refreshCourseList();
 
-   this.courseService.selectedCourse= {
+    this.courseService.selectedCourse = {
 
-       _id: "",
+      _id: "",
 
       CourseName: "",
 
@@ -135,98 +135,98 @@ export class CourseComponent implements OnInit {
 
 
   onSubmit(form?: NgForm) {
-
-    if(form.value._id === '' || form.value._id === null) {
+    this.isLoading = true
+    if (form.value._id === '' || form.value._id === null) {
 
       form.value.TechnologyName = this.selectedTechnology['TechnologyName'];
 
-     
+
 
       this.courseService.postCourse(form.value)
 
-      .subscribe(res => {
+        .subscribe(res => {
 
-        this.resetForm(form);
+          this.resetForm(form);
 
-      this.refreshCourseList();
+          this.refreshCourseList();
 
-      this.toastr.success('New Record Inserted');
+          this.toastr.success('New Record Inserted');
 
-      });
+        });
 
     }
 
-    else{
+    else {
 
       form.value.TechnologyName = this.selectedTechnology['TechnologyName'];
 
       this.courseService.putCourse(form.value)
 
-      .subscribe((res) => {
+        .subscribe((res) => {
 
-        this.resetForm(form);
+          this.resetForm(form);
 
-        this.refreshCourseList();
+          this.refreshCourseList();
 
-        this.toastr.success('Updated successfully');
+          this.toastr.success('Updated successfully');
 
 
 
-      });
-
-    }
+        });
 
     }
 
+  }
 
 
-  refreshCourseList(){
 
+  refreshCourseList() {
+    this.isLoading = true
     this.courseService.getCourseList().subscribe((res) => {
-
-    this.courseService.courseList = res as Course[];
-
-  });
-
-}
-
-
-
-onEdit(course: Course) {
-
-  this.courseService.selectedCourse = course;
-
-
-
-  
-
-  this.selectedTechnology = course;
-
-
-
-  this.selectedTechnology.TechnologyName=course.TechnologyName;
-
-}
-
-
-
-onDelete(_id: string, form: NgForm) {
-
-  if (confirm('Are you sure to delete this record ?') == true) {
-
-    this.courseService.deleteCourse(_id).subscribe((res) => {
-
-      this.refreshCourseList();
-
-      this.resetForm(form);
-
-      this.toastr.info('Record Deleted Succesfully');
+      this.isLoading = false
+      this.courseService.courseList = res as Course[];
 
     });
 
   }
 
-}
+
+
+  onEdit(course: Course) {
+
+    this.courseService.selectedCourse = course;
+
+
+
+
+
+    this.selectedTechnology = course;
+
+
+
+    this.selectedTechnology.TechnologyName = course.TechnologyName;
+
+  }
+
+
+
+  onDelete(_id: string, form: NgForm) {
+
+    if (confirm('Are you sure to delete this record ?') == true) {
+      this.isLoading = true
+      this.courseService.deleteCourse(_id).subscribe((res) => {
+
+        this.refreshCourseList();
+
+        this.resetForm(form);
+
+        this.toastr.info('Record Deleted Succesfully');
+
+      });
+
+    }
+
+  }
 
 }
 
