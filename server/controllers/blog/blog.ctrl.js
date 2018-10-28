@@ -13,6 +13,8 @@ module.exports = {
     read: read,
 
     readAll: readAll,
+
+    readBybyCategory: readBybyCategory
 }
 
 function readAll(req, res, next) {
@@ -75,6 +77,16 @@ function del(req, res, next) {
         else { console.log('Error in Delete Blog: ' + JSON.stringify(err, undefined, 2)); }
     });
 }
+
+function readBybyCategory(req, res, next) {
+    
+    Blog.find({ "BlogCategory": req.params.id }, (err, docs) => {
+        if (!err) { res.send(docs); }
+        else { console.log('Error in retriving BlogCategory: ' + JSON.stringify(err, undefined, 2)); }
+    });
+}
+
+
 
 
 /* // localhost:3000/Blog/

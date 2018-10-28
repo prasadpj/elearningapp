@@ -13,9 +13,10 @@ export class BlogService {
   selectedBlog: Blog;
   blogList : Blog[];
  ddlCategory=[ 
+  { CategoryName: 'All'},
     { CategoryName: 'C#'},
     { CategoryName: 'Asp.Net'},
-    { CategoryName: 'Phython'},
+    { CategoryName: 'Python'},
     { CategoryName: 'R'},
     { CategoryName: 'Machine Learning'},
   ];

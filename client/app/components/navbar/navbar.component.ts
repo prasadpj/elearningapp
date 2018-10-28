@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ClientRegisterService } from '../../services/client-service/client-register.service';
 
 @Component({
@@ -14,6 +14,8 @@ export class NavbarComponent implements OnInit {
   loggs;
   isLogin;
   login:boolean;
+  
+  @Input() hideNavbar: boolean;
   ngOnInit() {
 
     this.isLogin = this.clientRegisterService.loginCheck();

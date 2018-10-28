@@ -8,4 +8,5 @@ Router.post('/', Controller.create);
 Router.put('/:id', Controller.update);
 Router.delete('/:id', Controller.delete);
 
+Router.get('/byCategory/:id', Controller.readBybyCategory);
 module.exports = Router;

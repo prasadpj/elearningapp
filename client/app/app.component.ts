@@ -9,16 +9,18 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'ElearningApp';
   hideFooter = false;
+  hideNavbar = false;
   constructor(
     private router: Router,
   ) {
     this.router.events.subscribe(() => {
-      // console.log('this.router.url ', this.router.url)
-      // if url contains home hide footer
+    
       if (this.router.url.indexOf('singletopic') > -1) {
         this.hideFooter = true
+        this.hideNavbar=true
       }else{
         this.hideFooter = false
+        this.hideNavbar=false
       }
     })
 

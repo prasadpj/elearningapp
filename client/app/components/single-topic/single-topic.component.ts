@@ -29,7 +29,10 @@ export class SingleTopicComponent implements OnInit {
   topicList;
   topic;
   topicDesc;
+  SelectedtopicName;
+  hideNavbar = false;
   constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer, public chapterService: ChapterService, public courseService: CourseService, public topicService: TopicService, private router: Router) {
+
   }
 
   ngOnInit() {
@@ -46,7 +49,7 @@ export class SingleTopicComponent implements OnInit {
         });
       if (this.OgVideoUrl == null || this.OgVideoUrl == "") {
         this.isVideo = false;
-
+  
         this.getTopicList(this.courseId);
         this.topicService.getTopicListById(this.topicId).subscribe((res) => {
           this.topic = res as Topic[]
@@ -59,6 +62,9 @@ export class SingleTopicComponent implements OnInit {
       }
     }
   }
+
+
+  
 
   getTopicList(courseId) {
     this.chapterService.getTopicListByChapter(courseId).subscribe((res) => {
@@ -81,8 +87,11 @@ export class SingleTopicComponent implements OnInit {
 
   playVideoById(obj) {
 
-    console.log(obj)
+  //  console.log(obj)
     this.topicList = obj as Topic[];
+    this.SelectedtopicName=this.topicList.TopicName;
+    
+
     if (this.topicList.VideoURL == null || this.topicList.VideoURL == "") {
       localStorage.removeItem("isReload");
       this.router.navigate(['/singletopic'],{queryParams:{VideoURL:obj.VideoURL,courseId:obj.CourseID,TopicID:obj._id}});
@@ -98,8 +107,9 @@ export class SingleTopicComponent implements OnInit {
 
     } else {
       this.isVideo = true;
-
+      this.VideoUrl=obj.VideoURL;
       this.getTopicList(this.courseId);
+    
     }
   }
 
