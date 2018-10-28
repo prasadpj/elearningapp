@@ -123,7 +123,7 @@ export class SingleTopicComponent implements OnInit {
         $('#right_div').addClass('col-md-11')
         $('#right_div').removeClass('col-md-8')
         $('#left_div').addClass('col-md-1')
-        $('#left_div').removeClass('col-md-4')
+        $('#left_div').removeClass('col-md-4') 
       });
 
       $('.mini-submenu').on('click', function () {
@@ -134,6 +134,7 @@ export class SingleTopicComponent implements OnInit {
         $('#right_div').removeClass('col-md-11')
         $('#left_div').addClass('col-md-4')
         $('#left_div').removeClass('col-md-1')
+        
       })
     })
   }
