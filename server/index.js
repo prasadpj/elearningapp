@@ -54,6 +54,13 @@ console.log(serverUrl)
 
 app.listen(config.port, () => console.log('server started at port:' + config.port));
 
+/* app.use('/',function(req, res){
+    console.log(req)
+}) */
+// app.use('/', express.static(path.join(config.clientPath, '')));
+// app.use('/*', (req, res) => res.sendFile(path.join(config.root, 'dist', 'ElearningApp', 'index.html')));
+
+
 app.use('/Course', appRequire('api.course'));
 app.use('/Chapter', appRequire('api.chapter'));
 app.use('/Topic', appRequire('api.topic'));
@@ -61,20 +68,20 @@ app.use('/Blog', appRequire('api.blog'));
 app.use('/ClientRegister', appRequire('api.user'));
 app.use('/Contact', appRequire('api.contactus'));
 app.use('/uploaded_images', express.static(path.join(config.imageUploadPath)));
-// console.log('config.imageUploadPath ', config.imageUploadPath)
+console.log('config.imageUploadPath ', config.imageUploadPath)
 
 app.post("/upload/:id", upload.array("uploads[]", 12), function (req, res) {
     // console.log('files', req.files);
     var uploadImageUrls = []
     req.files.forEach(file => {
         uploadImageUrls.push(serverUrl + "/uploaded_images/" + file.filename);
-        });
+    });
     Blog.findByIdAndUpdate(req.params.id, { $push: { 'BlogImageUrls': uploadImageUrls } }, function (err, doc) {
         var blogContent = doc.BlogContent
-        
-        blogContent = blogContent.replace(regex, serverUrl + "/uploaded_images/"+ doc._id)
+
+        blogContent = blogContent.replace(regex, serverUrl + "/uploaded_images/" + doc._id)
         if (!err) {
-            Blog.findByIdAndUpdate(doc._id,{ 'BlogContent': blogContent }, function (err, updatedDoc) {
+            Blog.findByIdAndUpdate(doc._id, { 'BlogContent': blogContent }, function (err, updatedDoc) {
                 if (!err) { res.send(updatedDoc); }
                 else { console.log('Error in updating image in Blog: ' + JSON.stringify(err, undefined, 2)); }
             })
