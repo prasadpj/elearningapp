@@ -18,6 +18,7 @@ declare var $: any;
 
 export class SingleTopicComponent implements OnInit {
   @Input('title') title: string;
+  isLoading = false;
   isExpanded: boolean;
   isExpand: boolean = false;
   VideoUrl;
@@ -36,7 +37,9 @@ export class SingleTopicComponent implements OnInit {
   }
 
   ngOnInit() {
+ 
     if (!localStorage.isReload) {
+      this.isLoading = true;
       localStorage.isReload = 'true'
       window.location.reload()
     } else {
@@ -46,29 +49,31 @@ export class SingleTopicComponent implements OnInit {
           this.courseId = params.courseId;
           this.topicId = params.TopicID;
           this.VideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.VideoUrl);
-          this.SelectedtopicName= params.TopicName;
+          this.SelectedtopicName = params.TopicName;
         });
       if (this.OgVideoUrl == null || this.OgVideoUrl == "") {
         this.isVideo = false;
-  
+        this.isLoading= true;
         this.getTopicList(this.courseId);
+
         this.topicService.getTopicListById(this.topicId).subscribe((res) => {
+          this.isLoading = false;
           this.topic = res as Topic[]
           this.topicDesc = this.topic.TopicDesc;
+          this.SelectedtopicName = this.topic.TopicName;
+         
         });
+      
       } else {
         this.isVideo = true;
-
         this.getTopicList(this.courseId);
       }
     }
   }
 
-
-  
-
   getTopicList(courseId) {
     this.chapterService.getTopicListByChapter(courseId).subscribe((res) => {
+      this.isLoading = false;
       this.chapterList = res as Chapter[]
     });
   }
@@ -87,30 +92,35 @@ export class SingleTopicComponent implements OnInit {
 
 
   playVideoById(obj) {
-
-  //  console.log(obj)
     this.topicList = obj as Topic[];
-    this.SelectedtopicName=this.topicList.TopicName;
-    
-
+    this.SelectedtopicName = this.topicList.TopicName;
+    //console.log(this.SelectedtopicName);
+    this.isLoading = true;
     if (this.topicList.VideoURL == null || this.topicList.VideoURL == "") {
       localStorage.removeItem("isReload");
-      this.router.navigate(['/singletopic'],{queryParams:{VideoURL:obj.VideoURL,courseId:obj.CourseID,TopicID:obj._id}});
+      this.router.navigate(['/singletopic'], { queryParams: { VideoURL: obj.VideoURL, courseId: obj.CourseID, TopicID: obj._id } });
       window.location.reload();
-     // return;
+      // return;
       this.isVideo = false;
-      
+
       this.getTopicList(this.courseId);
       this.topicService.getTopicListById(this.topicList._id).subscribe((res) => {
+
         this.topic = res as Topic[]
         this.topicDesc = this.topic.TopicDesc;
+        this.SelectedtopicName = this.topic.TopicName;
+
       });
 
+
+
     } else {
+
+      this.SelectedtopicName = this.topicList.TopicName;
       this.isVideo = true;
-      this.VideoUrl=obj.VideoURL;
+      this.VideoUrl = obj.VideoURL;
       this.getTopicList(this.courseId);
-    
+
     }
   }
 
@@ -123,7 +133,7 @@ export class SingleTopicComponent implements OnInit {
         $('#right_div').addClass('col-md-11')
         $('#right_div').removeClass('col-md-8')
         $('#left_div').addClass('col-md-1')
-        $('#left_div').removeClass('col-md-4') 
+        $('#left_div').removeClass('col-md-4')
       });
 
       $('.mini-submenu').on('click', function () {
@@ -134,7 +144,7 @@ export class SingleTopicComponent implements OnInit {
         $('#right_div').removeClass('col-md-11')
         $('#left_div').addClass('col-md-4')
         $('#left_div').removeClass('col-md-1')
-        
+
       })
     })
   }

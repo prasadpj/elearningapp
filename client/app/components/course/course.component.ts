@@ -193,19 +193,9 @@ export class CourseComponent implements OnInit {
 
 
   onEdit(course: Course) {
-
     this.courseService.selectedCourse = course;
-
-
-
-
-
     this.selectedTechnology = course;
-
-
-
     this.selectedTechnology.TechnologyName = course.TechnologyName;
-
   }
 
 

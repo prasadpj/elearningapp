@@ -14,15 +14,31 @@ module.exports = {
 
     readAll: readAll,
 
-    readBybyCategory: readBybyCategory
+    readBybyCategory: readBybyCategory,
+
+    readTop5: readTop5
 }
 
 function readAll(req, res, next) {
     Blog.find((err, docs) => {
         if (!err) { res.send(docs); }
         else { console.log('Error in retriving Blog: ' + JSON.stringify(err, undefined, 2)); }
+
+       
     });
 }
+
+function readTop5(req, res, next) {
+    
+    Blog.find((err, docs) => {
+        if (!err) { res.send(docs); }
+        else { console.log('Error in retriving Blog: ' + JSON.stringify(err, undefined, 2)); }
+
+    }).limit(5);
+
+    console.log(req.params.id);
+}
+
 function read(req, res, next) {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id: ${req.params.id}`);
@@ -32,6 +48,9 @@ function read(req, res, next) {
         else { console.log('Error in retriving Blog: ' + JSON.stringify(err, undefined, 2)); }
     });
 }
+
+
+
 function create(req, res, next) {
     var blog = new Blog({
         BlogCategory: req.body.BlogCategory,
