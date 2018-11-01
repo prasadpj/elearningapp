@@ -32,8 +32,12 @@ export class BlogService {
   getBlogList() {
     return this.http.get(this.url);
   }
-
-
+ 
+  getTop5BlogList(limit: number) {
+    return this.http.get(this.url + '/Top5/'+ ` ${limit}`);
+  }
+  
+ 
    getBlogsAsPerCategory(CategoryName:  string){
    
     return this.http.get(this.url +'/byCategory'+ `/${CategoryName}`);

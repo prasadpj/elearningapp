@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
               <div class="col-lg-8 col-lg-offset-4">
-                  <button type="submit"  class="btn btn-primary" (click)="onClickSubmit()">Submit</button><span style="margin: 10px"></span>
+                  <button type="submit"   class="btn btn-primary" (click)="onClickSubmit()">Submit</button><span style="margin: 10px"></span>
                 <button type="reset" class="btn btn-default" (click)="resetForm()">Cancel</button>
               </div>
             </div>
@@ -65,7 +65,7 @@
           <th></th>
         </thead>
         <tr *ngFor="let itmes of chapterService.chapterList">
-            <td> {{ itmes.CourseID.CourseName }} </td>
+            <td> {{ itmes.CourseID?.CourseName }} </td>
         <td> {{ itmes.ChapterName }} </td>
         <td> {{ itmes.ChapterDesc }} </td>
         <td>

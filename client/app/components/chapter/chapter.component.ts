@@ -92,6 +92,7 @@ saveData() {
 refreshChapterList(){
   this.chapterService.getChapterList().subscribe((res) => {
   this.chapterService.chapterList = res as Chapter[];
+  console.log( this.chapterService.chapterList);
 });
 }
 

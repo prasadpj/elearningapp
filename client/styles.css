@@ -18,7 +18,8 @@
     width: 100%;
     height: 100%;
     display: flex;
-    margin: auto 
+    margin: auto ;
+    z-index: 999;
 }
 .lds-dual-ring {
     /* display: inline-block; */

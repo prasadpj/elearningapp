@@ -79,7 +79,9 @@
       </div>
 
       <div class="col-md-12" style="height:100%" *ngIf="isVideo">
-        
+        <div [innerHTML]="topicDesc">
+        </div>
+        <br>
         <video width="100%" controls>
           <source [src]="VideoUrl" type="video/mp4">
         </video>
@@ -94,3 +96,7 @@
       </div>
     </div>
   </div>
+  
+<div class="overlay" *ngIf="isLoading">
+  <div class="lds-dual-ring"></div>
+</div>
