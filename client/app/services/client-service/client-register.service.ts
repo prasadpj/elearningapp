@@ -21,6 +21,12 @@ export class ClientRegisterService {
     return this.http.get(this.url);
   }
 
+  
+  getClientRegisterListByEmail(clientRegister: ClientRegister) {
+    return this.http.post(this.url+'/Email',clientRegister);
+  }
+
+
   putClientRegister(clientRegister: ClientRegister) {
     return this.http.put(this.url + `/${clientRegister._id}`, clientRegister);
   }

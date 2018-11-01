@@ -9,4 +9,8 @@ Router.put('/:id', Controller.update);
 Router.post('/byEmail', Controller.readByEmailId);
 
 Router.delete('/:id', Controller.delete);
+Router.post('/Email', Controller.readByEmail);
+
+
+
 module.exports = Router;
