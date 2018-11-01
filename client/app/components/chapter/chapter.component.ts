@@ -71,6 +71,8 @@ onClickSubmit(){
 }
 
 saveData() {
+
+
   if(this.formData._id === '' || this.formData._id === null) {
     delete this.formData._id;
     this.chapterService.postChapter(this.formData)
@@ -92,7 +94,7 @@ saveData() {
 refreshChapterList(){
   this.chapterService.getChapterList().subscribe((res) => {
   this.chapterService.chapterList = res as Chapter[];
-  console.log( this.chapterService.chapterList);
+  //console.log( this.chapterService.chapterList);
 });
 }
 

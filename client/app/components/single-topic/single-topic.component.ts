@@ -66,7 +66,15 @@ export class SingleTopicComponent implements OnInit {
       
       } else {
         this.isVideo = true;
+        
         this.getTopicList(this.courseId);
+        this.topicService.getTopicListById(this.topicId).subscribe((res) => {
+          this.isLoading = false;
+          this.topic = res as Topic[]
+          this.topicDesc = this.topic.TopicDesc;
+          this.SelectedtopicName = this.topic.TopicName;
+         
+        });
       }
     }
   }
@@ -96,6 +104,7 @@ export class SingleTopicComponent implements OnInit {
     this.SelectedtopicName = this.topicList.TopicName;
     //console.log(this.SelectedtopicName);
     this.isLoading = true;
+
     if (this.topicList.VideoURL == null || this.topicList.VideoURL == "") {
       localStorage.removeItem("isReload");
       this.router.navigate(['/singletopic'], { queryParams: { VideoURL: obj.VideoURL, courseId: obj.CourseID, TopicID: obj._id } });
@@ -115,11 +124,20 @@ export class SingleTopicComponent implements OnInit {
 
 
     } else {
-
+      localStorage.removeItem("isReload");
+      this.router.navigate(['/singletopic'], { queryParams: { VideoURL: obj.VideoURL, courseId: obj.CourseID, TopicID: obj._id } });
+      window.location.reload();
       this.SelectedtopicName = this.topicList.TopicName;
       this.isVideo = true;
       this.VideoUrl = obj.VideoURL;
       this.getTopicList(this.courseId);
+      this.topicService.getTopicListById(this.topicList._id).subscribe((res) => {
+
+        this.topic = res as Topic[]
+        this.topicDesc = this.topic.TopicDesc;
+        this.SelectedtopicName = this.topic.TopicName;
+
+      });
 
     }
   }

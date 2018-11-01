@@ -100,6 +100,8 @@ export class TopicComponent implements OnInit {
     this.selectedCourse = obj;
     this.list = this.chapterService.getChapterListById(this.selectedCourse['_id']).subscribe((res) => {
       this.chapterList = res as Chapter[];
+
+      //console.log(this.chapterList);
     });
   }
 
@@ -152,9 +154,11 @@ export class TopicComponent implements OnInit {
 
     this.courseService.getSingleCourse(topic.CourseID).subscribe((res) => {
       this.selectedCourse = res as Course[];
+      //console.log(this.selectedCourse);
+      this.courseSelectedValue(this.selectedCourse);
+
     });
-
-
+   
     this.selectedChapter = topic.ChapterID;
   }
 
