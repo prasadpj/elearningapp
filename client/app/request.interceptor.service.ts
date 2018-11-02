@@ -28,9 +28,8 @@ export class RequestInterceptor implements HttpInterceptor {
         request = request.clone({
             setHeaders: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this._clientRegisterService.getToken()}`,
                 'auth': 'true',
-                'token': this._clientRegisterService.getToken()
+                'token': this._clientRegisterService.getToken() || ''
             }
         });
         return next.handle(request).do((event: HttpEvent<any>) => { }, (error: any) => {
