@@ -9,6 +9,6 @@ Router.get('/bycourse/:id', Controller.readByCourseId);
 Router.get('/byChapter/:id', Controller.readByCourseIdAndPopulateTopic);
 Router.post('/', Controller.create);
 Router.put('/:id', Controller.update);
-Router.delete('/', Controller.delete);
+Router.delete('/:id', Controller.delete);
 
 module.exports = Router;

@@ -21,9 +21,22 @@ export class ClientRegisterService {
     return this.http.get(this.url);
   }
 
+  
+  getClientRegisterListByEmail(clientRegister: ClientRegister) {
+    return this.http.post(this.url+'/Email',clientRegister);
+  }
+
+
   putClientRegister(clientRegister: ClientRegister) {
     return this.http.put(this.url + `/${clientRegister._id}`, clientRegister);
   }
+
+
+  UpdateIsActiveClientRegister(clientRegister: ClientRegister) {
+    console.log(clientRegister);
+    return this.http.put(this.url +'/updateByMail'+`/${clientRegister.Email}`, clientRegister);
+  }
+
 
   deleteClientRegister(_id: string) {
     return this.http.delete(this.url + `/${_id}`);
@@ -32,6 +45,15 @@ export class ClientRegisterService {
   getSingleLogin(clientRegister: ClientRegister) {
     return this.http.post(this.url + '/login', clientRegister);
   }
+
+  verifyOTP(clientRegister: ClientRegister) {
+    return this.http.post(this.url + '/byEmailOTP', clientRegister);
+  }
+
+  checkEmailIsActive(clientRegister: ClientRegister) {
+    return this.http.post(this.url + '/byEmailIsActive', clientRegister);
+  }
+
 
   userObject: any;
 
@@ -58,6 +80,10 @@ export class ClientRegisterService {
     }
 
   }
+  loginCheck(){
+
+    return this.getUser();
+  }
 
   getUser() {
     if (!this.userObject && !localStorage.getItem('userObj')) {
@@ -68,5 +94,4 @@ export class ClientRegisterService {
     }
     return this.userObject;
   }
-
 }

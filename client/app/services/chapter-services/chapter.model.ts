@@ -3,4 +3,5 @@ export class Chapter {
     CourseID : string;
     ChapterName : string;
     ChapterDesc : string;
+    Serial :Number;
 }

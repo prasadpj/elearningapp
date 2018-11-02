@@ -54,98 +54,154 @@
 </div>
  </div>
 </div> -->
-<div class="page-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="page-caption">
-                    <h1 class="page-title">Hike Pageheader</h1>
-                </div>
-            </div>
+<div class="page-header" style="min-height: 400px;margin-bottom: 10px">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-caption">
+
         </div>
+      </div>
     </div>
+  </div>
 </div>
-<div class="card-section"  style="background: #eee">
-    <div class="container">
-        <div class="card-block bg-white mb30">
-            <div class="row" >
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="section-title mb-0" style="text-align:center">
-                        <h2>All about Hike. We share our knowledge on blog</h2>
-                        <p>Our approach is very simple: we define your problem and give the best solution. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-<section id="team" class="pb-5">
-    <div class="container">
-        <h1 class="section-title">OUR COURSES</h1>
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let items of courseService.courseList">
-                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                    <div class="mainflip">
-                        <div class="frontside">
-                            <div class="card" >
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></p>
-                                    <h4 class="card-title">{{ items.CourseName }}</h4>
-
-                                    <button type="button" class="btn btn-primary"  [routerLink]="['/courses']" [queryParams]="{ course: items._id }">Start Course</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Course Description</h4>
-                                    <p class="card-text">{{ items.CourseDesc }}</p>
-                                    <ul class="list-inline">
-
-                                        <li class="list-inline-item">
-                                            <button type="button" class="btn btn-primary"  [routerLink]="['/courses']" [queryParams]="{ course: items._id }">Start Course</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- <div class="card-section" style="background: #eee">
+  <div class="container">
+    <div class="card-block bg-white mb30">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="section-title mb-0" style="text-align:center">
+            <h2>All about Hike. We share our knowledge on blog</h2>
+            <p>Our approach is very simple: we define your problem and give the best solution. </p>
           </div>
-          </div></section>
-<!-- <div class="col-lg-12">
-        <img src="../../../assets/images/pageheader.jpg" width="100%" alt="">
-
+        </div>
+      </div>
+    </div>
+  </div>
 </div> -->
-<hr>
-          <section id="team" class="pb-5">
-          <h1 class="section-title">OUR BLOGS</h1>
-          <div class="container">
-                <div *ngFor="let item of blogService.blogList ">
+<div class="card-section" style="background: #eee">
+  <div class="container">
+      <div class="card-block bg-white mb30">
+          <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-                <div class="col-lg-12 col-lg-offset-2" style="margin-top:10px">
-                    <div class="card card-inner shadow-lg">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <img src="../../../assets/{{item.BlogCategory}}_logo.jpg" class="img img-rounded img-fluid" />
-                                </div>
-                                <div class="col-md-10">
-                                    <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><a><strong>{{ item.BlogTitle}}</strong></a></p>
-                                    <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">{{ item.BlogAbstract}}</p>
-                                    <p>
-                                        <a class="float-right btn btn-outline-info ml-2" [routerLink]="['/singleblog']" [queryParams]="{ BlogId: item._id }">   <i class="fa fa-reply"></i> <a> Read More</a></a>
+                  <div class="section-title mb-0" style="text-align: center">
+                    <h2>All about Hike. We share our knowledge on blog</h2>
+                      <p style="font-size:20px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Our approach is very simple: we define your problem and give the best solution.</p>
+                  </div>
 
-                                   </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-             </div>
- </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 
+<section id="team" class="pb-5" style="margin-top: -60px">
+  <div class="container">
+    <h1 class="section-title">OUR COURSES</h1>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3" *ngFor="let items of courseService.courseList">
+
+          <div class="card" style="height: 100%;width: 100%;">
+              <div class="card-body" >
+                  <p style="text-align: center" ><img class=" img-fluid" src="../../../assets/{{items.TechnologyName}}_logo.jpg"
+                    alt="card image" height="100px" width="100px"></p>
+                <h4 class="card-title" style="text-align: center">{{ items.CourseName }}</h4>
+                
+              </div>
+              <div class="card-footer" style="text-align: center">
+                  <button type="button" class="btn btn-primary" [routerLink]="['/courses']"  [queryParams]="{ course: items._id }">Start</button>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <h1 class="section-title">OUR FEATURES</h1>
+  <div class="row animation-lbd__content container-fluid" style="padding-left: 80px;padding-right: 50px;">
+
+    <div class="col-sm-12 col-md-4 ">
+      <div class="card card--floating dc-has-chip animation-lbd__card-one shadowsss" style="height: 100%">
+        <div class="dc-chip dc-chip--number-34 animation-lbd__number-one">1</div>
+        <div class="dc-bucket">
+          <div class="dc-bucket__media dc-u-mt-8">
+            <img width="96" src="https://cdn.datacamp.com/main-app/assets/promotions/visual_studio/learn-3b37f8feb4e6d24877ec901405876d770bd681041aa0d9334575f8d3152de26c.svg"
+              alt="Learn">
+          </div>
+          <div class="dc-bucket__content">
+            <h4 class="u-spacing-b0 card-title">Learn</h4>
+            <p class="u-spacing-t2 u-spacing-b2">Acquire new skills. Choose from over 100 intuitive Courses on R,
+              Python, SQL, Git, Shell,...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-4">
+      <div class="card card--floating dc-has-chip animation-lbd__card-two shadowsss" style="height: 100%">
+        <div class="dc-chip dc-chip--number-34 animation-lbd__number-two">2</div>
+        <div class="dc-bucket">
+          <div class="dc-bucket__media dc-u-mt-8">
+            <img width="100" src="https://cdn.datacamp.com/main-app/assets/promotions/visual_studio/practice-96a09c563545188317a64f1b34daab0edba601669388f26766e8191f6c4f4304.svg"
+              alt="Practice">
+          </div>
+          <div class="dc-bucket__content">
+            <h4 class="u-spacing-b0 card-title">Practice</h4>
+            <p class="u-spacing-t2 u-spacing-b2">Sharpen and train your newly learned skills. Take bite-sized, fun
+              Practice Challenges.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-4">
+      <div class="card card--floating dc-has-chip animation-lbd__card-three shadowsss" style="height: 100%">
+        <div class="dc-chip dc-chip--number-34 animation-lbd__number-three">3</div>
+        <div class="dc-bucket">
+          <div class="dc-bucket__media dc-u-mt-8">
+            <img width="83" src="https://cdn.datacamp.com/main-app/assets/promotions/visual_studio/build-0c0288186408e5f280c1c88ee6f5157b9dcdc34c6e8bd3dd681f6fcfb0d19e0b.svg"
+              alt="Build">
+          </div>
+          <div class="dc-bucket__content">
+            <h4 class="u-spacing-b0 card-title">Build</h4>
+            <p class="u-spacing-t2 u-spacing-b2">Apply your data science skills to real-world problems. Start hands-on
+              data Projects.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<section id="team" class="pb-5">
+  <h1 class="section-title">OUR BLOGS</h1>
+  <div class="container">
+    <div *ngFor="let item of blogService.blogList ">
 
+      <div class="col-lg-12 col-lg-offset-2" style="margin-top:10px">
+        <div class="card card-inner shadow-lg">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-1">
+                <img src="../../../assets/{{item.BlogCategory}}_logo.jpg" class="img img-rounded img-fluid" style="margin-top:10px" />
+              </div>
+              <div class="col-md-10">
+                <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><a><strong>{{
+                      item.BlogTitle}}</strong></a></p>
+                <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">{{
+                  item.BlogAbstract}}</p>
+                <p>
+                  <a class="float-right btn btn-primary" [routerLink]="['/singleblog']" [queryParams]="{ BlogId: item._id }">
+                    <i class="fa fa-reply"></i> <a> Read More</a></a>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

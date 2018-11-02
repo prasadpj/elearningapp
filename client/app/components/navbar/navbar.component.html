@@ -1,57 +1,4 @@
-<!-- <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">E-Learning</a>
-    </div>
-    <ul class="nav navbar-nav">
-         <li routerLinkActive="active current"><a routerLink="/Home">Home</a></li>
-      <li routerLinkActive="active current"><a routerLink="/Courses">Courses</a></li>
-      <li routerLinkActive="active current"><a routerLink="/Blogs">Blogs</a></li>
-      <li routerLinkActive="active current"><a routerLink="/Contact">Contact</a></li>
-      <li routerLinkActive="active current"><a routerLink="/Login">Login</a></li>
-      </ul>
-</div>
-</nav> -->
-<!-- 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">E-Learning</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
-      <li routerLinkActive="active current" class="nav-item">
-        <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item">
-        <a class="nav-link" routerLink="/courses">Courses</a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item">
-        <a class="nav-link" routerLink="/blogs">Blogs</a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item">
-        <a class="nav-link" routerLink="/contact">Contact</a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav> -->
-
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" [hidden]="hideNavbar">
   <a class="navbar-brand" href="#">E-Learning</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -60,16 +7,23 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li routerLinkActive="active current" class="nav-item"  *ngFor="let item of allNav">
-      
+
         <a class="nav-link" routerLink="{{item.routerLink}}" *ngIf="item.IsClient || clientRegisterService.isAdmin()">{{item.text}} </a>
       </li>
-     
-  
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <a class="nav-link" routerLink="/home"> <img src="../../../assets/logout.png" width="25px" height="25px;" (click)="signout()"> </a>  
+        <button *ngIf="!clientRegisterService.loginCheck()" type="button" class="btn btn-secondary my-2 my-sm-0" [routerLink]="['/login']">Login</button><span style="margin-left: 5px"></span>
+
+        <button *ngIf="!clientRegisterService.loginCheck()" type="button" class="btn btn-secondary my-2 my-sm-0" [routerLink]="['/register']">Sign Up</button>
+       
+      <a class="nav-link" *ngIf="clientRegisterService.loginCheck()"  routerLink="/home"> <img src="../../../assets/logout.png" width="25px" height="25px;" (click)="signout()"> </a>  
+
     </form>
   </div>
-  
-  
+
+
 </nav>
+
+
+
+

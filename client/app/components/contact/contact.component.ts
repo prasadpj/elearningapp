@@ -14,8 +14,8 @@ export class ContactComponent implements OnInit {
   newUser = {
     Name: '',
     Email: '',
-    message: ''
-  }
+    Message: ''
+  };
 
   form = new FormGroup ({
     Name: new FormControl('', [
@@ -29,7 +29,7 @@ export class ContactComponent implements OnInit {
       Validators.maxLength(200),
       Validators.email
     ]),
-    message: new FormControl('', [
+    Message: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(1000)
@@ -38,7 +38,7 @@ export class ContactComponent implements OnInit {
 
   get Name() { return this.form.get('Name'); }
   get Email() { return this.form.get('Email'); }
-  get message() { return this.form.get('message'); }
+  get Message() { return this.form.get('Message'); }
 
   constructor(public contactService: ContactService, private toastr: ToastrService) { }
 
@@ -51,16 +51,16 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  
+
   onSubmit(form?: NgForm) {
     // return this.contactService.sendEmail(this.newUser);
-    //return this.contactService.sendEmail(this.newUser);
+    // return this.contactService.sendEmail(this.newUser);
     this.contactService.postContact(form.value)
       .subscribe(res => {
         this.resetForm(form);
-       //this.courseService.getCourseList();
-      
-      this.toastr.success('New Record Inserted');
+       // this.courseService.getCourseList();
+
+      this.toastr.success('Mail sent Sucessfully!');
       });
   }
 

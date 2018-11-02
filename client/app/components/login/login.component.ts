@@ -5,6 +5,7 @@ import { LoginService } from '../../services/login/login.service';
 import { Login } from '../../services/login/login.model';
 import { ClientRegisterService } from '../../services/client-service/client-register.service';
 import { ClientRegister } from '../../services/client-service/client-register.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -30,9 +31,12 @@ export class LoginComponent implements OnInit {
 
   get Password() { return this.form.get('Password'); }
 
-  constructor(public loginService: LoginService, public clientRegisterService: ClientRegisterService, private toastr: ToastrService) { }
+  constructor(public loginService: LoginService, public clientRegisterService: ClientRegisterService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
+
+
+
     this.resetForm();
 
   }
@@ -46,16 +50,41 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  singleLogin;
 
+  Active;
+  IsActive;
   login(form?: NgForm) {
-    this.clientRegisterService.getSingleLogin(form.value).subscribe((res) => {
-      if (res['status']) {
-        this.clientRegisterService.setUser(res['data']);
-        this.toastr.success('Login Successfull!');
-      }
-      else
-        this.toastr.warning('Login Failed!');
 
+    this.clientRegisterService.checkEmailIsActive(form.value).subscribe((res) => {
+      this.Active = res as ClientRegister[];
+      this.IsActive = this.Active.IsActive;
+
+      if (this.IsActive == true) {
+        this.clientRegisterService.getSingleLogin(form.value).subscribe((res) => {
+          this.singleLogin = res as ClientRegister[];
+
+          this.clientRegisterService.setUser(res);
+
+          if (this.singleLogin.length > 0) {
+            this.toastr.success('Login Successfull!');
+            this.router.navigate(['/home'])
+          } else {
+            this.toastr.warning('Login Failed!');
+          }
+        });
+      } else {
+        this.router.navigate(['/register'], { queryParams: { show: true } });
+
+      }
     });
   }
+
+
+
+
+
 }
+
+
+

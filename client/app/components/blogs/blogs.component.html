@@ -41,7 +41,7 @@
                     <h3 class="card-header">Category</h3>
                     <div class="card-body">
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item" ngClass="selectedCategory == item.categoryName :'highlight':''" *ngFor="let item of categoryList" (click)="loadBlogsAsPerCat(item.CategoryName)">
+                      <li class="list-group-item"  *ngFor="let item of categoryList" (click)="loadBlogsAsPerCat(item.CategoryName)">
                           <a>{{ item.CategoryName }} </a>
                         </li>
                     </ul>

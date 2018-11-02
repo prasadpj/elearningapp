@@ -8,15 +8,12 @@
             <h4 class="card-title">Name</h4>
             <p class="card-text">{{ UserDetail?.FirstName }} {{ UserDetail?.LastName }}</p>
 
-            <h4 class="card-title">Mobile No</h4>
-            <p class="card-text">{{ UserDetail?.MobileNo }}</p>
-
+           
             <h4 class="card-title">Email</h4>
             <p class="card-text">{{ UserDetail?.Email }}</p>
 
             
-            <h4 class="card-title">DOB</h4>
-            <p class="card-text">{{ UserDetail?.DOB }}</p>
+          
           </div>
         </div>
 
@@ -28,7 +25,7 @@
     <table class="table table-responsive table-sm table-hover">
       <thead>
         <th>Name</th>
-        <th>Mobile No</th>
+     
         <th>IsAdmin</th>
      
         <th></th>
@@ -38,23 +35,21 @@
   
       <tr *ngFor="let item of UsersList">
       <td> {{ item.FirstName }} </td>
-      <td> {{ item.MobileNo }} </td>
+      
       <td> 
           <div class="form-check" style="text-align: center">
-            {{item.IsAdmin}}
+           
                 <input class="form-check-input" type="checkbox" [(ngModel)]="item.IsAdmin" (click)="updateDetails(item)">
             </div>
       </td>
       <td> 
-          <a (click)="onView(item)">
-              <i class="fa fa-info-circle fa-2x" ></i>
-            </a>
+          <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="onEdit(item)"></i>
+
       </td>
      
       <td>
-          <a  (click)="onDelete(item._id,usersForm)">
-          <i class="fa fa-trash-o fa-2x" style="color:red"></i>
-        </a>
+           <i class="fa fa-trash" aria-hidden="true" (click)="onDelete(item._id,usersForm)"></i>
+           
       </td>
       </tr>
       </table>

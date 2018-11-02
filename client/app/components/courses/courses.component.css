@@ -1,22 +1,7 @@
 
 
-
-.accordion-toggle:after {
-    /* symbol for "opening" panels */
-    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
-    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
-    float: right;        /* adjust as needed */
-    color: grey;      /* adjust as needed */
-}
-.accordion-toggle.collapsed:after {
-    /* symbol for "collapsed" panels */
-    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
-}
-
-
-
-.page-header {background: url('../../../assets/images/pageheader.jpg') no-repeat; position: relative; background-size: cover; }
-.page-caption { padding-top: 170px; padding-bottom: 174px; }
+.page-header {background: url('../../../assets/images/pageheader.jpg') no-repeat; position: relative; background-size: cover;height: 200px }
+.page-caption { padding-top: 50px; padding-bottom: 50px; }
 .page-title { font-size: 56px; line-height: 1; color: #fff; font-weight: 600; text-align: center; }
 
 .card-section { position: relative; bottom: 50px; }
@@ -25,4 +10,40 @@
 
 
 
+.zippy { 
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.zippy-heading { 
+    font-weight: bold;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.zippy-body { 
+    padding: 20px;
+}
+
+.expanded { 
+    background: #f0f0f0;
+}
+
+.fa { 
+    float: right;
+}
+
+
+.navtop{
+    margin-top:50px;
+}
+.tab-content {
+    padding: 40px;
+    margin-top: -20px; 
+}
+
+.nav-link {
+    display: inline;
+    padding: -50px
+}
 

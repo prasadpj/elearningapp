@@ -30,6 +30,9 @@ import { RegisteredUsersComponent } from './components/registered-users/register
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 import { RequestInterceptor } from './request.interceptor.service';
+import { AllCoursesComponent } from './components/all-courses/all-courses.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { DemoTestComponent } from './components/demo-test/demo-test.component';
 // import { SafePipeModule } from 'safe-pipe';
 // import { EmbedVideo } from 'ngx-embed-video';
 @NgModule({
@@ -53,6 +56,9 @@ import { RequestInterceptor } from './request.interceptor.service';
     SingleTopicComponent,
     RegisteredUsersComponent,
     PagenotfoundComponent,
+    AllCoursesComponent,
+    ForgotpasswordComponent,
+    DemoTestComponent,
 
   ],
   imports: [
@@ -89,6 +95,10 @@ import { RequestInterceptor } from './request.interceptor.service';
       {
         path: 'topic',
         component: TopicComponent
+      },
+      {
+        path: 'forgotpassword',
+        component: ForgotpasswordComponent
       },
       {
         path: 'blog',
@@ -129,6 +139,10 @@ import { RequestInterceptor } from './request.interceptor.service';
       {
         path: 'singletopic',
         component: SingleTopicComponent
+      },
+      {
+        path: 'allcourses',
+        component: AllCoursesComponent
       },
       { path: '**', component: PagenotfoundComponent }
     ])

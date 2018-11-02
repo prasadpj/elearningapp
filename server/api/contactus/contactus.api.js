@@ -1,5 +1,5 @@
 var Express = require('express');
-var Controller = appRequire('ctrl.user');
+var Controller = appRequire('ctrl.contactus');
 var Router = Express.Router();
 
 

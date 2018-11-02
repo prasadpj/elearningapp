@@ -29,10 +29,10 @@ export class TopicComponent implements OnInit {
     ]),
     TopicDesc: new FormControl('', [
       Validators.minLength(3),
-      Validators.maxLength(500)
+      //Validators.maxLength(1000)
     ]),
     VideoURL: new FormControl('', [
-      Validators.required,
+      
       Validators.minLength(3),
       Validators.maxLength(1000)
     ]),
@@ -40,7 +40,7 @@ export class TopicComponent implements OnInit {
       Validators.required,
     ]),
     VideoLength: new FormControl('', [
-      Validators.required,
+    
     ])
 
   });
@@ -100,6 +100,8 @@ export class TopicComponent implements OnInit {
     this.selectedCourse = obj;
     this.list = this.chapterService.getChapterListById(this.selectedCourse['_id']).subscribe((res) => {
       this.chapterList = res as Chapter[];
+
+      //console.log(this.chapterList);
     });
   }
 
@@ -152,9 +154,11 @@ export class TopicComponent implements OnInit {
 
     this.courseService.getSingleCourse(topic.CourseID).subscribe((res) => {
       this.selectedCourse = res as Course[];
+      //console.log(this.selectedCourse);
+      this.courseSelectedValue(this.selectedCourse);
+
     });
-
-
+   
     this.selectedChapter = topic.ChapterID;
   }
 

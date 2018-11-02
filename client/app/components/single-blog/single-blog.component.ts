@@ -13,28 +13,34 @@ export class SingleBlogComponent implements OnInit {
   constructor(private route: ActivatedRoute, public blogService: BlogService) { }
   blogId: string;
   ngOnInit() {
-    this.route.queryParams
-      .filter(params => params.BlogId)
-      .subscribe(params => {
-        this.blogId = params.BlogId;
-
-      });
-this.getAllBlogCategory();
+    if (!localStorage.isReload) {
+      localStorage.isReload = 'true'
+      window.location.reload()
+    } else {
+      this.route.queryParams
+        .filter(params => params.BlogId)
+        .subscribe(params => {
+          this.blogId = params.BlogId;
+          
+        });
+      this.getAllBlogCategory();
       this.loadSingleBlogList(this.blogId);
+    }
   }
-singleBlog;
-loadSingleBlogList(blogId){
+  singleBlog;
+  loadSingleBlogList(blogId) {
 
-  this.blogService.singleBlog(blogId).subscribe((res) => {
-    this.singleBlog = res as Blog[]});
+    this.blogService.singleBlog(blogId).subscribe((res) => {
+      this.singleBlog = res as Blog[]
+      
+    });
 
+  }
 
-}
-
-categoryList;
-getAllBlogCategory(){
-  this.categoryList = this.blogService.getBlogCategory();
-console.log(this.categoryList);
-}
+  categoryList;
+  getAllBlogCategory() {
+    this.categoryList = this.blogService.getBlogCategory();
+    
+  }
 
 }

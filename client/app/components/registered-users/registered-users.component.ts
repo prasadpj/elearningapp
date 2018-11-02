@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientRegisterService } from '../../services/client-service/client-register.service';
 import { ToastrService } from 'ngx-toastr';
 import { ClientRegister } from '../../services/client-service/client-register.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-registered-users',
@@ -21,6 +22,7 @@ export class RegisteredUsersComponent implements OnInit {
       this.UsersList = res as ClientRegister[];
     });
   }
+
   UserDetail;
   onView(clientReg: ClientRegister) {
     this.UserDetail = clientReg;
@@ -28,15 +30,32 @@ export class RegisteredUsersComponent implements OnInit {
 
   updateDetails(clientReg: ClientRegister) {
 
-
     clientReg.IsAdmin = !clientReg.IsAdmin;
     //console.log(!clientReg.IsAdmin);
     this.clientRegisterService.putClientRegister(clientReg)
       .subscribe(res => {
         this.refreshUsersList();
-        this.toastr.success('New Registration Succesfully');
+      
       });
 
+
+  }
+
+  onEdit(clientReg: ClientRegister) {
+    this.UserDetail = clientReg;
+  }
+
+  onDelete(_id: string, form: NgForm) {
+
+    if (confirm('Are you sure to delete this record ?') == true) {
+      
+      this.clientRegisterService.deleteClientRegister(_id).subscribe((res) => {
+        this.refreshUsersList() ;
+        this.toastr.info('Record Deleted Succesfully');
+
+      });
+
+    }
 
   }
 }

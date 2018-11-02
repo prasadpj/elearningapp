@@ -25,7 +25,8 @@ export class ChapterComponent implements OnInit {
    _id: "",
    CourseID : "",
    ChapterName: "",
-   ChapterDesc: ""
+   ChapterDesc: "",
+   Serial: null
  };
 
 
@@ -49,8 +50,8 @@ onClickSubmit(){
     _id: this.formData._id,
     CourseID : this.selectedCourse['_id'],
     ChapterName: this.formData.ChapterName,
-    ChapterDesc: this.formData.ChapterDesc
-    
+    ChapterDesc: this.formData.ChapterDesc,
+    Serial: this.formData.Serial
   };
 
  this.saveData();
@@ -63,7 +64,8 @@ onClickSubmit(){
          _id: '',
       CourseID: '',
       ChapterName: '',
-      ChapterDesc: ''
+      ChapterDesc: '',
+      Serial: null
     
   }
   this.selectedCourse= '';
@@ -71,6 +73,8 @@ onClickSubmit(){
 }
 
 saveData() {
+
+
   if(this.formData._id === '' || this.formData._id === null) {
     delete this.formData._id;
     this.chapterService.postChapter(this.formData)
@@ -92,6 +96,7 @@ saveData() {
 refreshChapterList(){
   this.chapterService.getChapterList().subscribe((res) => {
   this.chapterService.chapterList = res as Chapter[];
+  //console.log( this.chapterService.chapterList);
 });
 }
 
@@ -103,6 +108,7 @@ onEdit(chapter: Chapter) {
   this.formData.ChapterDesc = chapter.ChapterDesc;
   this.formData.CourseID = chapter.CourseID;
   this.selectedCourse = chapter.CourseID;
+  this.formData.Serial= chapter.Serial;
   
 }
 

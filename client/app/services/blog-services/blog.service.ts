@@ -13,9 +13,10 @@ export class BlogService {
   selectedBlog: Blog;
   blogList : Blog[];
  ddlCategory=[ 
+  { CategoryName: 'All'},
     { CategoryName: 'C#'},
     { CategoryName: 'Asp.Net'},
-    { CategoryName: 'Phython'},
+    { CategoryName: 'Python'},
     { CategoryName: 'R'},
     { CategoryName: 'Machine Learning'},
   ];
@@ -31,8 +32,12 @@ export class BlogService {
   getBlogList() {
     return this.http.get(this.url);
   }
-
-
+ 
+  getTop5BlogList(limit: number) {
+    return this.http.get(this.url + '/Top5/'+ ` ${limit}`);
+  }
+  
+ 
    getBlogsAsPerCategory(CategoryName:  string){
    
     return this.http.get(this.url +'/byCategory'+ `/${CategoryName}`);
