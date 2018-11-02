@@ -67,15 +67,6 @@ export class CoursesComponent implements OnInit {
   }
   topicList;
   selectChap;
-
-  // getTopicList(obj){
-  //   this.selectChap=obj;
-  //   this.topicService.getTopicListByChapterId(this.selectChap['_id']).subscribe((res) => {
-  //     this.topicList = res as Topic[];
-  //     console.log(this.topicList);
-  //   });
-  // }
-
   getTopicList(courseId) {
     this.chapterService.getTopicListByChapter(courseId).subscribe((res) => {
       this.chapterList = res as Chapter[]

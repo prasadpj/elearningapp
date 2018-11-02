@@ -45,7 +45,7 @@
         <a class="list-group-item">
 
           <div *ngFor="let items of chapterList">
-            <app-demo-test title="{{ items.ChapterName}}">
+            <app-demo-test title="{{ items.Serial}}. {{ items.ChapterName}}">
               <div *ngFor="let item of items.Topic">
                 <div class="row">
                   <div class="col-lg-1 pull-left">
@@ -53,7 +53,7 @@
                   </div>
                   <div class="col-lg-10">
                     <a (click)="playVideoById(item)" style="color:#E95420" class="card-link">
-                      {{ item.TopicName }}
+                      {{ item.Serial }}   {{ item.TopicName }}
                     </a>
                   </div>
                   <!-- <div class="col-lg-2" class="pull-right" *ngIf="checkIsVideo(item.VideoURL)">

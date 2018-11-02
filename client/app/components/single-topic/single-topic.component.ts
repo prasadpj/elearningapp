@@ -37,7 +37,6 @@ export class SingleTopicComponent implements OnInit {
   }
 
   ngOnInit() {
- 
     if (!localStorage.isReload) {
       this.isLoading = true;
       localStorage.isReload = 'true'

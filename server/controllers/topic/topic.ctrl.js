@@ -128,8 +128,9 @@ function del(req, res, next) {
 }
 
 function readByChapterId(req, res, next) {
-    Topic.find({ ChapterID: req.params.id })
+    Topic.find({ ChapterID: req.params.id})
         .populate('Chapter', 'ChapterName')
+       
         .exec((err, docs) => {
             if (!err) { res.send(docs); }
             else { console.log('Error in retriving Topic: ' + JSON.stringify(err, undefined, 2)); }

@@ -22,6 +22,7 @@ module.exports = {
 function readAll(req, res, next) {
     Chapter.find()
         .populate('CourseID')
+        .sort({Serial: 1})
         .exec((err, doc) => {
             if (!err) { res.send(doc); }
             else { console.log('Error in retriving Chapter: ' + JSON.stringify(err, undefined, 2)); }
@@ -52,6 +53,7 @@ function readByCourseIdAndPopulateTopic(req, res, next) {
         return res.status(400).send(`No record with given id: ${req.params.id}`);
 
     Chapter.find({ 'CourseID': req.params.id })
+    .sort({Serial: 1})
         .populate('Topic')
         .exec((err, doc) => {
             if (!err) { res.send(doc); }
