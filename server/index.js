@@ -57,9 +57,6 @@ app.listen(config.port, () => console.log('server started at port:' + config.por
 /* app.use('/',function(req, res){
     console.log(req)
 }) */
-// app.use('/', express.static(path.join(config.clientPath, '')));
-// app.use('/*', (req, res) => res.sendFile(path.join(config.root, 'dist', 'ElearningApp', 'index.html')));
-
 
 app.use('/Course', appRequire('api.course'));
 app.use('/Chapter', appRequire('api.chapter'));
@@ -94,6 +91,11 @@ app.post("/upload/:id", upload.array("uploads[]", 12), function (req, res) {
     // });
     // res.send(response);
 });
+
+app.use('/', express.static(path.join(config.clientPath, '')));
+app.use('/*', (req, res) => res.sendFile(path.join(config.root, 'dist', 'ElearningApp', 'index.html')));
+
+
 //Create the invoice and other upload folders.
 fs.exists(uploadDir, function (exists) {
     if (!exists) {

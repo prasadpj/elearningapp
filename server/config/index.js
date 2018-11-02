@@ -5,7 +5,7 @@ var root = path.normalize(__dirname + './../../../');
 var fileUploadRoot = path.normalize(__dirname + './../../../');;
 // var emailConfig = JSON.parse(fs.readFileSync(root + 'server/config/keys/phoenix-2fb9e31eda41.json'));
 var config = {
-    root: path.normalize(__dirname + './../../../../'),
+    root: path.normalize(__dirname + './../../'),
 
     // host: 'test.com',
 
@@ -22,7 +22,7 @@ var config = {
     },
     imageUploadFolder: "uploads",
     imageUploadPath: fileUploadRoot + 'uploads\\',
-    clientPath: __dirname + './../../../' + 'dist/ElearningApp',
+    clientPath: __dirname + '../../../' + 'dist/ElearningApp',
     imageUploadURL: "http://" + this.host + ":" + this.port + '/uploaded_images/',
     EncryptionKey: "TheKey123",
     blogImagePlaceholderRegex : /{{{blog_id}}}/g
