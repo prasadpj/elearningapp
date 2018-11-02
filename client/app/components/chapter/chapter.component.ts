@@ -25,7 +25,8 @@ export class ChapterComponent implements OnInit {
    _id: "",
    CourseID : "",
    ChapterName: "",
-   ChapterDesc: ""
+   ChapterDesc: "",
+   Serial: null
  };
 
 
@@ -49,8 +50,8 @@ onClickSubmit(){
     _id: this.formData._id,
     CourseID : this.selectedCourse['_id'],
     ChapterName: this.formData.ChapterName,
-    ChapterDesc: this.formData.ChapterDesc
-    
+    ChapterDesc: this.formData.ChapterDesc,
+    Serial: this.formData.Serial
   };
 
  this.saveData();
@@ -63,7 +64,8 @@ onClickSubmit(){
          _id: '',
       CourseID: '',
       ChapterName: '',
-      ChapterDesc: ''
+      ChapterDesc: '',
+      Serial: null
     
   }
   this.selectedCourse= '';
@@ -106,6 +108,7 @@ onEdit(chapter: Chapter) {
   this.formData.ChapterDesc = chapter.ChapterDesc;
   this.formData.CourseID = chapter.CourseID;
   this.selectedCourse = chapter.CourseID;
+  this.formData.Serial= chapter.Serial;
   
 }
 

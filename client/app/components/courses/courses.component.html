@@ -42,7 +42,7 @@
     <div class="tab-pane active" role="tabpanel" id="menu1">
       <div class="container">
         <div *ngFor="let items of chapterList">
-          <app-demo-test title="{{ items.ChapterName}}">
+          <app-demo-test title="{{ items.Serial}}. {{ items.ChapterName}}">
             <p>
               <b> {{ items.ChapterDesc }}</b>
             </p>

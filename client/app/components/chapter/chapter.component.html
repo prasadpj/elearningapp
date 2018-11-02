@@ -37,6 +37,14 @@
               </div>
             </div>
       <br>
+      <div class="form-group">
+        <label for="inputCourse" class="col-lg-12 control-label">Chapter Serial</label>
+        <div class="col-lg-12">
+          <input type="text" class="form-control" placeholder="Chapter Serial"  [(ngModel)]="formData.Serial" >
+
+        </div>
+      </div>
+      <br>
             <div class="form-group">
               <label for="textArea" class="col-lg-12 control-label">Chapter Description</label>
               <div class="col-lg-12">
@@ -59,6 +67,7 @@
     <table class="table table-responsive table-sm table-hover">
         <thead>
           <th>Course Name</th>
+          <th>Serial</th>
           <th>Chapter Name</th>
           <th>Chapter Desc</th>
           <th></th>
@@ -66,6 +75,7 @@
         </thead>
         <tr *ngFor="let itmes of chapterService.chapterList">
             <td> {{ itmes.CourseID?.CourseName }} </td>
+            <td> {{ itmes.Serial}} </td>
         <td> {{ itmes.ChapterName }} </td>
         <td> {{ itmes.ChapterDesc }} </td>
         <td>

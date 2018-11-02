@@ -62,7 +62,8 @@ function create(req, res, next) {
     var chapter = new Chapter({
         CourseID: req.body.CourseID,
         ChapterName: req.body.ChapterName,
-        ChapterDesc: req.body.ChapterDesc
+        ChapterDesc: req.body.ChapterDesc,
+        Serial : req.body.Serial
     });
     chapter.save((err, doc) => {
         if (!err) {
@@ -83,7 +84,8 @@ function update(req, res, next) {
     var chapter = {
         CourseID: req.body.CourseID,
         ChapterName: req.body.ChapterName,
-        ChapterDesc: req.body.ChapterDesc
+        ChapterDesc: req.body.ChapterDesc,
+        Serial : req.body.Serial
     };
     Chapter.findById(req.body._id, (err, chapDoc) => {
         if (!err) {
