@@ -17,7 +17,7 @@ module.exports = {
 
     readByChapterId: readByChapterId,
 
-    readByTopicId : readByTopicId
+    readByTopicId: readByTopicId
 }
 
 function readAll(req, res, next) {
@@ -79,41 +79,43 @@ function update(req, res, next) {
         Serial: req.body.Serial,
         VideoLength: req.body.VideoLength
     };
-    Topic.findById(req.body._id, (err, doc) => {
-        if(!err){
+    Topic.findById(req.body._id, (err, topicDoc) => {
+        if (!err) {
             // check if chapter reference is changed
-            if (doc._id != topic.ChapterID) {
+            if (topicDoc.ChapterID != topic.ChapterID) {
                 // remove topic reference from chapter, since chapter is changed
-                Chapter
-                    .findByIdAndUpdate(
-                        req.body.ChapterID,
-                        {
-                            $pull: {
-                                Topic: { topicId }
+                Chapter.update(
+                    { "_id": topicDoc.ChapterID },
+                    {
+                        $pull: {
+                            Topic: topicId
+                        }
+                    }, {
+                        multi: true
+                    }
+                )
+                    .exec((err, oldChapterDoc) => {
+                        // console.log('removed topic from older chapter ', JSON.stringify(oldChapterDoc))
+                        // Add new topic refence to chapter
+                        Chapter.findByIdAndUpdate(req.body.ChapterID, { $push: { 'Topic': topicId } }, function (err, newChapterDoc) {
+                            if (!err) {
+                                // console.log('added current topic to new  chapter ', JSON.stringify(newChapterDoc))
+                                // Update Topic
+                                Topic.findByIdAndUpdate(topicId, { $set: topic }, { new: true }, (err, doc) => {
+                                    if (!err) { return  res.send(doc); }
+                                    else { console.log('Error in Update Topic: ' + JSON.stringify(err, undefined, 2)); }
+                                });
                             }
-                        }, {
-                            multi: true
-                        }, function (err, doc) {
-                            // Add new topic refence to chapter
-                            Chapter.findByIdAndUpdate(req.body.ChapterID, { $push: { 'Topic': doc._id } }, function (err, doc) {
-                                if (!err) {
-                                    // Update Topic
-                                    Topic.findByIdAndUpdate(topicId, { $set: topic }, { new: true }, (err, doc) => {
-                                        if (!err) { res.send(doc); }
-                                        else { console.log('Error in Update Topic: ' + JSON.stringify(err, undefined, 2)); }
-                                    });
-                                }
-                                else { console.log('Error in Chapter Course: ' + JSON.stringify(err, undefined, 2)); }
-                            });
+                            else { console.log('Error in Chapter Course: ' + JSON.stringify(err, undefined, 2)); }
                         });
+                    })
             } else {
                 Topic.findByIdAndUpdate(topicId, { $set: topic }, { new: true }, (err, doc) => {
-                    if (!err) { res.send(doc); }
+                    if (!err) { return res.send(doc); }
                     else { console.log('Error in Update Topic: ' + JSON.stringify(err, undefined, 2)); }
                 });
             }
         }
-        console.log('Error while fetching Topic ',err)
     })
 }
 function del(req, res, next) {
@@ -147,7 +149,7 @@ function readByTopicId(req, res, next) {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id: ${req.params.id}`);
 
-        Topic.findById(req.params.id, (err, doc) => {
+    Topic.findById(req.params.id, (err, doc) => {
         if (!err) { res.send(doc); }
         else { console.log('Error in retriving Chapter: ' + JSON.stringify(err, undefined, 2)); }
     });
