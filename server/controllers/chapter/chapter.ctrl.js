@@ -79,16 +79,59 @@ function create(req, res, next) {
 function update(req, res, next) {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id: ${req.params.id}`);
+        var chapterId = req.params.id
     var chapter = {
         CourseID: req.body.CourseID,
         ChapterName: req.body.ChapterName,
         ChapterDesc: req.body.ChapterDesc
     };
-    Chapter.findByIdAndUpdate(req.params.id, { $set: chapter }, { new: true }, (err, doc) => {
-        if (!err) { res.send(doc); }
-        else { console.log('Error in Update Chapter: ' + JSON.stringify(err, undefined, 2)); }
-    });
+    Chapter.findById(req.body._id, (err, chapDoc) => {
+        if (!err) {
+          
+            if (chapDoc.CourseID != chapter.CourseID) {
+              
+                Chapter.update(
+                    { "_id": chapDoc.CourseID },
+                    {
+                        $pull: {
+                            Chapter: chapterId
+                        }
+                    }, {
+                        multi: true
+                    }
+                )
+                    .exec((err, oldCourseDoc) => {
+                        
+                        Course.findByIdAndUpdate(req.body.CourseID, { $push: { 'Chapter': chapterId } }, function (err, newCourseDoc) {
+                            if (!err) {
+                                
+                                Chapter.findByIdAndUpdate(chapterId, { $set: chapter }, { new: true }, (err, doc) => {
+                                    if (!err) { return  res.send(doc); }
+                                    else { console.log('Error in Update Chapter: ' + JSON.stringify(err, undefined, 2)); }
+                                });
+                            }
+                            else { console.log('Error in Chapter Course: ' + JSON.stringify(err, undefined, 2)); }
+                        });
+                    })
+            } else {
+                Chapter.findByIdAndUpdate(req.params.id, { $set: chapter }, { new: true }, (err, doc) => {
+                    if (!err) { res.send(doc); }
+                    else { console.log('Error in Update Chapter: ' + JSON.stringify(err, undefined, 2)); }
+                });
+            
+            }
+        }
+    })
+
+
+
+
 }
+
+
+
+
+
 function del(req, res, next) {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id: ${req.params.id}`);
