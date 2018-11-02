@@ -35,7 +35,7 @@ export class RegisteredUsersComponent implements OnInit {
     this.clientRegisterService.putClientRegister(clientReg)
       .subscribe(res => {
         this.refreshUsersList();
-        this.toastr.success('New Registration Succesfully');
+      
       });
 
 

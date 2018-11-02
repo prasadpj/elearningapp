@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-  
+
 
     this.resetForm();
 
@@ -52,21 +52,39 @@ export class LoginComponent implements OnInit {
 
   singleLogin;
 
-
+  Active;
+  IsActive;
   login(form?: NgForm) {
-    this.clientRegisterService.getSingleLogin(form.value).subscribe((res) => {
-      this.singleLogin = res as ClientRegister[];
 
-      this.clientRegisterService.setUser(res[0]);
+    this.clientRegisterService.checkEmailIsActive(form.value).subscribe((res) => {
+      this.Active = res as ClientRegister[];
+      this.IsActive = this.Active.IsActive;
 
+      if (this.IsActive == true) {
+        this.clientRegisterService.getSingleLogin(form.value).subscribe((res) => {
+          this.singleLogin = res as ClientRegister[];
 
+          this.clientRegisterService.setUser(res[0]);
 
-      if (this.singleLogin.length > 0) {
-        this.toastr.success('Login Successfull!');
-        this.router.navigate(['/home'])
+          if (this.singleLogin.length > 0) {
+            this.toastr.success('Login Successfull!');
+            this.router.navigate(['/home'])
+          } else {
+            this.toastr.warning('Login Failed!');
+          }
+        });
       } else {
-        this.toastr.warning('Login Failed!');
+        this.router.navigate(['/register'], { queryParams: { show: true } });
+
       }
     });
   }
+
+
+
+
+
 }
+
+
+

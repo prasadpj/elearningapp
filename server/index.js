@@ -59,6 +59,7 @@ app.use('/Chapter', appRequire('api.chapter'));
 app.use('/Topic', appRequire('api.topic'));
 app.use('/Blog', appRequire('api.blog'));
 app.use('/ClientRegister', appRequire('api.user'));
+//app.put('/ClientRegister/updateByMail', function(req, res){console.log(123)});
 app.use('/Contact', appRequire('api.contactus'));
 app.use('/uploaded_images', express.static(path.join(config.imageUploadPath)));
 // console.log('config.imageUploadPath ', config.imageUploadPath)

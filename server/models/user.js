@@ -7,6 +7,8 @@ var User = mongoose.model('User',{
     Email : { type: String },
     Password : { type: String },
     IsAdmin : { type: Boolean },
+    OTP: { type: String },
+    IsActive: {type: Boolean}
 },'User');
 
 

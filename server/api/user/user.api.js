@@ -11,6 +11,11 @@ Router.post('/byEmail', Controller.readByEmailId);
 Router.delete('/:id', Controller.delete);
 Router.post('/Email', Controller.readByEmail);
 
+Router.post('/byEmailOTP', Controller.readByEmailOTP);
+
+Router.post('/byEmailIsActive', Controller.readbyEmailIsActive);
+
+Router.put('/updateByMail/:id', Controller.updateByMail);
 
 
 module.exports = Router;

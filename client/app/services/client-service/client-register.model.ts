@@ -5,4 +5,6 @@ export class ClientRegister {
   Email : string;
   Password : string;
   IsAdmin : boolean ;
+  OTP : string;
+  IsActive: boolean;
 }
