@@ -62,11 +62,11 @@ export class LoginComponent implements OnInit {
 
       if (this.IsActive == true) {
         this.clientRegisterService.getSingleLogin(form.value).subscribe((res) => {
-          this.singleLogin = res as ClientRegister[];
+          // this.singleLogin = res as ClientRegister[];
 
-          this.clientRegisterService.setUser(res);
+          this.clientRegisterService.setUser(res['data']);
 
-          if (this.singleLogin.length > 0) {
+          if (res['status']) {
             this.toastr.success('Login Successfull!');
             this.router.navigate(['/home'])
           } else {
