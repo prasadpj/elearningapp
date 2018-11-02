@@ -13,7 +13,12 @@ function create(req, res, next) {
     Email : req.body.Email,
     Message : req.body.Message
   });
-  emailService.sendEmail(contact.Email,contact.Name,contact.Message, function (err) {
+
+
+var Message = "<table border><tr><th>Name</th> <th>Email</th> <th>Message</th></tr><tr><td>"+contact.Email+"</td><td>"+contact.Name+"</td><td>"+contact.Message+"</td></tr></table>"
+
+
+  emailService.sendEmail( 'vcvarshacreation@gmail.com',"Enquiry Details",Message, function (err) {
     if (err)
     return res.send(err)
   })

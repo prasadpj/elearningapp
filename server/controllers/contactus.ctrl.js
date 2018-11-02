@@ -27,9 +27,7 @@ router.post('/', (req,res) => {
                 if (err) {
                     return res.send(err)
                 } else {
-
                 }
-
             })
             res.send({ success: true });
             contact.save((err, doc) => {

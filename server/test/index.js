@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 var { Chapter } = require('../models/chapter');
 var { Course }= require('../models/course');
 var { Topic } = require('../models/topic');
+var { User } = require('../models/user');
 
 
 
@@ -16,22 +17,25 @@ console.log('MongoDB connection succeeded');
 else
 console.log('Error in Connection: '+ JSON.stringify(err, undefined, 2));
 
-if(!ObjectId.isValid(chapID)) 
-return console.log("Invalid ID")
 
-Topic.find()
-.populate({
-    path: 'CourseID',
-    model: 'Course',
+ 
+    var user = {
+       
+        Email: 'manishchavan016@gmail.com',
+       
+        IsActive:true
+    };
 
-    populate: {
-        path: 'Chapter',
-        model: 'Chapter'
-    }})
+  
+   
 
-.exec((err, doc) => {
-    console.log(JSON.stringify(doc));
-});
+    User.findOneAndUpdate({Email: user.Email}, {$set:{IsActive:user.IsActive}},function(err, doc){
+        if(err){
+            console.log("Something wrong when updating data!");
+        }
+    
+        console.log(doc);
+    });
 
 });
 

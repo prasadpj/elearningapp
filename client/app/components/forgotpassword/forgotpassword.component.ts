@@ -38,16 +38,19 @@ export class ForgotpasswordComponent implements OnInit {
   singleLogin;
 
   forgotpassword(form?: NgForm) {
-    this.clientRegisterService.getSingleLogin(form.value).subscribe((res) => {
+    this.clientRegisterService.getClientRegisterListByEmail(form.value).subscribe((res) => {
       this.singleLogin = res as ClientRegister[];
+console.log(this.singleLogin);
+      //this.clientRegisterService.setUser(res[0]);
 
-      this.clientRegisterService.setUser(res[0]);
+
+      if(this.singleLogin._id != null){
+        this.toastr.success('Mail sent Successfull!');
 
 
-      if(this.singleLogin.length > 0)
-      this.toastr.success('Login Successfull!');
+      }
       else
-      this.toastr.warning('Login Failed!');
+      this.toastr.warning('Email address does not exist!');
 
     });
   }

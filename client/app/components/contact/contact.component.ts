@@ -60,7 +60,7 @@ export class ContactComponent implements OnInit {
         this.resetForm(form);
        // this.courseService.getCourseList();
 
-      this.toastr.success('New Record Inserted');
+      this.toastr.success('Mail sent Sucessfully!');
       });
   }
 

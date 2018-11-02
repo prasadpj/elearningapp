@@ -1,7 +1,7 @@
-<form class="form-horizontal course-form" #registerForm='ngForm' [formGroup]="form" (ngSubmit)="saveData(registerForm)"
+<form class="form-horizontal course-form" #registerForm='ngForm' [formGroup]="form" 
   style="padding:20px">
   <div class="wrapper" style="margin-bottom: 8%">
-    <div class="card" id="formContent">
+    <div class="card" id="formContent" *ngIf="!show">
       <div class="card-header" style="text-align: center">Registration </div>
       <div class="card-body">
         <div class="form-group">
@@ -36,17 +36,7 @@
             </div>
           </div>
         </div>
-        <!-- <div class="form-group">
-            <div class="col-lg-12">
-          <label class="col-form-label" for="inputMobileNo">Mobile No</label>
-          <input type="text" class="form-control" placeholder="Mobile No" id="inputMobileNo"[(ngModel)]="clientRegisterService.selectedRegisterClinet.MobileNo" name="MobileNo" formControlName="MobileNo">
-          <div class='alert alert-danger' *ngIf="MobileNo.touched && MobileNo.invalid">
-                  <div *ngIf="MobileNo.errors.required">MobileNo required!</div>
-                  <div *ngIf="MobileNo.errors.maxlength">MobileNo cannot be more then 10 digit</div>
-                  <div *ngIf="MobileNo.errors.pattern">MobileNo can only be number</div>
-            </div>
-      </div>
-    </div> -->
+
         <div class="form-group">
           <div class="col-lg-12">
             <!-- <label class="col-form-label" for="inputEmail">Email</label> -->
@@ -63,15 +53,7 @@
             </div>
           </div>
         </div>
-        <!-- <div class="form-group">
-                <div class="col-lg-12">
-            <label class="col-form-label" for="inputDOB">DOB</label>
-            <input type="text" class="form-control" bsDatepicker #bsDatepicker="bsDatepicker" [bsConfig]="datepickerConfig" placeholder="DOB" id="inputDOB" [(ngModel)]="clientRegisterService.selectedRegisterClinet.DOB" name="DOB" formControlName="DOB">
-            <div class='alert alert-danger' *ngIf="DOB.touched && DOB.invalid">
-                    DOB required!
-              </div>
-        </div>
-        </div> -->
+
 
         <div class="form-group">
           <div class="col-lg-12">
@@ -107,7 +89,7 @@
         </div>
         <div class="form-group">
           <div class="col-lg-12">
-            <button type="submit" [disabled]='registerForm.invalid' class="btn btn-primary">Submit</button>
+            <button type="submit" [disabled]='registerForm.invalid' class="btn btn-primary" (click)="saveData(registerForm)">Submit</button>
             <span style="margin:5px"></span>
             <button type="reset" class="btn btn-danger" (click)="resetForm(registerForm)">Reset</button>
           </div>
@@ -116,7 +98,46 @@
       </div>
     </div>
 
+    <div class="card" id="formContent"  *ngIf="show">
+      <div class="card-header" style="text-align: center">Verify Mail </div>
+      <div class="card-body">
+       
+        <div class="form-group">
+          <div class="col-lg-12">
+            <!-- <label class="col-form-label" for="inputEmail">Email</label> -->
+            <input type="text" placeholder="Email" id="inputEmail" [(ngModel)]="clientRegisterService.selectedRegisterClinet.Email"
+              name="Email" formControlName="Email">
 
+          </div>
+          <div class="col-md-10" style="margin-left: 34px">
+            <div class='alert alert-danger' *ngIf="Email.touched && Email.invalid">
+              <div *ngIf="Email.errors.required">Email ID required!</div>
+              <div *ngIf="Email.errors.minlength">Email ID should be atleast 3 char</div>
+              <div *ngIf="Email.errors.maxlength">Email ID cannot be more then 100 digit</div>
+              <div *ngIf="Email.errors.email">Enter a valid Email ID </div>
+            </div>
+          </div>
+        </div>
+
+        <input type="password" placeholder="Enter the OTP" id="inputOTP" name="OTP" formControlName="OTP">
+        <div class="col-md-10" style="margin-left: 34px">
+          <div class='alert alert-danger' *ngIf="OTP.touched && OTP.invalid">
+            <div *ngIf="OTP.errors.required">Confirm Password required!</div>
+            <div *ngIf="OTP.errors.minlength">Confirm Password must contain at least 10 characters</div>
+           
+            
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <div class="col-lg-12">
+            <button type="submit" class="btn btn-success" (click)="verifyMail(registerForm)">Verify</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </form>

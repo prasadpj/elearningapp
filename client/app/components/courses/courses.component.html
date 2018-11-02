@@ -42,7 +42,7 @@
     <div class="tab-pane active" role="tabpanel" id="menu1">
       <div class="container">
         <div *ngFor="let items of chapterList">
-          <app-demo-test title="{{ items.ChapterName}}">
+          <app-demo-test title="{{ items.Serial}}. {{ items.ChapterName}}">
             <p>
               <b> {{ items.ChapterDesc }}</b>
             </p>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-lg-9" style="color:#E95420">
                   {{ item.Serial }}
-                  <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID , TopicID:item._id }" class="card-link">
+                  <a [routerLink]="['/singletopic']" [queryParams]="{ VideoURL: item.VideoURL, courseId: items.CourseID , TopicID:item._id, TopicName: item.TopicName }" class="card-link">
                     {{ item.TopicName }}
                   </a>
                 </div>

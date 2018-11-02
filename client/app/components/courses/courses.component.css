@@ -1,20 +1,5 @@
 
 
-/* 
-.accordion-toggle:after {
-    
-    font-family: 'Glyphicons Halflings';  
-    content: "\e114";   
-    float: right;       
-    color: grey;     
-}
-.accordion-toggle.collapsed:after {
-    
-    content: "\e080";  
-} */
-
-
-
 .page-header {background: url('../../../assets/images/pageheader.jpg') no-repeat; position: relative; background-size: cover;height: 200px }
 .page-caption { padding-top: 50px; padding-bottom: 50px; }
 .page-title { font-size: 56px; line-height: 1; color: #fff; font-weight: 600; text-align: center; }

@@ -20,9 +20,6 @@ login;
 
     localStorage.removeItem("isReload");
     this.isLogin= this.clientRegisterService.loginCheck();
-    
-   
-
     this.blogsList();
     this.coursesList();
   }
@@ -31,7 +28,7 @@ login;
   courseList;
 
   blogsList() {
-    this.blogList = this.blogService.getBlogList().subscribe((res) => {
+    this.blogList = this.blogService.getTop5BlogList(2).subscribe((res) => {
       this.blogService.blogList = res as Blog[];
     });
   }

@@ -96,8 +96,6 @@
   </div>
 </div>
 
-
-
 <section id="team" class="pb-5" style="margin-top: -60px">
   <div class="container">
     <h1 class="section-title">OUR COURSES</h1>
@@ -106,13 +104,13 @@
 
           <div class="card" style="height: 100%;width: 100%;">
               <div class="card-body" >
-                  <p style="text-align: center" ><img class=" img-fluid" height="70%" width="70%" src="../../../assets/{{items.TechnologyName}}_logo.jpg"
-                    alt="card image"></p>
+                  <p style="text-align: center" ><img class=" img-fluid" src="../../../assets/{{items.TechnologyName}}_logo.jpg"
+                    alt="card image" height="100px" width="100px"></p>
                 <h4 class="card-title" style="text-align: center">{{ items.CourseName }}</h4>
                 
               </div>
               <div class="card-footer" style="text-align: center">
-                  <button type="button" class="btn btn-outline-primary" [routerLink]="['/courses']"  [queryParams]="{ course: items._id }">Start</button>
+                  <button type="button" class="btn btn-primary" [routerLink]="['/courses']"  [queryParams]="{ course: items._id }">Start</button>
                 </div>
             </div>
       </div>
@@ -194,7 +192,7 @@
                 <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">{{
                   item.BlogAbstract}}</p>
                 <p>
-                  <a class="float-right btn btn-outline-info ml-2" [routerLink]="['/singleblog']" [queryParams]="{ BlogId: item._id }">
+                  <a class="float-right btn btn-primary" [routerLink]="['/singleblog']" [queryParams]="{ BlogId: item._id }">
                     <i class="fa fa-reply"></i> <a> Read More</a></a>
 
                 </p>
