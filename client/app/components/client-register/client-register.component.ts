@@ -111,9 +111,16 @@ export class ClientRegisterComponent implements OnInit {
     }
   }
 show: boolean;
-
+isExist;
   saveData(form?: NgForm) {
-    if(form.value._id === '' || form.value._id === null) {
+
+
+    this.clientRegisterService.checkEmailIsActive(form.value).subscribe((res) => {
+      this.isExist = res as ClientRegister[];
+
+
+if(this.isExist == null){
+ if(form.value._id === '' || form.value._id === null) {
 
     form.value.IsAdmin = false;
     form.value.IsActive = false;
@@ -130,6 +137,13 @@ show: boolean;
      
       });
     }
+}
+else{
+  this.toastr.error('Email already exist!');
+}
+
+   
+  });
   }
   singleLogin;
 
