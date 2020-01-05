@@ -55,20 +55,20 @@ function create(req, res, next) {
         FirstName: req.body.FirstName,
         LastName: req.body.LastName,
         Email: req.body.Email,
-        Password: crypto.createCipher("aes-256-ctr", EncryptionKey).update(req.body.Password, "utf-8", "hex"),
+        Password: req.body.Password,
         IsAdmin: req.body.IsAdmin,
         OTP: generator.generate({ length: 10,numbers: true}),
     IsActive: req.body.IsActive
-        
+
 
     });
     EmailService.sendEmail(req.body.Email,"OTP Details",UserModel.OTP,function(err){
-        // if (!err) { 
-        //     res.send(docs); 
+        // if (!err) {
+        //     res.send(docs);
         // }else{
         //     // failure response "failed to send pwd to email id"
-        // }  
-    }); 
+        // }
+    });
 
 
     UserModel.save((err, doc) => {
@@ -118,7 +118,7 @@ function del(req, res, next) {
 function readByEmailId(req, res, next) {
     var user = new User({
         Email: req.body.Email,
-        Password: crypto.createCipher("aes-256-ctr", EncryptionKey).update(req.body.Password, "utf-8", "hex")
+        Password: req.body.Password
     });
     isTrue = User.find({ "Email": user.Email, "Password": user.Password }, (err, docs) => {
         if (!err) { res.send(docs); }
@@ -137,16 +137,16 @@ function readByEmail(req, res, next) {
         if(!docs){
             // invalid email response
         }
-        var password= crypto.createDecipher("aes-256-ctr",EncryptionKey).update(docs.Password,"hex","utf-8")
+        var password= docs.Password
         EmailService.sendEmail(req.body.Email,"Password Details",password,function(err){
-            if (!err) { 
-                res.send(docs); 
+            if (!err) {
+                res.send(docs);
             }else{
                 // failure response "failed to send pwd to email id"
-            }  
-        });    
+            }
+        });
     });
-    
+
 }
 
 
@@ -158,12 +158,12 @@ function readbyEmailIsActive(req, res, next) {
 
     });
    User.findOne({ "Email": user.Email }, (err, docs) => {
-     
-            if (!err) { 
-                res.send(docs); 
+
+            if (!err) {
+                res.send(docs);
             }else{
                 // failure response "failed to send pwd to email id"
-            }  
+            }
         });
     }
 

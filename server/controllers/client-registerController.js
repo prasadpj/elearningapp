@@ -1,5 +1,5 @@
 const express = require('express');
-var router = express.Router();      
+var router = express.Router();
 var ObjectId = require('mongoose').Types.ObjectId;
 var crypto = require('crypto');
 var config = require('../config/index.js');
@@ -9,7 +9,7 @@ var { ClientRegister } = require('../models/client-register');
 var { Login } = require('../models/login');
 
 // localhost:3000/ClientRegistraion/
-router.get('/' , (req,res) => { 
+router.get('/' , (req,res) => {
     ClientRegister.find((err,docs) => {
         if(!err) {res.send(docs);}
         else { console.log('Error in retriving ClinetRegister: ' + JSON.stringify(err, undefined,2));}
@@ -17,14 +17,14 @@ router.get('/' , (req,res) => {
 });
 
 router.get('/:id', (req,res) => {
-    if(!ObjectId.isValid(req.params.id)) 
+    if(!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id: ${req.params.id}`);
 
         ClientRegister.findById(req.params.id,(err, doc) => {
         if(!err) {res.send(doc);}
         else { console.log('Error in retriving ClientRegister: '+ JSON.stringify(err, undefined, 2));}
     });
-});   
+});
 
 router.post('/', (req,res) => {
  var clientRegister = new ClientRegister({
@@ -33,8 +33,8 @@ router.post('/', (req,res) => {
     MobileNo : req.body.MobileNo,
     Email : req.body.Email,
     DOB : req.body.DOB,
-    Password : crypto.createCipher("aes-256-ctr",EncryptionKey).update(req.body.Password,"utf-8","hex"),
-    
+    Password : req.body.Password,
+
     IsAdmin : req.body.IsAdmin,
  });
  clientRegister.save((err, doc) => {
@@ -44,7 +44,7 @@ router.post('/', (req,res) => {
 });
 
 router.put('/:id', (req,res) => {
-    if(!ObjectId.isValid(req.params.id)) 
+    if(!ObjectId.isValid(req.params.id))
     return res.status(400).send(`No record with given id: ${req.params.id}`);
     var clientRegister = {
         FirstName : req.body.FirstName,
@@ -61,7 +61,7 @@ router.put('/:id', (req,res) => {
 });
 
 router.delete('/:id',(req,res)=>{
-    if(!ObjectId.isValid(req.params.id)) 
+    if(!ObjectId.isValid(req.params.id))
     return res.status(400).send(`No record with given id: ${req.params.id}`);
 
     ClientRegister.findByIdAndRemove(req.params.id,(err, doc) => {
@@ -75,11 +75,11 @@ var isTrue;
 router.post('/byEmail/', (req,res) => {
     var clientRegister = new ClientRegister({
         Email : req.body.Email,
-        Password :crypto.createCipher("aes-256-ctr",EncryptionKey).update(req.body.Password,"utf-8","hex")
+        Password :req.body.Password
      });
        isTrue = ClientRegister.find({"Email":clientRegister.Email, "Password":clientRegister.Password},(err,docs) => {
         if(!err) {res.send(docs);}
         else { console.log('Error in retriving ClinetRegister: ' + JSON.stringify(err, undefined,2));}
     });
-});  
+});
 module.exports = router;
